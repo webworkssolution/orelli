@@ -26,7 +26,7 @@ export default function Footer() {
           <span>&middot;</span>
           <Link href="/about" className="hover:text-whiteAlt transition-colors">About</Link>
           <span>&middot;</span>
-          <Link href="/journal" className="hover:text-whiteAlt transition-colors">Journal</Link>
+          <Link href="/blogs" className="hover:text-whiteAlt transition-colors">Blogs</Link>
           <span>&middot;</span>
           <Link href="/contact" className="hover:text-whiteAlt transition-colors">Contact</Link>
           <span>&middot;</span>

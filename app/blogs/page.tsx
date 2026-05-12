@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: "Read our latest thoughts on interiors, craft, and the art of contemporary textiles.",
 };
 
-export default function JournalPage() {
+export default function BlogsPage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
@@ -27,7 +27,7 @@ export default function JournalPage() {
               FEATURED
             </span>
             <h2 className="font-cormorant text-[clamp(28px,3.5vw,48px)] text-foreground leading-tight mb-4 max-w-3xl hover:text-accent transition-colors">
-              <Link href="/journal/color-theory">
+              <Link href="/blogs/color-theory">
                 The Psychology of Warm Tones in Modern Spaces
               </Link>
             </h2>
@@ -37,7 +37,7 @@ export default function JournalPage() {
             <p className="font-sans text-[14px] text-[#555] mb-6 max-w-2xl line-clamp-3">
               Exploring how muted gold, terracotta, and soft sand can transform stark contemporary architecture into inviting, lived-in sanctuaries. We sit down with leading interior architects to discuss their approach.
             </p>
-            <Link href="/journal/color-theory" className="text-link">
+            <Link href="/blogs/color-theory" className="text-link">
               Read Article &rarr;
             </Link>
           </div>
@@ -84,7 +84,7 @@ export default function JournalPage() {
             },
           ].map((article, index) => (
             <FadeUp key={article.slug} delay={(index % 3) * 0.1}>
-              <Link href={`/journal/${article.slug}`} className="block group">
+              <Link href={`/blogs/${article.slug}`} className="block group">
                 <div className="overflow-hidden rounded-[4px] aspect-[16/9] mb-4 bg-border">
                   <img
                     src={article.img}
@@ -109,8 +109,8 @@ export default function JournalPage() {
         {/* Pagination */}
         <div className="flex justify-center items-center gap-4 py-8">
           <span className="font-sans text-[14px] text-foreground border-b border-accent pb-1">1</span>
-          <Link href="/journal?page=2" className="font-sans text-[14px] text-[#888] hover:text-foreground pb-1">2</Link>
-          <Link href="/journal?page=3" className="font-sans text-[14px] text-[#888] hover:text-foreground pb-1">3</Link>
+          <Link href="/blogs?page=2" className="font-sans text-[14px] text-[#888] hover:text-foreground pb-1">2</Link>
+          <Link href="/blogs?page=3" className="font-sans text-[14px] text-[#888] hover:text-foreground pb-1">3</Link>
         </div>
       </section>
     </div>

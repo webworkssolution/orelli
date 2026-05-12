@@ -21,7 +21,7 @@ export default function Navbar() {
   const links = [
     { name: "Collections", href: "/collections" },
     { name: "About", href: "/about" },
-    { name: "Blogs", href: "/journal" },
+    { name: "Blogs", href: "/blogs" },
     { name: "Contact", href: "/contact" },
   ];
 
@@ -33,7 +33,9 @@ export default function Navbar() {
         }`}
       >
         <Link href="/">
-          <span className="font-cormorant text-[18px] tracking-[0.15em] text-foreground">
+          <span className={`font-cormorant text-[18px] tracking-[0.15em] transition-colors duration-400 ${
+            scrolled ? "text-foreground" : "text-whiteAlt"
+          }`}>
             ORELLI BOMBAY
           </span>
         </Link>
@@ -44,7 +46,9 @@ export default function Navbar() {
             <Link
               key={link.name}
               href={link.href}
-              className={`nav-link ${pathname.startsWith(link.href) ? "active" : ""}`}
+              className={`nav-link ${pathname.startsWith(link.href) ? "active" : ""} ${
+                scrolled ? "text-foreground" : "text-whiteAlt"
+              } transition-colors duration-400`}
             >
               {link.name}
             </Link>
@@ -58,18 +62,18 @@ export default function Navbar() {
           aria-label="Toggle Menu"
         >
           <span
-            className={`block h-[1px] bg-foreground transition-all duration-300 w-full ${
-              menuOpen ? "rotate-45 translate-y-[7px] bg-whiteAlt" : ""
+            className={`block h-[1px] transition-all duration-300 w-full ${
+              menuOpen ? "rotate-45 translate-y-[7px] bg-whiteAlt" : `${scrolled ? "bg-foreground" : "bg-whiteAlt"}`
             }`}
           />
           <span
-            className={`block h-[1px] bg-foreground transition-all duration-300 w-full ${
-              menuOpen ? "opacity-0" : ""
+            className={`block h-[1px] transition-all duration-300 w-full ${
+              menuOpen ? "opacity-0" : `${scrolled ? "bg-foreground" : "bg-whiteAlt"}`
             }`}
           />
           <span
-            className={`block h-[1px] bg-foreground transition-all duration-300 w-full ${
-              menuOpen ? "-rotate-45 -translate-y-[7px] bg-whiteAlt" : ""
+            className={`block h-[1px] transition-all duration-300 w-full ${
+              menuOpen ? "-rotate-45 -translate-y-[7px] bg-whiteAlt" : `${scrolled ? "bg-foreground" : "bg-whiteAlt"}`
             }`}
           />
         </button>

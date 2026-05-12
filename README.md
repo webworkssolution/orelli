@@ -27,7 +27,7 @@ To make changes for the client, here is where you need to look:
   - `CollectionsStrip.tsx`: Update the four featured collections in the grid.
   - `BrandStatement.tsx`: Update the large center quote.
   - `FeaturedCollection.tsx`: Update the full-width side-by-side featured blocks.
-  - `JournalTeaser.tsx`: Update the blog previews.
+  - `BlogsTeaser.tsx`: Update the blog previews.
   - `EnquiryCTA.tsx`: The bottom contact banner.
 - **`components/layout/`**: Contains the `Navbar.tsx` and `Footer.tsx`. Update the links, logo text, or social media links here.
 

@@ -2,7 +2,7 @@ import Hero from "@/components/home/Hero";
 import CollectionsStrip from "@/components/home/CollectionsStrip";
 import BrandStatement from "@/components/home/BrandStatement";
 import FeaturedCollection from "@/components/home/FeaturedCollection";
-import JournalTeaser from "@/components/home/JournalTeaser";
+import BlogsTeaser from "@/components/home/BlogsTeaser";
 import EnquiryCTA from "@/components/home/EnquiryCTA";
 
 export default function Home() {
@@ -12,7 +12,7 @@ export default function Home() {
       <CollectionsStrip />
       <BrandStatement />
       <FeaturedCollection />
-      <JournalTeaser />
+      <BlogsTeaser />
       <EnquiryCTA />
     </div>
   );

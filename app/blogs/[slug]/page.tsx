@@ -6,7 +6,7 @@ import matter from "gray-matter";
 import FadeUp from "@/components/ui/FadeUp";
 
 export async function generateStaticParams() {
-  const files = fs.readdirSync(path.join(process.cwd(), "content/journal"));
+  const files = fs.readdirSync(path.join(process.cwd(), "content/blogs"));
   return files.map((filename) => ({
     slug: filename.replace(".mdx", ""),
   }));
@@ -35,7 +35,7 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
   let content = "The content for this article has not been written yet.";
 
   try {
-    const filePath = path.join(process.cwd(), "content/journal", `${params.slug}.mdx`);
+    const filePath = path.join(process.cwd(), "content/blogs", `${params.slug}.mdx`);
     const fileContent = fs.readFileSync(filePath, "utf8");
     const { data, content: mdxContent } = matter(fileContent);
     frontMatter = { ...frontMatter, ...data };
@@ -49,7 +49,7 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
       <div className="max-w-[720px] mx-auto px-6 pt-40 pb-24">
         <FadeUp>
           <div className="font-sans text-[12px] text-[#888] mb-6 uppercase tracking-widest">
-            <Link href="/journal" className="hover:text-foreground transition-colors">Journal</Link>
+            <Link href="/blogs" className="hover:text-foreground transition-colors">Blogs</Link>
             <span className="mx-2">/</span>
             <span>{frontMatter.category}</span>
           </div>
@@ -79,10 +79,10 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
         <FadeUp delay={0.2}>
           <div className="border-t border-border mt-16 pt-12">
             <h3 className="font-cormorant text-[28px] text-foreground mb-8">
-              More from the Journal
+              More from the Blogs
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-              <Link href="/journal/natural-dyes" className="block group">
+              <Link href="/blogs/natural-dyes" className="block group">
                 <div className="overflow-hidden rounded-[4px] aspect-[16/9] mb-4 bg-border">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
@@ -95,7 +95,7 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
                   Reviving Natural Dyes in Commercial Textiles
                 </h4>
               </Link>
-              <Link href="/journal/studio-visit" className="block group">
+              <Link href="/blogs/studio-visit" className="block group">
                 <div className="overflow-hidden rounded-[4px] aspect-[16/9] mb-4 bg-border">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
