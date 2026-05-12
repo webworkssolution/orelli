@@ -10,7 +10,7 @@ interface CollectionCardProps {
 export default function CollectionCard({ title, description, imageSrc, slug }: CollectionCardProps) {
   return (
     <Link href={`/collections/${slug}`} className="block group">
-      <div className="relative aspect-[3/4] overflow-hidden rounded-[4px] bg-border">
+      <div className="relative aspect-[4/3] overflow-hidden rounded-[4px] bg-border">
         {/* Image with zoom effect on hover */}
         <div
           className="absolute inset-0 w-full h-full bg-cover bg-center transition-transform duration-500 ease-in-out group-hover:scale-105"
@@ -26,7 +26,7 @@ export default function CollectionCard({ title, description, imageSrc, slug }: C
       </div>
       
       {/* Title outside the image */}
-      <h3 className="font-cormorant text-[20px] text-foreground mt-3">
+      <h3 className="font-cormorant text-[18px] text-foreground mt-3">
         {title}
       </h3>
     </Link>
