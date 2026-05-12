@@ -6,7 +6,7 @@ export default function JournalTeaser() {
     <section className="bg-background py-24 px-6 md:px-12">
       <FadeUp>
         <h2 className="font-cormorant text-[clamp(36px,5vw,64px)] text-foreground mb-12">
-          From the Journal
+          From the Blogs
         </h2>
       </FadeUp>
 

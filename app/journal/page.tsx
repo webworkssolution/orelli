@@ -3,7 +3,7 @@ import Link from "next/link";
 import FadeUp from "@/components/ui/FadeUp";
 
 export const metadata: Metadata = {
-  title: "Journal | Orelli Bombay",
+  title: "Blogs | Orelli Bombay",
   description: "Read our latest thoughts on interiors, craft, and the art of contemporary textiles.",
 };
 
@@ -14,7 +14,7 @@ export default function JournalPage() {
       <section className="pt-48 pb-12 px-6 md:px-12 border-b border-border">
         <FadeUp>
           <h1 className="font-cormorant text-[clamp(48px,6vw,80px)] text-foreground leading-none">
-            Journal
+            Blogs
           </h1>
         </FadeUp>
       </section>

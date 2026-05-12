@@ -40,9 +40,8 @@ export default function ContactPage() {
                 Orelli Bombay
               </h2>
               <div className="font-sans text-[14px] text-[#555] leading-[1.9] mb-6">
-                <p>14 Mahalaxmi Estate</p>
-                <p>Moses Road, Worli</p>
-                <p>Mumbai, 400018</p>
+                <p>Santacruz</p>
+                <p>Mumbai, 400055</p>
                 <p>India</p>
               </div>
               
