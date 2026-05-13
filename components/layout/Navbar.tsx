@@ -19,7 +19,7 @@ export default function Navbar() {
   }, []);
 
   const links = [
-    { name: "Collections", href: "/collections" },
+    { name: "Categories", href: "/categories" },
     { name: "About", href: "/about" },
     { name: "Blogs", href: "/blogs" },
     { name: "Contact", href: "/contact" },

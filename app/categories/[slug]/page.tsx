@@ -56,7 +56,7 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
         <div className="w-full md:w-1/2 p-6 md:p-16 flex flex-col justify-center">
           <FadeUp delay={0.1}>
             <div className="font-sans text-[12px] text-[#888] mb-6">
-              <Link href="/collections" className="hover:text-foreground transition-colors">Collections</Link>
+              <Link href="/categories" className="hover:text-foreground transition-colors">Categories</Link>
               <span className="mx-2">/</span>
               <span>Upholstery</span>
               <span className="mx-2">/</span>

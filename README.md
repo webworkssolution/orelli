@@ -21,12 +21,12 @@ To make changes for the client, here is where you need to look:
 
 ### 2. Page Content & Layouts
 - **`app/page.tsx`**: The Homepage. It simply imports and stacks sections.
-- **`app/collections/`**: (To be built) Will contain the collections listing and individual product pages.
+- **`app/categories/`**: Contains the categories listing and individual product pages.
 - **`components/home/`**: This folder contains all the individual sections of the homepage.
   - `Hero.tsx`: Change the hero images, tagline text, or timing of the crossfade.
   - `CollectionsStrip.tsx`: Update the four featured collections in the grid.
   - `BrandStatement.tsx`: Update the large center quote.
-  - `FeaturedCollection.tsx`: Update the full-width side-by-side featured blocks.
+  - `FeaturedProject.tsx`: Update the full-width side-by-side featured project blocks.
   - `BlogsTeaser.tsx`: Update the blog previews.
   - `EnquiryCTA.tsx`: The bottom contact banner.
 - **`components/layout/`**: Contains the `Navbar.tsx` and `Footer.tsx`. Update the links, logo text, or social media links here.

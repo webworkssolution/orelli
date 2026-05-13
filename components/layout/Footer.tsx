@@ -22,7 +22,7 @@ export default function Footer() {
 
         {/* Middle section - Nav */}
         <div className="flex flex-wrap justify-center items-center gap-4 mb-12 text-[12px] uppercase tracking-[0.12em] text-whiteAlt/60">
-          <Link href="/collections" className="hover:text-whiteAlt transition-colors">Collections</Link>
+          <Link href="/categories" className="hover:text-whiteAlt transition-colors">Categories</Link>
           <span>&middot;</span>
           <Link href="/about" className="hover:text-whiteAlt transition-colors">About</Link>
           <span>&middot;</span>

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import FadeUp from "@/components/ui/FadeUp";
 
-export default function FeaturedCollection() {
+export default function FeaturedProject() {
   return (
     <section className="bg-background py-0">
       {/* First Feature: Image Left, Text Right */}
@@ -16,7 +16,7 @@ export default function FeaturedCollection() {
         <div className="w-full md:w-1/2 flex items-center p-8 md:px-16 md:py-24">
           <FadeUp>
             <span className="font-sans uppercase tracking-[0.12em] text-[11px] text-[#888] block mb-4">
-              FEATURED COLLECTION
+              FEATURED PROJECT
             </span>
             <h2 className="font-cormorant text-[clamp(28px,3vw,48px)] text-foreground mb-4 leading-tight">
               The Malabar Series
@@ -24,8 +24,8 @@ export default function FeaturedCollection() {
             <p className="font-sans text-[15px] text-[#555] leading-[1.7] mb-8 max-w-[400px] line-clamp-3">
               Inspired by the coastal landscapes of Southern India. This collection features lightweight hand-spun cotton and raw silk blends, perfect for tropical climates.
             </p>
-            <Link href="/collections/malabar-series" className="text-link">
-              Explore Collection &rarr;
+            <Link href="/categories/malabar-series" className="text-link">
+              Explore Project &rarr;
             </Link>
           </FadeUp>
         </div>
@@ -45,7 +45,7 @@ export default function FeaturedCollection() {
         <div className="w-full md:w-1/2 flex items-center p-8 md:px-16 md:py-24">
           <FadeUp>
             <span className="font-sans uppercase tracking-[0.12em] text-[11px] text-[#888] block mb-4">
-              FEATURED COLLECTION
+              FEATURED PROJECT
             </span>
             <h2 className="font-cormorant text-[clamp(28px,3vw,48px)] text-foreground mb-4 leading-tight">
               Heritage Weaves
@@ -53,8 +53,8 @@ export default function FeaturedCollection() {
             <p className="font-sans text-[15px] text-[#555] leading-[1.7] mb-8 max-w-[400px] line-clamp-3">
               Reviving centuries-old weaving techniques. Heavy brocades and textured jacquards that bring a sense of history and depth to contemporary interiors.
             </p>
-            <Link href="/collections/heritage-weaves" className="text-link">
-              Explore Collection &rarr;
+            <Link href="/categories/heritage-weaves" className="text-link">
+              Explore Project &rarr;
             </Link>
           </FadeUp>
         </div>

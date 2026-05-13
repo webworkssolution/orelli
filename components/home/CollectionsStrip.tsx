@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import FadeUp from "@/components/ui/FadeUp";
-import CollectionCard from "@/components/collections/CollectionCard";
+import CollectionCard from "@/components/categories/CollectionCard";
 
 const COLLECTIONS = [
   {
@@ -28,18 +28,6 @@ const COLLECTIONS = [
     description: "The perfect finishing touch.",
     imageSrc: "https://picsum.photos/seed/coll4/600/800",
     slug: "luxury-cushions",
-  },
-  {
-    title: "The Malabar Series",
-    description: "Coastal landscapes of Southern India.",
-    imageSrc: "https://picsum.photos/seed/feat1/600/800",
-    slug: "malabar-series",
-  },
-  {
-    title: "Heritage Weaves",
-    description: "Reviving centuries-old techniques.",
-    imageSrc: "https://picsum.photos/seed/feat2/600/800",
-    slug: "heritage-weaves",
   },
 ];
 
@@ -99,7 +87,7 @@ export default function CollectionsStrip() {
     <section className="bg-background py-24 px-6 md:px-12">
       <FadeUp>
         <h2 className="font-cormorant text-[clamp(36px,5vw,64px)] text-foreground mb-12">
-          Our Collections
+          Our Categories
         </h2>
       </FadeUp>
 

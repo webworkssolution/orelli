@@ -9,7 +9,7 @@ interface CollectionCardProps {
 
 export default function CollectionCard({ title, description, imageSrc, slug }: CollectionCardProps) {
   return (
-    <Link href={`/collections/${slug}`} className="block group">
+    <Link href={`/categories/${slug}`} className="block group">
       <div className="relative aspect-[4/3] overflow-hidden rounded-[4px] bg-border">
         {/* Image with zoom effect on hover */}
         <div

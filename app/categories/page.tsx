@@ -1,9 +1,9 @@
 import { Metadata } from "next";
 import FadeUp from "@/components/ui/FadeUp";
-import CollectionCard from "@/components/collections/CollectionCard";
+import CollectionCard from "@/components/categories/CollectionCard";
 
 export const metadata: Metadata = {
-  title: "Collections | Orelli Bombay",
+  title: "Categories | Orelli Bombay",
   description: "Handwoven textiles for contemporary living. Explore our upholstery, drapery, and rugs.",
 };
 
@@ -61,7 +61,7 @@ export default function CollectionsPage() {
       <section className="pt-48 pb-16 px-6 md:px-12 border-b border-border">
         <FadeUp>
           <h1 className="font-cormorant text-[clamp(48px,6vw,80px)] text-foreground leading-none mb-4">
-            Collections
+            Categories
           </h1>
           <p className="font-sans text-[16px] text-[#555]">
             Handwoven textiles for contemporary living.
