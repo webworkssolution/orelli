@@ -3,10 +3,10 @@
 import { useState, useEffect } from "react";
 
 const IMAGES = [
-  "https://picsum.photos/seed/orelli1/1920/1080",
-  "https://picsum.photos/seed/orelli2/1920/1080",
-  "https://picsum.photos/seed/orelli3/1920/1080",
-  "https://picsum.photos/seed/orelli4/1920/1080",
+  "/upholstery.jpeg",
+  "/drapary.jpeg",
+  "/rugs.jpeg",
+  "/outdoor.jpeg",
 ];
 
 export default function Hero() {

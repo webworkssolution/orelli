@@ -7,50 +7,43 @@ export const metadata: Metadata = {
   description: "Handwoven textiles for contemporary living. Explore our upholstery, drapery, and rugs.",
 };
 
-const FILTERS = ["ALL", "UPHOLSTERY", "DRAPERY", "RUGS", "CUSHIONS"];
+const FILTERS = ["ALL", "UPHOLSTERY", "DRAPERY", "RUGS", "WALLPAPERS", "OUTDOOR"];
 
 const PRODUCTS = [
   {
-    title: "Handwoven Upholstery",
+    title: "Upholstery",
     description: "Rich textures for structured comfort.",
-    imageSrc: "https://picsum.photos/seed/coll1/600/800",
-    slug: "handwoven-upholstery",
-    tags: ["HANDWOVEN", "UPHOLSTERY"],
+    imageSrc: "/upholstery.jpeg",
+    slug: "upholstery",
+    tags: ["UPHOLSTERY"],
   },
   {
-    title: "Sheer Drapery",
+    title: "Drapery",
     description: "Light-filtering elegance for modern spaces.",
-    imageSrc: "https://picsum.photos/seed/coll2/600/800",
-    slug: "sheer-drapery",
-    tags: ["NATURAL FIBRE", "DRAPERY"],
+    imageSrc: "/drapary.jpeg",
+    slug: "drapery",
+    tags: ["DRAPERY"],
   },
   {
-    title: "Artisan Rugs",
+    title: "Rugs",
     description: "Grounding your rooms in heritage craft.",
-    imageSrc: "https://picsum.photos/seed/coll3/600/800",
-    slug: "artisan-rugs",
-    tags: ["HERITAGE", "RUGS"],
+    imageSrc: "/rugs.jpeg",
+    slug: "rugs",
+    tags: ["RUGS"],
   },
   {
-    title: "Luxury Cushions",
+    title: "Wallpapers",
     description: "The perfect finishing touch.",
-    imageSrc: "https://picsum.photos/seed/coll4/600/800",
-    slug: "luxury-cushions",
-    tags: ["SILK", "CUSHIONS"],
+    imageSrc: "/wallpapers.jpeg",
+    slug: "wallpapers",
+    tags: ["WALLPAPERS"],
   },
   {
-    title: "The Malabar Series",
-    description: "Coastal landscapes of Southern India.",
-    imageSrc: "https://picsum.photos/seed/feat1/600/800",
-    slug: "malabar-series",
-    tags: ["COTTON", "UPHOLSTERY"],
-  },
-  {
-    title: "Heritage Weaves",
-    description: "Reviving centuries-old techniques.",
-    imageSrc: "https://picsum.photos/seed/feat2/600/800",
-    slug: "heritage-weaves",
-    tags: ["BROCADE", "DRAPERY"],
+    title: "Outdoor",
+    description: "Bring luxury outside.",
+    imageSrc: "/outdoor.jpeg",
+    slug: "outdoor",
+    tags: ["OUTDOOR"],
   },
 ];
 

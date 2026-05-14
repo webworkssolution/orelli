@@ -30,7 +30,7 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
     date: "JANUARY 2025",
     readTime: "8 MIN READ",
     category: "INTERIORS",
-    heroImage: "https://picsum.photos/seed/articlemain/1200/675",
+    heroImage: "/upholstery.jpeg",
   };
   let content = "The content for this article has not been written yet.";
 
@@ -86,7 +86,7 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
                 <div className="overflow-hidden rounded-[4px] aspect-[16/9] mb-4 bg-border">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src="https://picsum.photos/seed/j1/600/337"
+                    src="/drapary.jpeg"
                     alt="Related 1"
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
@@ -99,7 +99,7 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
                 <div className="overflow-hidden rounded-[4px] aspect-[16/9] mb-4 bg-border">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src="https://picsum.photos/seed/j2/600/337"
+                    src="/rugs.jpeg"
                     alt="Related 2"
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />

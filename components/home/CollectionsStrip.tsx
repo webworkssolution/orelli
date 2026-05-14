@@ -6,28 +6,34 @@ import CollectionCard from "@/components/categories/CollectionCard";
 
 const COLLECTIONS = [
   {
-    title: "Handwoven Upholstery",
+    title: "Upholstery",
     description: "Rich textures for structured comfort.",
-    imageSrc: "https://picsum.photos/seed/coll1/600/800",
-    slug: "handwoven-upholstery",
+    imageSrc: "/upholstery.jpeg",
+    slug: "upholstery",
   },
   {
-    title: "Sheer Drapery",
+    title: "Drapery",
     description: "Light-filtering elegance for modern spaces.",
-    imageSrc: "https://picsum.photos/seed/coll2/600/800",
-    slug: "sheer-drapery",
+    imageSrc: "/drapary.jpeg",
+    slug: "drapery",
   },
   {
-    title: "Artisan Rugs",
+    title: "Rugs",
     description: "Grounding your rooms in heritage craft.",
-    imageSrc: "https://picsum.photos/seed/coll3/600/800",
-    slug: "artisan-rugs",
+    imageSrc: "/rugs.jpeg",
+    slug: "rugs",
   },
   {
-    title: "Luxury Cushions",
+    title: "Wallpapers",
     description: "The perfect finishing touch.",
-    imageSrc: "https://picsum.photos/seed/coll4/600/800",
-    slug: "luxury-cushions",
+    imageSrc: "/wallpapers.jpeg",
+    slug: "wallpapers",
+  },
+  {
+    title: "Outdoor",
+    description: "Bring luxury outside.",
+    imageSrc: "/outdoor.jpeg",
+    slug: "outdoor",
   },
 ];
 
@@ -91,26 +97,26 @@ export default function CollectionsStrip() {
         </h2>
       </FadeUp>
 
-      <div className="relative flex items-center gap-8">
+      <div className="relative flex items-center">
         {/* Left Arrow */}
         <button
           onClick={goToPrevious}
-          className="absolute -left-12 top-1/3 z-10 p-2 hover:opacity-60 transition-opacity hidden md:block"
+          className="absolute left-4 top-1/3 z-10 p-2 bg-background/50 backdrop-blur-md rounded-full hover:bg-background/80 transition-colors hidden md:block border border-border"
           aria-label="Previous collection"
         >
-          <svg className="w-6 h-6 text-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-5 h-5 text-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
         </button>
 
         {/* Collections Grid/Carousel */}
-        <div className="w-full overflow-hidden">
+        <div className="w-full overflow-hidden [--slide-width:100%] md:[--slide-width:50%] lg:[--slide-width:33.3333%]">
           <div
-            className={`flex gap-8 ${transitionEnabled ? "transition-transform duration-500 ease-in-out" : ""}`}
-            style={{ transform: `translateX(-${index * 50}%)` }}
+            className={`flex ${transitionEnabled ? "transition-transform duration-500 ease-in-out" : ""}`}
+            style={{ transform: `translateX(calc(-${index} * var(--slide-width)))` }}
           >
             {slides.map((collection, idx) => (
-              <div key={idx} className="flex-shrink-0 w-1/2">
+              <div key={idx} className="flex-shrink-0 w-full md:w-1/2 lg:w-1/3 px-3 md:px-4">
                 <CollectionCard {...collection} />
               </div>
             ))}
@@ -120,10 +126,10 @@ export default function CollectionsStrip() {
         {/* Right Arrow */}
         <button
           onClick={goToNext}
-          className="absolute -right-12 top-1/3 z-10 p-2 hover:opacity-60 transition-opacity hidden md:block"
+          className="absolute right-4 top-1/3 z-10 p-2 bg-background/50 backdrop-blur-md rounded-full hover:bg-background/80 transition-colors hidden md:block border border-border"
           aria-label="Next collection"
         >
-          <svg className="w-6 h-6 text-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-5 h-5 text-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
         </button>

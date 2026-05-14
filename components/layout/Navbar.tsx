@@ -25,16 +25,19 @@ export default function Navbar() {
     { name: "Contact", href: "/contact" },
   ];
 
+  const isHome = pathname === "/";
+  const useDarkText = scrolled || !isHome;
+
   return (
     <>
       <nav
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-400 ease-in-out h-[72px] flex items-center justify-between px-6 md:px-12 ${
-          scrolled ? "bg-background shadow-[0_1px_0_#E8E4DF]" : "bg-transparent"
+          useDarkText ? "bg-background shadow-[0_1px_0_#E8E4DF]" : "bg-transparent"
         }`}
       >
         <Link href="/">
           <span className={`font-cormorant text-[18px] tracking-[0.15em] transition-colors duration-400 ${
-            scrolled ? "text-foreground" : "text-whiteAlt"
+            useDarkText ? "text-foreground" : "text-whiteAlt"
           }`}>
             ORELLI BOMBAY
           </span>
@@ -47,7 +50,7 @@ export default function Navbar() {
               key={link.name}
               href={link.href}
               className={`nav-link ${pathname.startsWith(link.href) ? "active" : ""} ${
-                scrolled ? "text-foreground" : "text-whiteAlt"
+                useDarkText ? "text-foreground" : "text-whiteAlt"
               } transition-colors duration-400`}
             >
               {link.name}
@@ -63,17 +66,17 @@ export default function Navbar() {
         >
           <span
             className={`block h-[1px] transition-all duration-300 w-full ${
-              menuOpen ? "rotate-45 translate-y-[7px] bg-whiteAlt" : `${scrolled ? "bg-foreground" : "bg-whiteAlt"}`
+              menuOpen ? "rotate-45 translate-y-[7px] bg-whiteAlt" : `${useDarkText ? "bg-foreground" : "bg-whiteAlt"}`
             }`}
           />
           <span
             className={`block h-[1px] transition-all duration-300 w-full ${
-              menuOpen ? "opacity-0" : `${scrolled ? "bg-foreground" : "bg-whiteAlt"}`
+              menuOpen ? "opacity-0" : `${useDarkText ? "bg-foreground" : "bg-whiteAlt"}`
             }`}
           />
           <span
             className={`block h-[1px] transition-all duration-300 w-full ${
-              menuOpen ? "-rotate-45 -translate-y-[7px] bg-whiteAlt" : `${scrolled ? "bg-foreground" : "bg-whiteAlt"}`
+              menuOpen ? "-rotate-45 -translate-y-[7px] bg-whiteAlt" : `${useDarkText ? "bg-foreground" : "bg-whiteAlt"}`
             }`}
           />
         </button>

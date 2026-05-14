@@ -57,7 +57,7 @@ export default function ContactPage() {
               <div className="w-full h-[200px] bg-border rounded-[4px] overflow-hidden">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img 
-                  src="https://picsum.photos/seed/map/800/400" 
+                  src="/outdoor.jpeg" 
                   alt="Studio Map Location" 
                   className="w-full h-full object-cover grayscale opacity-80"
                 />

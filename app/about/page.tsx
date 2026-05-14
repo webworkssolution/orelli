@@ -12,7 +12,7 @@ export default function AboutPage() {
       {/* Hero */}
       <section className="relative w-full h-[60vh] overflow-hidden mt-[72px]">
         <img
-          src="https://picsum.photos/seed/abouthero/1920/1080"
+          src="/outdoor.jpeg"
           alt="Orelli Bombay Studio"
           className="absolute inset-0 w-full h-full object-cover"
         />
@@ -56,7 +56,7 @@ export default function AboutPage() {
           <div className="w-full md:w-1/2">
             <FadeUp delay={0.2} className="h-full">
               <img
-                src="https://picsum.photos/seed/aboutstory/800/1000"
+                src="/wallpapers.jpeg"
                 alt="Artisan weaving on loom"
                 className="w-full h-full object-cover rounded-[4px]"
               />

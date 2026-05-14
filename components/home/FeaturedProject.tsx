@@ -8,7 +8,7 @@ export default function FeaturedProject() {
       <div className="flex flex-col md:flex-row w-full">
         <div className="w-full md:w-1/2 aspect-square md:aspect-auto">
           <img
-            src="https://picsum.photos/seed/feat1/1000/1000"
+            src="/outdoor.jpeg"
             alt="The Malabar Series"
             className="w-full h-full object-cover"
           />
@@ -37,7 +37,7 @@ export default function FeaturedProject() {
       <div className="flex flex-col md:flex-row-reverse w-full">
         <div className="w-full md:w-1/2 aspect-square md:aspect-auto">
           <img
-            src="https://picsum.photos/seed/feat2/1000/1000"
+            src="/upholstery.jpeg"
             alt="Heritage Weaves"
             className="w-full h-full object-cover"
           />
