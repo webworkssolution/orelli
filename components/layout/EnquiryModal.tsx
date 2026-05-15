@@ -16,6 +16,8 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
     architecture: "",
     themePalette: "",
     colourPalette: "",
+    hasArchitect: "",
+    architectName: "",
     helperText: "",
     photos: null as File | null,
   });
@@ -45,6 +47,8 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
       architecture: "",
       themePalette: "",
       colourPalette: "",
+      hasArchitect: "",
+      architectName: "",
       helperText: "",
       photos: null,
     });
@@ -205,6 +209,41 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
               <h3 className="font-sans text-xs sm:text-[14px] uppercase tracking-[0.12em] text-[#888]">
                 Additional Details
               </h3>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                <div>
+                  <label className="block font-sans text-[10px] sm:text-[12px] uppercase tracking-[0.1em] text-[#555] mb-2">
+                    Do you have your own architect?
+                  </label>
+                  <select
+                    name="hasArchitect"
+                    value={formData.hasArchitect}
+                    onChange={handleInputChange}
+                    className="w-full px-3 sm:px-4 py-2 border border-border rounded-[4px] font-sans text-sm sm:text-[14px] focus:outline-none focus:ring-1 focus:ring-accent bg-background"
+                  >
+                    <option value="">Select option</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                  </select>
+                </div>
+
+                {formData.hasArchitect === "yes" && (
+                  <div>
+                    <label className="block font-sans text-[10px] sm:text-[12px] uppercase tracking-[0.1em] text-[#555] mb-2">
+                      Architect&apos;s Name <span className="text-accent">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      name="architectName"
+                      value={formData.architectName}
+                      onChange={handleInputChange}
+                      placeholder="Enter architect's name"
+                      required
+                      className="w-full px-3 sm:px-4 py-2 border border-border rounded-[4px] font-sans text-sm sm:text-[14px] focus:outline-none focus:ring-1 focus:ring-accent bg-background"
+                    />
+                  </div>
+                )}
+              </div>
 
               <div>
                 <label className="block font-sans text-[10px] sm:text-[12px] uppercase tracking-[0.1em] text-[#555] mb-2">
