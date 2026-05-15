@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import FadeUp from "@/components/ui/FadeUp";
 
 export default function ContactForm() {
   const [formStatus, setFormStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
