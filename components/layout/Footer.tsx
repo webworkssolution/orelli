@@ -23,13 +23,13 @@ export default function Footer() {
         {/* Middle section - Nav */}
         <div className="flex flex-wrap justify-center items-center gap-4 mb-12 text-[12px] uppercase tracking-[0.12em] text-whiteAlt/60">
           <Link href="/categories" className="hover:text-whiteAlt transition-colors">Categories</Link>
-          <span>&middot;</span>
+          <span>·</span>
           <Link href="/about" className="hover:text-whiteAlt transition-colors">About</Link>
-          <span>&middot;</span>
+          <span>·</span>
           <Link href="/blogs" className="hover:text-whiteAlt transition-colors">Blogs</Link>
-          <span>&middot;</span>
+          <span>·</span>
           <Link href="/contact" className="hover:text-whiteAlt transition-colors">Contact</Link>
-          <span>&middot;</span>
+          <span>·</span>
           <Link href="/privacy" className="hover:text-whiteAlt transition-colors">Privacy Policy</Link>
         </div>
 
@@ -56,10 +56,9 @@ export default function Footer() {
           </a>
         </div>
 
-        {/* Bottom Strip */}
         <div className="w-full border-t border-white/10 pt-5 mt-5 text-center">
           <p className="font-sans text-[11px] text-whiteAlt/35">
-            &copy; {new Date().getFullYear()} Orelli Bombay. All rights reserved.
+            © 2026 Orelli Bombay. All rights reserved.
           </p>
         </div>
       </div>

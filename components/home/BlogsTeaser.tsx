@@ -23,7 +23,7 @@ export default function BlogsTeaser() {
             </Link>
             <div className="w-full md:w-[58%] md:pl-[48px]">
               <span className="font-sans uppercase tracking-[0.12em] text-[11px] text-[#888] block mb-4">
-                JANUARY 2025 &middot; INTERIORS
+                JANUARY 2025 · INTERIORS
               </span>
               <h3 className="font-cormorant text-[clamp(22px,3vw,38px)] text-foreground mb-4 leading-tight hover:text-accent transition-colors">
                 <Link href="/blogs/color-theory">
@@ -34,7 +34,7 @@ export default function BlogsTeaser() {
                 Exploring how muted gold, terracotta, and soft sand can transform stark contemporary architecture into inviting, lived-in sanctuaries.
               </p>
               <Link href="/blogs/color-theory" className="text-link">
-                Read More &rarr;
+                Read More →
               </Link>
             </div>
           </div>
@@ -52,13 +52,13 @@ export default function BlogsTeaser() {
                 />
               </div>
               <span className="font-sans uppercase tracking-[0.12em] text-[11px] text-[#888] block mb-3">
-                DECEMBER 2024 &middot; CRAFT
+                DECEMBER 2024 · CRAFT
               </span>
               <h4 className="font-cormorant text-[24px] text-foreground mb-4 leading-tight group-hover:text-accent transition-colors">
                 Reviving Natural Dyes in Commercial Textiles
               </h4>
               <span className="text-link pointer-events-none">
-                Read &rarr;
+                Read →
               </span>
             </Link>
           </FadeUp>
@@ -73,13 +73,13 @@ export default function BlogsTeaser() {
                 />
               </div>
               <span className="font-sans uppercase tracking-[0.12em] text-[11px] text-[#888] block mb-3">
-                NOVEMBER 2024 &middot; STUDIO
+                NOVEMBER 2024 · STUDIO
               </span>
               <h4 className="font-cormorant text-[24px] text-foreground mb-4 leading-tight group-hover:text-accent transition-colors">
                 Behind the Scenes: The Winter Collection
               </h4>
               <span className="text-link pointer-events-none">
-                Read &rarr;
+                Read →
               </span>
             </Link>
           </FadeUp>

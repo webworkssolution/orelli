@@ -46,7 +46,7 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
             </h1>
             
             <div className="font-sans uppercase tracking-[0.12em] text-[11px] text-[#888]">
-              {params.slug.replace(/-/g, " ").toUpperCase()} &middot; NATURAL FIBRE
+              {params.slug.replace(/-/g, " ").toUpperCase()} · NATURAL FIBRE
             </div>
 
             <div className="w-full h-[1px] bg-border my-5" />

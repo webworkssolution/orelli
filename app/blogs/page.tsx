@@ -32,13 +32,13 @@ export default function BlogsPage() {
               </Link>
             </h2>
             <span className="font-sans uppercase tracking-[0.12em] text-[11px] text-[#888] mb-6">
-              JANUARY 2025 &middot; 8 MIN READ
+              JANUARY 2025 · 8 MIN READ
             </span>
             <p className="font-sans text-[14px] text-[#555] mb-6 max-w-2xl line-clamp-3">
               Exploring how muted gold, terracotta, and soft sand can transform stark contemporary architecture into inviting, lived-in sanctuaries. We sit down with leading interior architects to discuss their approach.
             </p>
             <Link href="/blogs/color-theory" className="text-link">
-              Read Article &rarr;
+              Read Article →
             </Link>
           </div>
         </FadeUp>
@@ -99,7 +99,7 @@ export default function BlogsPage() {
                   {article.title}
                 </h3>
                 <span className="text-link pointer-events-none">
-                  Read &rarr;
+                  Read →
                 </span>
               </Link>
             </FadeUp>

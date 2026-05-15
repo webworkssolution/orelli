@@ -59,7 +59,7 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
           </h1>
 
           <div className="font-sans uppercase tracking-[0.12em] text-[11px] text-[#888] mb-6">
-            {frontMatter.date} &middot; {frontMatter.readTime}
+            {frontMatter.date} · {frontMatter.readTime}
           </div>
 
           <div className="w-full h-[1px] bg-border my-6" />
