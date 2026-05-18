@@ -4,12 +4,12 @@
 
 @layer base {
   :root {
-    --color-bg: #FAF8F5;
+    --color-bg: #fff2e8;
     --color-text: #1A1A1A;
     --color-accent: #C9A96E;
     --color-border: #E8E4DF;
-    --color-footer-bg: #1A1A1A;
-    --color-white: #FAF8F5;
+    --color-footer-bg: #e5d0be;
+    --color-white: #fff2e8;
   }
 
   body {
@@ -68,11 +68,11 @@
   }
 
   .btn-outline:hover {
-    @apply bg-foreground text-background;
+    @apply bg-[#E8E4DF] text-black border-[#E8E4DF];
   }
 
   .btn-filled {
-    @apply bg-foreground text-background px-[40px] py-[16px] text-[12px] uppercase tracking-widest transition-opacity duration-[250ms] ease-in-out;
+    @apply bg-[#E8E4DF] text-black px-[40px] py-[16px] text-[12px] uppercase tracking-widest transition-opacity duration-[250ms] ease-in-out;
   }
 
   .btn-filled:hover {

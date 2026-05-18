@@ -58,8 +58,8 @@ export default function ContactForm() {
         disabled={formStatus === "loading" || formStatus === "success"}
         className={`mt-4 px-[36px] py-[14px] text-[12px] font-sans uppercase tracking-widest transition-all ${
           formStatus === "success" 
-            ? "bg-accent text-whiteAlt"
-            : "bg-foreground text-background hover:opacity-85"
+            ? "bg-[#E8E4DF] text-black"
+            : "bg-transparent border border-black text-black hover:bg-[#E8E4DF]"
         }`}
       >
         {formStatus === "idle" && "SEND ENQUIRY"}

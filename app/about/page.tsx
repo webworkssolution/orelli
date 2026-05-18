@@ -12,14 +12,14 @@ export default function AboutPage() {
       {/* Hero */}
       <section className="relative w-full h-[60vh] overflow-hidden mt-[72px]">
         <img
-          src="/outdoor.jpeg"
+          src="/new-hero-2.jpeg"
           alt="Orelli Bombay Studio"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-black/40 z-10" />
+        <div className="absolute inset-0 bg-white/50 z-10" />
         <div className="absolute inset-0 z-20 flex items-center justify-center px-6">
           <FadeUp>
-            <h1 className="font-cormorant italic text-whiteAlt text-[clamp(36px,5vw,72px)] text-center leading-tight">
+            <h1 className="font-cormorant italic text-black text-[clamp(36px,5vw,72px)] text-center leading-tight">
               Rooted in Bombay.<br />Crafted for the world.
             </h1>
           </FadeUp>
@@ -42,7 +42,7 @@ export default function AboutPage() {
                   Orelli Bombay was born from a deep reverence for the textile heritage of India. We set out to create fabrics that honor the meticulous techniques of the past while speaking fluently to the sensibilities of modern interior architecture.
                 </p>
                 <blockquote className="font-cormorant italic text-[22px] text-accent border-l-2 border-accent pl-[20px] my-8">
-                  "True luxury lies in the unseen details—the tension of the warp, the subtle irregularity of the hand-spun weft."
+                  &quot;True luxury lies in the unseen details—the tension of the warp, the subtle irregularity of the hand-spun weft.&quot;
                 </blockquote>
                 <p>
                   We collaborate directly with master weaving communities across the subcontinent. By pairing their generational expertise with contemporary color palettes and refined natural fibers, we produce textiles that are both inherently grounded and effortlessly sophisticated.
@@ -56,7 +56,7 @@ export default function AboutPage() {
           <div className="w-full md:w-1/2">
             <FadeUp delay={0.2} className="h-full">
               <img
-                src="/wallpapers.jpeg"
+                src="/new-wallpapers-1.jpeg"
                 alt="Artisan weaving on loom"
                 className="w-full h-full object-cover rounded-[4px]"
               />
@@ -66,7 +66,7 @@ export default function AboutPage() {
       </section>
 
       {/* Values Strip */}
-      <section className="bg-[#1A1A1A] py-24 px-6 md:px-12">
+      <section className="bg-footerBg py-24 px-6 md:px-12">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
           {[
             {
@@ -87,7 +87,7 @@ export default function AboutPage() {
                 <h3 className="font-cormorant text-[28px] text-accent mb-4">
                   {value.title}
                 </h3>
-                <p className="font-sans text-[14px] text-whiteAlt/75 leading-[1.8]">
+                <p className="font-sans text-[14px] text-black/75 leading-[1.8]">
                   {value.description}
                 </p>
               </div>

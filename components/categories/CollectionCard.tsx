@@ -18,8 +18,8 @@ export default function CollectionCard({ title, description, imageSrc, slug }: C
         />
         
         {/* Dark overlay that fades in from bottom */}
-        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/70 to-transparent opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100 flex items-end p-6">
-          <p className="font-sans text-whiteAlt text-[14px] line-clamp-1">
+        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-white/80 to-transparent opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100 flex items-end p-6">
+          <p className="font-sans text-black text-[14px] line-clamp-1">
             {description}
           </p>
         </div>

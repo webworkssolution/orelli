@@ -3,12 +3,12 @@ import FadeUp from "@/components/ui/FadeUp";
 
 const getImageUrl = (slug: string) => {
   switch(slug) {
-    case 'upholstery': return '/upholstery.jpeg';
-    case 'drapery': return '/drapary.jpeg';
-    case 'rugs': return '/rugs.jpeg';
-    case 'wallpapers': return '/wallpapers.jpeg';
-    case 'outdoor': return '/outdoor.jpeg';
-    default: return '/upholstery.jpeg';
+    case 'upholstery': return '/new-upholstery-1.jpeg';
+    case 'drapery': return '/new-drapery-1.jpeg';
+    case 'rugs': return '/new-rugs-1.jpeg';
+    case 'wallpapers': return '/new-wallpapers-1.jpeg';
+    case 'outdoor': return '/new-hero-2.jpeg';
+    default: return '/new-upholstery-1.jpeg';
   }
 };
 

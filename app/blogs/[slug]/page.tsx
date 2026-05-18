@@ -1,3 +1,4 @@
+import React from "react";
 import fs from "fs";
 import path from "path";
 import Link from "next/link";
@@ -13,14 +14,18 @@ export async function generateStaticParams() {
 }
 
 const components = {
-  p: (props: any) => <p className="font-sans text-[16px] text-[#333] leading-[1.9] mb-6" {...props} />,
-  h2: (props: any) => <h2 className="font-cormorant text-[28px] text-foreground mt-10 mb-4" {...props} />,
-  blockquote: (props: any) => (
+  p: (props: React.ComponentPropsWithoutRef<"p">) => (
+    <p className="font-sans text-[16px] text-[#333] leading-[1.9] mb-6" {...props} />
+  ),
+  h2: (props: React.ComponentPropsWithoutRef<"h2">) => (
+    <h2 className="font-cormorant text-[28px] text-foreground mt-10 mb-4" {...props} />
+  ),
+  blockquote: (props: React.ComponentPropsWithoutRef<"blockquote">) => (
     <blockquote className="font-cormorant italic text-[20px] text-accent border-l-2 border-accent pl-[20px] my-8" {...props} />
   ),
-  img: (props: any) => (
+  img: ({ alt, ...props }: React.ImgHTMLAttributes<HTMLImageElement>) => (
     /* eslint-disable-next-line @next/next/no-img-element */
-    <img className="w-full rounded-[4px] my-8" {...props} />
+    <img alt={alt ?? ""} className="w-full rounded-[4px] my-8" {...props} />
   ),
 };
 
@@ -30,7 +35,7 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
     date: "JANUARY 2025",
     readTime: "8 MIN READ",
     category: "INTERIORS",
-    heroImage: "/upholstery.jpeg",
+    heroImage: "/new-upholstery-1.jpeg",
   };
   let content = "The content for this article has not been written yet.";
 
@@ -40,7 +45,7 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
     const { data, content: mdxContent } = matter(fileContent);
     frontMatter = { ...frontMatter, ...data };
     content = mdxContent;
-  } catch (e) {
+  } catch {
     // Fallback if file doesn't exist, to keep demo working
   }
 
@@ -86,7 +91,7 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
                 <div className="overflow-hidden rounded-[4px] aspect-[16/9] mb-4 bg-border">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src="/drapary.jpeg"
+                    src="/new-drapery-1.jpeg"
                     alt="Related 1"
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
@@ -99,7 +104,7 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
                 <div className="overflow-hidden rounded-[4px] aspect-[16/9] mb-4 bg-border">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src="/rugs.jpeg"
+                    src="/new-rugs-1.jpeg"
                     alt="Related 2"
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />

@@ -35,11 +35,16 @@ export default function Navbar() {
           useDarkText ? "bg-background shadow-[0_1px_0_#E8E4DF]" : "bg-transparent"
         }`}
       >
-        <Link href="/">
-          <span className={`font-cormorant text-[18px] tracking-[0.15em] transition-colors duration-400 ${
+        <Link href="/" className="flex items-center gap-3">
+          <img
+            src="/orelli-without-bg.png"
+            alt="Orelli Logo"
+            className="w-10 h-10 object-contain"
+          />
+          <span className={`font-baskerville text-[20px] tracking-[0.10em] transition-colors duration-400 ${
             useDarkText ? "text-foreground" : "text-whiteAlt"
           }`}>
-            ORELLI BOMBAY
+            Orelli Bombay
           </span>
         </Link>
 

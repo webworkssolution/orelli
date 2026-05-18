@@ -9,16 +9,18 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "#FAF8F5",
-        foreground: "#1A1A1A",
-        accent: "#C9A96E",
+        background: "#fff2e8",
+        foreground: "#000000",
+        accent: "#000000",
         border: "#E8E4DF",
-        footerBg: "#1A1A1A",
-        whiteAlt: "#FAF8F5",
+        footerBg: "#e5d0be",
+        whiteAlt: "#000000",
       },
       fontFamily: {
-        cormorant: ["var(--font-cormorant)"],
-        sans: ["var(--font-dm-sans)"],
+        cormorant: ["Optima", "sans-serif"],
+        sans: ["Optima", "sans-serif"],
+        baskerville: ["\"Fry's Baskerville\"", "serif"],
+        optima: ["Optima", "sans-serif"],
       },
       keyframes: {
         kenBurns: {

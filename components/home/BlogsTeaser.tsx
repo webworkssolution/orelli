@@ -16,7 +16,7 @@ export default function BlogsTeaser() {
           <div className="flex flex-col md:flex-row w-full gap-8 md:gap-0 items-center">
             <Link href="/blogs/color-theory" className="w-full md:w-[42%] block group overflow-hidden rounded-[4px]">
               <img
-                src="/upholstery.jpeg"
+                src="/new-upholstery-1.jpeg"
                 alt="Blog Featured"
                 className="w-full aspect-[16/10] object-cover transition-transform duration-500 group-hover:scale-105"
               />
@@ -46,7 +46,7 @@ export default function BlogsTeaser() {
             <Link href="/blogs/natural-dyes" className="block group">
               <div className="overflow-hidden rounded-[4px] mb-6">
                 <img
-                  src="/drapary.jpeg"
+                  src="/new-drapery-1.jpeg"
                     alt="Blog 2"
                   className="w-full aspect-video object-cover transition-transform duration-500 group-hover:scale-105"
                 />
@@ -67,7 +67,7 @@ export default function BlogsTeaser() {
             <Link href="/blogs/studio-visit" className="block group">
               <div className="overflow-hidden rounded-[4px] mb-6">
                 <img
-                  src="/rugs.jpeg"
+                  src="/new-rugs-1.jpeg"
                     alt="Blog 3"
                   className="w-full aspect-video object-cover transition-transform duration-500 group-hover:scale-105"
                 />

@@ -30,7 +30,7 @@ yarn-error.log*
 
 # vercel
 .vercel
-
+.vscode
 # typescript
 *.tsbuildinfo
 next-env.d.ts
@@ -38,3 +38,5 @@ next-env.d.ts
 orelli-bombay-agent-brief.md
 
 /.github
+
+textissuefix.md

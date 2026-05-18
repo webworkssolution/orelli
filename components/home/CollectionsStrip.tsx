@@ -8,31 +8,31 @@ const COLLECTIONS = [
   {
     title: "Upholstery",
     description: "Rich textures for structured comfort.",
-    imageSrc: "/upholstery.jpeg",
+    imageSrc: "/new-upholstery-1.jpeg",
     slug: "upholstery",
   },
   {
     title: "Drapery",
     description: "Light-filtering elegance for modern spaces.",
-    imageSrc: "/drapary.jpeg",
+    imageSrc: "/new-drapery-1.jpeg",
     slug: "drapery",
   },
   {
     title: "Rugs",
     description: "Grounding your rooms in heritage craft.",
-    imageSrc: "/rugs.jpeg",
+    imageSrc: "/new-rugs-1.jpeg",
     slug: "rugs",
   },
   {
     title: "Wallpapers",
     description: "The perfect finishing touch.",
-    imageSrc: "/wallpapers.jpeg",
+    imageSrc: "/new-wallpapers-1.jpeg",
     slug: "wallpapers",
   },
   {
     title: "Outdoor",
     description: "Bring luxury outside.",
-    imageSrc: "/outdoor.jpeg",
+    imageSrc: "/new-hero-2.jpeg",
     slug: "outdoor",
   },
 ];

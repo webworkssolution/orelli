@@ -4,7 +4,7 @@ import ContactForm from "@/components/contact/ContactForm";
 
 export const metadata: Metadata = {
   title: "Contact Us | Orelli Bombay",
-  description: "Let's work together. Reach out for project inquiries, custom orders, or studio visits.",
+  description: "Let&apos;s work together. Reach out for project inquiries, custom orders, or studio visits.",
 };
 
 export default function ContactPage() {
@@ -14,7 +14,7 @@ export default function ContactPage() {
       <section className="pt-40 pb-8 px-6 md:px-12">
         <FadeUp>
           <h1 className="font-cormorant text-[clamp(36px,5vw,64px)] text-foreground leading-none">
-            Let's Work Together
+            Let&apos;s Work Together
           </h1>
         </FadeUp>
       </section>
@@ -57,7 +57,7 @@ export default function ContactPage() {
               <div className="w-full h-[200px] bg-border rounded-[4px] overflow-hidden">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img 
-                  src="/outdoor.jpeg" 
+                  src="/new-hero-2.jpeg" 
                   alt="Studio Map Location" 
                   className="w-full h-full object-cover grayscale opacity-80"
                 />

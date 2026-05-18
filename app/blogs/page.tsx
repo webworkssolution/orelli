@@ -48,37 +48,37 @@ export default function BlogsPage() {
           {[
             {
               slug: "natural-dyes",
-              img: "/upholstery.jpeg",
+              img: "/new-upholstery-1.jpeg",
               meta: "DECEMBER 2024 · CRAFT",
               title: "Reviving Natural Dyes in Commercial Textiles",
             },
             {
               slug: "studio-visit",
-              img: "/drapary.jpeg",
+              img: "/new-drapery-1.jpeg",
               meta: "NOVEMBER 2024 · STUDIO",
               title: "Behind the Scenes: The Winter Collection",
             },
             {
               slug: "art-of-drapery",
-              img: "/rugs.jpeg",
+              img: "/new-rugs-1.jpeg",
               meta: "OCTOBER 2024 · INTERIORS",
               title: "The Subtle Art of Drapery Installation",
             },
             {
               slug: "fibers-explained",
-              img: "/outdoor.jpeg",
+              img: "/new-hero-2.jpeg",
               meta: "SEPTEMBER 2024 · EDUCATION",
               title: "Understanding Fiber Blends for Upholstery",
             },
             {
               slug: "artisan-spotlight",
-              img: "/wallpapers.jpeg",
+              img: "/new-wallpapers-1.jpeg",
               meta: "AUGUST 2024 · CRAFT",
               title: "Artisan Spotlight: The Master Weavers of Kutch",
             },
             {
               slug: "styling-cushions",
-              img: "/upholstery.jpeg",
+              img: "/new-upholstery-1.jpeg",
               meta: "JULY 2024 · INTERIORS",
               title: "How to Layer Textures with Cushions",
             },

@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import Link from "next/link";
 import FadeUp from "@/components/ui/FadeUp";
 import CollectionCard from "@/components/categories/CollectionCard";
 
@@ -13,35 +14,35 @@ const PRODUCTS = [
   {
     title: "Upholstery",
     description: "Rich textures for structured comfort.",
-    imageSrc: "/upholstery.jpeg",
+    imageSrc: "/new-upholstery-1.jpeg",
     slug: "upholstery",
     tags: ["UPHOLSTERY"],
   },
   {
     title: "Drapery",
     description: "Light-filtering elegance for modern spaces.",
-    imageSrc: "/drapary.jpeg",
+    imageSrc: "/new-drapery-1.jpeg",
     slug: "drapery",
     tags: ["DRAPERY"],
   },
   {
     title: "Rugs",
     description: "Grounding your rooms in heritage craft.",
-    imageSrc: "/rugs.jpeg",
+    imageSrc: "/new-rugs-1.jpeg",
     slug: "rugs",
     tags: ["RUGS"],
   },
   {
     title: "Wallpapers",
     description: "The perfect finishing touch.",
-    imageSrc: "/wallpapers.jpeg",
+    imageSrc: "/new-wallpapers-1.jpeg",
     slug: "wallpapers",
     tags: ["WALLPAPERS"],
   },
   {
     title: "Outdoor",
     description: "Bring luxury outside.",
-    imageSrc: "/outdoor.jpeg",
+    imageSrc: "/new-hero-2.jpeg",
     slug: "outdoor",
     tags: ["OUTDOOR"],
   },
@@ -66,16 +67,17 @@ export default function CollectionsPage() {
       <div className="sticky top-[72px] z-40 bg-background border-b border-border py-4 px-6 md:px-12 overflow-x-auto">
         <div className="flex items-center gap-2 min-w-max">
           {FILTERS.map((filter, idx) => (
-            <button
+            <Link
               key={filter}
+              href={filter === "ALL" ? "/categories" : `/categories/${filter.toLowerCase()}`}
               className={`font-sans uppercase tracking-[0.12em] text-[11px] px-4 py-1.5 rounded-full border transition-colors ${
                 idx === 0
-                  ? "bg-foreground text-whiteAlt border-foreground"
+                  ? "bg-[#E8E4DF] text-black border-[#E8E4DF]"
                   : "bg-transparent text-foreground border-border hover:border-foreground"
               }`}
             >
               {filter}
-            </button>
+            </Link>
           ))}
         </div>
       </div>

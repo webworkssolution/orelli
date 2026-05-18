@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { name, email, phone, projectType, message } = body;
+    const { name, email, message } = body;
 
     // Validate basic requirements
     if (!name || !email || !message) {
@@ -45,8 +45,9 @@ export async function POST(request: Request) {
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
     return NextResponse.json({ success: true });
-  } catch (error: any) {
-    console.error("Contact Form Error:", error);
+  } catch (err: unknown) {
+    const message = err instanceof Error ? err.message : String(err);
+    console.error("Contact Form Error:", message);
     return NextResponse.json(
       { error: "Something went wrong. Please try again later." },
       { status: 500 }

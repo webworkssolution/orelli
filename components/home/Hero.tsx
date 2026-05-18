@@ -3,10 +3,11 @@
 import { useState, useEffect } from "react";
 
 const IMAGES = [
-  "/upholstery.jpeg",
-  "/drapary.jpeg",
-  "/rugs.jpeg",
-  "/outdoor.jpeg",
+  "/new-hero-1.jpeg",
+  "/new-hero-2.jpeg",
+  "/new-upholstery-2.jpeg",
+  "/new-drapery-1.jpeg",
+  "/new-rugs-1.jpeg",
 ];
 
 export default function Hero() {
@@ -39,16 +40,16 @@ export default function Hero() {
       ))}
 
       {/* Overlay gradient */}
-      <div className="absolute inset-0 z-20 bg-gradient-to-b from-black/15 to-black/35 pointer-events-none" />
+      <div className="absolute inset-0 z-20 bg-gradient-to-b from-white/20 to-white/70 pointer-events-none" />
 
       {/* Content */}
       <div className="absolute inset-0 z-30 flex items-end justify-between px-12 pb-16">
-        <h1 className="font-cormorant italic text-whiteAlt text-[clamp(28px,4vw,52px)] max-w-[600px] leading-tight">
+        <h1 className="font-cormorant italic text-black text-[clamp(28px,4vw,52px)] max-w-[600px] leading-tight">
           Crafted for the spaces you live in.
         </h1>
 
         <div className="hidden md:flex flex-col items-center gap-4 animate-pulseLine opacity-60">
-          <div className="w-[2px] h-[60px] bg-whiteAlt" />
+          <div className="w-[2px] h-[60px] bg-black" />
         </div>
       </div>
     </section>

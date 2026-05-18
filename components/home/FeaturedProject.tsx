@@ -1,4 +1,3 @@
-import Link from "next/link";
 import FadeUp from "@/components/ui/FadeUp";
 
 export default function FeaturedProject() {
@@ -8,7 +7,7 @@ export default function FeaturedProject() {
       <div className="flex flex-col md:flex-row w-full">
         <div className="w-full md:w-5/12 aspect-square md:aspect-auto">
           <img
-            src="/outdoor.jpeg"
+            src="/new-hero-2.jpeg"
             alt="The Malabar Series"
             className="w-full h-full object-cover"
           />
@@ -34,7 +33,7 @@ export default function FeaturedProject() {
       <div className="flex flex-col md:flex-row-reverse w-full">
         <div className="w-full md:w-5/12 aspect-square md:aspect-auto">
           <img
-            src="/upholstery.jpeg"
+            src="/new-upholstery-1.jpeg"
             alt="Heritage Weaves"
             className="w-full h-full object-cover"
           />
