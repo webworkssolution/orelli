@@ -1,6 +1,11 @@
+"use client";
+
 import Link from "next/link";
+import { useModal } from "@/components/context/ModalContext";
 
 export default function Footer() {
+  const { openModal } = useModal();
+
   return (
     <footer className="bg-footerBg py-20 px-12 text-foreground">
       <div className="max-w-7xl mx-auto flex flex-col items-center">
@@ -14,9 +19,6 @@ export default function Footer() {
               className="w-full h-full object-contain"
             />
           </div>
-          <h2 className="font-baskerville text-[24px] tracking-[0.10em] text-foreground mt-4">
-            Orelli Bombay
-          </h2>
         </div>
 
         {/* Middle section - Nav */}
@@ -27,7 +29,7 @@ export default function Footer() {
           <span>·</span>
           <Link href="/blogs" className="hover:text-foreground transition-colors">Blogs</Link>
           <span>·</span>
-          <Link href="/contact" className="hover:text-foreground transition-colors">Contact</Link>
+          <button onClick={openModal} className="hover:text-foreground transition-colors uppercase tracking-[0.12em] text-[12px]">Enquiry</button>
           <span>·</span>
           <Link href="/privacy" className="hover:text-foreground transition-colors">Privacy Policy</Link>
         </div>

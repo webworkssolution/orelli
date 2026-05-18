@@ -3,11 +3,13 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useModal } from "@/components/context/ModalContext";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
+  const { openModal } = useModal();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,7 +24,7 @@ export default function Navbar() {
     { name: "Categories", href: "/categories" },
     { name: "About", href: "/about" },
     { name: "Blogs", href: "/blogs" },
-    { name: "Contact", href: "/contact" },
+    { name: "Enquiry", href: "/contact" },
   ];
 
   const isHome = pathname === "/";
@@ -42,24 +44,36 @@ export default function Navbar() {
             className="w-10 h-10 object-contain"
           />
           <span className={`font-baskerville text-[20px] tracking-[0.10em] transition-colors duration-400 ${
-            useDarkText ? "text-foreground" : "text-whiteAlt"
+            useDarkText ? "text-foreground" : "text-black"
           }`}>
-            Orelli Bombay
+            ORELLI BOMBAY
           </span>
         </Link>
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-8">
           {links.map((link) => (
-            <Link
-              key={link.name}
-              href={link.href}
-              className={`nav-link ${pathname.startsWith(link.href) ? "active" : ""} ${
-                useDarkText ? "text-foreground" : "text-whiteAlt"
-              } transition-colors duration-400`}
-            >
-              {link.name}
-            </Link>
+            link.name === "Enquiry" ? (
+              <button
+                key={link.name}
+                onClick={openModal}
+                className={`nav-link ${
+                  useDarkText ? "text-foreground" : "text-whiteAlt"
+                } transition-colors duration-400 bg-transparent outline-none pb-1`}
+              >
+                {link.name}
+              </button>
+            ) : (
+              <Link
+                key={link.name}
+                href={link.href}
+                className={`nav-link ${pathname.startsWith(link.href) ? "active" : ""} ${
+                  useDarkText ? "text-foreground" : "text-whiteAlt"
+                } transition-colors duration-400`}
+              >
+                {link.name}
+              </Link>
+            )
           ))}
         </div>
 
@@ -95,14 +109,27 @@ export default function Navbar() {
       >
         <div className="flex flex-col items-center gap-8">
           {links.map((link) => (
-            <Link
-              key={link.name}
-              href={link.href}
-              onClick={() => setMenuOpen(false)}
-              className="font-cormorant text-whiteAlt text-4xl"
-            >
-              {link.name}
-            </Link>
+            link.name === "Enquiry" ? (
+              <button
+                key={link.name}
+                onClick={() => {
+                  setMenuOpen(false);
+                  openModal();
+                }}
+                className="font-cormorant text-whiteAlt text-4xl"
+              >
+                {link.name}
+              </button>
+            ) : (
+              <Link
+                key={link.name}
+                href={link.href}
+                onClick={() => setMenuOpen(false)}
+                className="font-cormorant text-whiteAlt text-4xl"
+              >
+                {link.name}
+              </Link>
+            )
           ))}
         </div>
       </div>

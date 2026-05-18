@@ -13,13 +13,12 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
     name: "",
     email: "",
     contact: "",
-    architecture: "",
-    themePalette: "",
-    colourPalette: "",
+
     hasArchitect: "",
     architectName: "",
     helperText: "",
     photos: null as File | null,
+    colourPalette: null as File | null,
   });
 
   const handleInputChange = (
@@ -30,8 +29,9 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files?.[0]) {
-      setFormData((prev) => ({ ...prev, photos: e.target.files![0] }));
+    const { name, files } = e.target;
+    if (files?.[0]) {
+      setFormData((prev) => ({ ...prev, [name]: files[0] }));
     }
   };
 
@@ -44,13 +44,12 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
       name: "",
       email: "",
       contact: "",
-      architecture: "",
-      themePalette: "",
-      colourPalette: "",
+
       hasArchitect: "",
       architectName: "",
       helperText: "",
       photos: null,
+      colourPalette: null,
     });
     onClose();
   };
@@ -139,70 +138,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
 
             <div className="w-full h-[1px] bg-border" />
 
-            {/* Design Preferences */}
-            <div className="space-y-4">
-              <h3 className="font-sans text-xs sm:text-[14px] uppercase tracking-[0.12em] text-[#888]">
-                Design Preferences
-              </h3>
 
-              <div>
-                <label className="block font-sans text-[10px] sm:text-[12px] uppercase tracking-[0.1em] text-[#555] mb-2">
-                  Architectural Style
-                </label>
-                <select
-                  name="architecture"
-                  value={formData.architecture}
-                  onChange={handleInputChange}
-                  className="w-full px-3 sm:px-4 py-2 border border-border rounded-[4px] font-sans text-sm sm:text-[14px] focus:outline-none focus:ring-1 focus:ring-accent bg-background"
-                >
-                  <option value="">Select a style</option>
-                  <option value="contemporary">Contemporary</option>
-                  <option value="minimalist">Minimalist</option>
-                  <option value="maximalist">Maximalist</option>
-                  <option value="traditional">Traditional</option>
-                  <option value="eclectic">Eclectic</option>
-                  <option value="industrial">Industrial</option>
-                  <option value="bohemian">Bohemian</option>
-                </select>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                <div>
-                  <label className="block font-sans text-[10px] sm:text-[12px] uppercase tracking-[0.1em] text-[#555] mb-2">
-                    Theme Palette
-                  </label>
-                  <select
-                    name="themePalette"
-                    value={formData.themePalette}
-                    onChange={handleInputChange}
-                    className="w-full px-3 sm:px-4 py-2 border border-border rounded-[4px] font-sans text-sm sm:text-[14px] focus:outline-none focus:ring-1 focus:ring-accent bg-background"
-                  >
-                    <option value="">Select a theme</option>
-                    <option value="warm">Warm</option>
-                    <option value="cool">Cool</option>
-                    <option value="neutral">Neutral</option>
-                    <option value="jewel-tones">Jewel Tones</option>
-                    <option value="earth-tones">Earth Tones</option>
-                    <option value="pastels">Pastels</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block font-sans text-[10px] sm:text-[12px] uppercase tracking-[0.1em] text-[#555] mb-2">
-                    Colour Reference
-                  </label>
-                  <input
-                    type="file"
-                    name="colourPalette"
-                    onChange={handleFileChange}
-                    accept="image/*"
-                    className="w-full px-3 sm:px-4 py-2 border border-border rounded-[4px] font-sans text-[10px] sm:text-[12px] focus:outline-none focus:ring-1 focus:ring-accent bg-background"
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div className="w-full h-[1px] bg-border" />
 
             {/* Additional Information */}
             <div className="space-y-4">
@@ -245,27 +181,52 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
                 )}
               </div>
 
-              <div>
-                <label className="block font-sans text-[10px] sm:text-[12px] uppercase tracking-[0.1em] text-[#555] mb-2">
-                  Project Photos
-                </label>
-                <div className="border-2 border-dashed border-border rounded-[4px] p-4 sm:p-6 text-center hover:border-accent transition-colors cursor-pointer">
-                  <input
-                    type="file"
-                    name="photos"
-                    onChange={handleFileChange}
-                    accept="image/*"
-                    className="hidden"
-                    id="photos-input"
-                  />
-                  <label htmlFor="photos-input" className="cursor-pointer block">
-                    <p className="font-sans text-xs sm:text-[14px] text-[#555]">
-                      {formData.photos?.name || "Click to upload"}
-                    </p>
-                    <p className="font-sans text-[10px] sm:text-[12px] text-[#888] mt-1">
-                      PNG, JPG, GIF up to 10MB
-                    </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                <div>
+                  <label className="block font-sans text-[10px] sm:text-[12px] uppercase tracking-[0.1em] text-[#555] mb-2">
+                    Project Photos
                   </label>
+                  <div className="border-2 border-dashed border-border rounded-[4px] p-4 sm:p-6 text-center hover:border-accent transition-colors cursor-pointer h-[120px] flex flex-col items-center justify-center">
+                    <input
+                      type="file"
+                      name="photos"
+                      onChange={handleFileChange}
+                      accept="image/*"
+                      className="hidden"
+                      id="photos-input"
+                    />
+                    <label htmlFor="photos-input" className="cursor-pointer block w-full h-full flex flex-col items-center justify-center">
+                      <p className="font-sans text-xs sm:text-[14px] text-[#555]">
+                        {formData.photos?.name || "Click to upload"}
+                      </p>
+                      <p className="font-sans text-[10px] sm:text-[12px] text-[#888] mt-1">
+                        PNG, JPG, GIF up to 10MB
+                      </p>
+                    </label>
+                  </div>
+                </div>
+                <div>
+                  <label className="block font-sans text-[10px] sm:text-[12px] uppercase tracking-[0.1em] text-[#555] mb-2">
+                    Colour Reference
+                  </label>
+                  <div className="border-2 border-dashed border-border rounded-[4px] p-4 sm:p-6 text-center hover:border-accent transition-colors cursor-pointer h-[120px] flex flex-col items-center justify-center">
+                    <input
+                      type="file"
+                      name="colourPalette"
+                      onChange={handleFileChange}
+                      accept="image/*"
+                      className="hidden"
+                      id="colour-input"
+                    />
+                    <label htmlFor="colour-input" className="cursor-pointer block w-full h-full flex flex-col items-center justify-center">
+                      <p className="font-sans text-xs sm:text-[14px] text-[#555]">
+                        {formData.colourPalette?.name || "Click to upload"}
+                      </p>
+                      <p className="font-sans text-[10px] sm:text-[12px] text-[#888] mt-1">
+                        PNG, JPG, GIF up to 10MB
+                      </p>
+                    </label>
+                  </div>
                 </div>
               </div>
 

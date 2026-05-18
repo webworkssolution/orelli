@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import StickyActionBar from "@/components/layout/StickyActionBar";
+import { ModalProvider } from "@/components/context/ModalContext";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -31,10 +32,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${cormorant.variable} ${dmSans.variable} font-sans antialiased bg-background text-foreground`}>
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
-        <StickyActionBar />
+        <ModalProvider>
+          <Navbar />
+          <main>{children}</main>
+          <Footer />
+          <StickyActionBar />
+        </ModalProvider>
       </body>
     </html>
   );

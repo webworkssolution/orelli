@@ -1,4 +1,5 @@
 import Link from "next/link";
+import EnquireButton from "@/components/ui/EnquireButton";
 import FadeUp from "@/components/ui/FadeUp";
 
 const getImageUrl = (slug: string) => {
@@ -55,9 +56,7 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
               Woven on traditional looms by master artisans, this textile brings exceptional tactile richness and enduring strength. Ideal for high-use residential seating and statement pieces, it softens beautifully with age while maintaining its structured weave.
             </p>
 
-            <Link href={`/contact?product=${params.slug}`} className="btn-filled w-full text-center block mb-4">
-              ENQUIRE
-            </Link>
+            <EnquireButton className="btn-filled w-full text-center block mb-4" />
             <p className="font-sans text-[12px] text-[#888] text-center">
               Custom orders welcome. Lead time 4–6 weeks.
             </p>
