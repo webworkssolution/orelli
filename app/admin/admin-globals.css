@@ -1,0 +1,166 @@
+/* ============================================
+   ORELLI CMS — Admin Dark Theme
+   ============================================ */
+
+:root {
+  --admin-bg: #0f0f0f;
+  --admin-card: #1a1a1a;
+  --admin-input: #252525;
+  --admin-hover: #252525;
+  --admin-text: #f5f5f5;
+  --admin-text-secondary: #999;
+  --admin-text-muted: #666;
+  --admin-accent: #C9A96E;
+  --admin-accent-hover: #d4b87a;
+  --admin-success: #4ade80;
+  --admin-error: #ef4444;
+  --admin-warning: #f59e0b;
+  --admin-border: #2a2a2a;
+  --admin-radius-card: 8px;
+  --admin-radius-input: 6px;
+  --admin-sidebar-width: 280px;
+}
+
+/* Scoped admin overrides — only inside /admin pages */
+.admin-shell {
+  background-color: var(--admin-bg);
+  color: var(--admin-text);
+  min-height: 100vh;
+  font-family: var(--font-dm-sans), 'DM Sans', system-ui, -apple-system, sans-serif;
+}
+
+.admin-shell h1,
+.admin-shell h2,
+.admin-shell h3,
+.admin-shell h4 {
+  font-family: var(--font-cormorant), 'Cormorant Garamond', Georgia, serif;
+}
+
+/* Utility classes */
+.admin-card {
+  background-color: var(--admin-card);
+  border: 1px solid var(--admin-border);
+  border-radius: var(--admin-radius-card);
+}
+
+.admin-input {
+  background-color: var(--admin-input);
+  border: 1px solid var(--admin-border);
+  border-radius: var(--admin-radius-input);
+  color: var(--admin-text);
+  padding: 0.625rem 0.875rem;
+  font-size: 0.875rem;
+  transition: border-color 0.2s ease;
+  width: 100%;
+  outline: none;
+}
+
+.admin-input:focus {
+  border-color: var(--admin-accent);
+}
+
+.admin-input::placeholder {
+  color: var(--admin-text-muted);
+}
+
+/* Scrollbar styling */
+.admin-shell ::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.admin-shell ::-webkit-scrollbar-track {
+  background: var(--admin-bg);
+}
+
+.admin-shell ::-webkit-scrollbar-thumb {
+  background: var(--admin-border);
+  border-radius: 3px;
+}
+
+.admin-shell ::-webkit-scrollbar-thumb:hover {
+  background: var(--admin-text-muted);
+}
+
+/* Toast animations */
+@keyframes toast-enter {
+  0% {
+    opacity: 0;
+    transform: translateX(100%) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes toast-exit {
+  0% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(100%) scale(0.95);
+  }
+}
+
+.toast-enter {
+  animation: toast-enter 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.toast-exit {
+  animation: toast-exit 0.25s ease-in forwards;
+}
+
+/* Modal / Dialog backdrop */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.dialog-backdrop {
+  animation: fade-in 0.2s ease forwards;
+}
+
+.dialog-panel {
+  animation: scale-in 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Skeleton loading pulse */
+@keyframes admin-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.admin-skeleton {
+  background: linear-gradient(90deg, var(--admin-card) 25%, var(--admin-hover) 50%, var(--admin-card) 75%);
+  background-size: 200% 100%;
+  animation: admin-shimmer 1.5s ease-in-out infinite;
+  border-radius: var(--admin-radius-input);
+}
+
+/* Spinner */
+@keyframes admin-spin {
+  to { transform: rotate(360deg); }
+}
+
+.admin-spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--admin-border);
+  border-top-color: var(--admin-accent);
+  border-radius: 50%;
+  animation: admin-spin 0.6s linear infinite;
+}

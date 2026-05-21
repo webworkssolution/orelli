@@ -2,27 +2,26 @@
 
 import { useState, useEffect } from "react";
 
-const IMAGES = [
-  "/new-hero-1.jpeg",
-  "/new-hero-2.jpeg",
-  "/new-upholstery-2.jpeg",
-  "/new-drapery-1.jpeg",
-  "/new-rugs-1.jpeg",
-];
+interface HeroProps {
+  images: string[];
+}
 
-export default function Hero() {
+export default function Hero({ images }: HeroProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
+    if (images.length === 0) return;
     const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % IMAGES.length);
+      setCurrentIndex((prev) => (prev + 1) % images.length);
     }, 6500);
     return () => clearInterval(timer);
-  }, []);
+  }, [images.length]);
+
+  if (images.length === 0) return null;
 
   return (
     <section className="relative w-full h-screen overflow-hidden bg-foreground">
-      {IMAGES.map((src, index) => (
+      {images.map((src, index) => (
         <div
           key={src}
           className={`absolute inset-0 w-full h-full transition-opacity duration-[1200ms] ease-in-out ${

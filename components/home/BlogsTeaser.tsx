@@ -1,7 +1,25 @@
 import Link from "next/link";
 import FadeUp from "@/components/ui/FadeUp";
 
-export default function BlogsTeaser() {
+interface BlogData {
+  slug: string;
+  title: string;
+  excerpt: string;
+  date: string;
+  category: string;
+  heroImage: string;
+}
+
+interface BlogsTeaserProps {
+  blogs: BlogData[];
+}
+
+export default function BlogsTeaser({ blogs }: BlogsTeaserProps) {
+  if (blogs.length === 0) return null;
+
+  const featured = blogs[0];
+  const secondary = blogs.slice(1, 3);
+
   return (
     <section className="bg-background py-24 px-6 md:px-12">
       <FadeUp>
@@ -12,78 +30,63 @@ export default function BlogsTeaser() {
 
       <div className="flex flex-col gap-16">
         {/* Featured Article */}
-        <FadeUp delay={0.1}>
-          <div className="flex flex-col md:flex-row w-full gap-8 md:gap-0 items-center">
-            <Link href="/blogs/color-theory" className="w-full md:w-[42%] block group overflow-hidden rounded-[4px]">
-              <img
-                src="/new-upholstery-1.jpeg"
-                alt="Blog Featured"
-                className="w-full aspect-[16/10] object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-            </Link>
-            <div className="w-full md:w-[58%] md:pl-[48px]">
-              <span className="font-sans uppercase tracking-[0.12em] text-[11px] text-[#888] block mb-4">
-                JANUARY 2025 · INTERIORS
-              </span>
-              <h3 className="font-cormorant text-[clamp(22px,3vw,38px)] text-foreground mb-4 leading-tight hover:text-accent transition-colors">
-                <Link href="/blogs/color-theory">
-                  The Psychology of Warm Tones in Modern Spaces
-                </Link>
-              </h3>
-              <p className="font-sans text-[14px] text-[#555] mb-6 line-clamp-3 max-w-[500px]">
-                Exploring how muted gold, terracotta, and soft sand can transform stark contemporary architecture into inviting, lived-in sanctuaries.
-              </p>
-              <Link href="/blogs/color-theory" className="text-link">
-                Read More →
+        {featured && (
+          <FadeUp delay={0.1}>
+            <div className="flex flex-col md:flex-row w-full gap-8 md:gap-0 items-center">
+              <Link href={`/blogs/${featured.slug}`} className="w-full md:w-[42%] block group overflow-hidden rounded-[4px]">
+                <img
+                  src={featured.heroImage || "/new-upholstery-1.jpeg"}
+                  alt={featured.title}
+                  className="w-full aspect-[16/10] object-cover transition-transform duration-500 group-hover:scale-105"
+                />
               </Link>
+              <div className="w-full md:w-[58%] md:pl-[48px]">
+                <span className="font-sans uppercase tracking-[0.12em] text-[11px] text-[#888] block mb-4">
+                  {featured.date} · {featured.category}
+                </span>
+                <h3 className="font-cormorant text-[clamp(22px,3vw,38px)] text-foreground mb-4 leading-tight hover:text-accent transition-colors">
+                  <Link href={`/blogs/${featured.slug}`}>
+                    {featured.title}
+                  </Link>
+                </h3>
+                <p className="font-sans text-[14px] text-[#555] mb-6 line-clamp-3 max-w-[500px]">
+                  {featured.excerpt}
+                </p>
+                <Link href={`/blogs/${featured.slug}`} className="text-link">
+                  Read More →
+                </Link>
+              </div>
             </div>
-          </div>
-        </FadeUp>
+          </FadeUp>
+        )}
 
         {/* Small Articles Row */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          <FadeUp delay={0.2}>
-            <Link href="/blogs/natural-dyes" className="block group">
-              <div className="overflow-hidden rounded-[4px] mb-6">
-                <img
-                  src="/new-drapery-1.jpeg"
-                    alt="Blog 2"
-                  className="w-full aspect-video object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-              </div>
-              <span className="font-sans uppercase tracking-[0.12em] text-[11px] text-[#888] block mb-3">
-                DECEMBER 2024 · CRAFT
-              </span>
-              <h4 className="font-cormorant text-[24px] text-foreground mb-4 leading-tight group-hover:text-accent transition-colors">
-                Reviving Natural Dyes in Commercial Textiles
-              </h4>
-              <span className="text-link pointer-events-none">
-                Read →
-              </span>
-            </Link>
-          </FadeUp>
-
-          <FadeUp delay={0.3}>
-            <Link href="/blogs/studio-visit" className="block group">
-              <div className="overflow-hidden rounded-[4px] mb-6">
-                <img
-                  src="/new-rugs-1.jpeg"
-                    alt="Blog 3"
-                  className="w-full aspect-video object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-              </div>
-              <span className="font-sans uppercase tracking-[0.12em] text-[11px] text-[#888] block mb-3">
-                NOVEMBER 2024 · STUDIO
-              </span>
-              <h4 className="font-cormorant text-[24px] text-foreground mb-4 leading-tight group-hover:text-accent transition-colors">
-                Behind the Scenes: The Winter Collection
-              </h4>
-              <span className="text-link pointer-events-none">
-                Read →
-              </span>
-            </Link>
-          </FadeUp>
-        </div>
+        {secondary.length > 0 && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+            {secondary.map((article, idx) => (
+              <FadeUp key={article.slug} delay={0.2 + idx * 0.1}>
+                <Link href={`/blogs/${article.slug}`} className="block group">
+                  <div className="overflow-hidden rounded-[4px] mb-6">
+                    <img
+                      src={article.heroImage || "/new-drapery-1.jpeg"}
+                      alt={article.title}
+                      className="w-full aspect-video object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                  <span className="font-sans uppercase tracking-[0.12em] text-[11px] text-[#888] block mb-3">
+                    {article.date} · {article.category}
+                  </span>
+                  <h4 className="font-cormorant text-[24px] text-foreground mb-4 leading-tight group-hover:text-accent transition-colors">
+                    {article.title}
+                  </h4>
+                  <span className="text-link pointer-events-none">
+                    Read →
+                  </span>
+                </Link>
+              </FadeUp>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
