@@ -34,7 +34,7 @@ export default async function Home() {
         }))}
       />
       <BrandStatement />
-      {/* {projects.length > 0 && (
+      {projects.length > 0 && (
         <FeaturedProject
           projects={projects.map((p) => ({
             title: p.title,
@@ -42,7 +42,7 @@ export default async function Home() {
             imageSrc: p.imageSrc,
           }))}
         />
-      )} */}
+      )}
       <BlogsTeaser
         blogs={blogs.map((b) => ({
           slug: b.slug,

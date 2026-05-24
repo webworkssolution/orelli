@@ -7,16 +7,16 @@ import ImageUploader from '@/components/admin/ImageUploader';
 export default function Page({ params }: { params: { id: string } }) {
   const router = useRouter();
   const { showToast } = useToast();
-  const [formData, setFormData] = useState({ title: '', slug: '', description: '', excerpt: '', content: '', imageSrc: '', heroImage: '' });
+  const [formData, setFormData] = useState({ title: '', slug: '', description: '', imageSrc: '', featured: false });
 
   useEffect(() => {
     fetch(`/api/admin/projects/${params.id}`).then(r => r.json()).then(setFormData);
-  }, []);
+  }, [params.id]);
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await fetch(`/api/admin/projects/${params.id}`, { method: 'PUT', body: JSON.stringify(formData) });
+      await fetch(`/api/admin/projects/${params.id}`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(formData) });
       showToast('Updated', 'success');
       router.push('/admin/projects');
     } catch {
@@ -40,12 +40,12 @@ export default function Page({ params }: { params: { id: string } }) {
             <input className="w-full admin-input" placeholder="Slug" value={formData.slug} onChange={e => setFormData({...formData, slug: e.target.value})} required/>
           </div>
           <div>
-            <label className="block text-xs mb-1 text-[#999]">Description/Content</label>
-            <textarea className="w-full admin-input" rows={4} placeholder="Description or content..." value={formData.description || formData.content} onChange={e => setFormData({...formData, description: e.target.value, content: e.target.value})} />
+            <label className="block text-xs mb-1 text-[#999]">Description</label>
+            <textarea className="w-full admin-input" rows={4} placeholder="Project description..." value={formData.description} onChange={e => setFormData({...formData, description: e.target.value})} />
           </div>
           <div>
-            <label className="block text-xs mb-1 text-[#999]">Cover Image</label>
-            <ImageUploader currentImage={formData.heroImage} onUpload={(v: string) => setFormData({...formData, heroImage: v})} />
+            <label className="block text-xs mb-1 text-[#999]">Image</label>
+            <ImageUploader currentImage={formData.imageSrc} onUpload={(v: string) => setFormData({...formData, imageSrc: v})} />
           </div>
           <div className="pt-4 border-t border-[#2a2a2a] flex justify-end">
              <button className="bg-[#C9A96E] hover:bg-[#d4b87a] text-black px-4 py-2 rounded text-sm font-medium">Update Project</button>

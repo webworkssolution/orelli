@@ -9,10 +9,10 @@ export default function Page() {
   const { showToast } = useToast();
   const [formData, setFormData] = useState({ title: '', slug: '', description: '', excerpt: '', content: '', imageSrc: '', heroImage: '', date: new Date().toISOString().split('T')[0] });
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await fetch('/api/admin/blogs', { method: 'POST', body: JSON.stringify(formData) });
+      await fetch('/api/admin/blogs', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(formData) });
       showToast('Created', 'success');
       router.push('/admin/blogs');
     } catch {
@@ -34,12 +34,16 @@ export default function Page() {
             <input className="w-full admin-input" placeholder="Slug" value={formData.slug} onChange={e => setFormData({...formData, slug: e.target.value})} required/>
           </div>
           <div>
-            <label className="block text-xs mb-1 text-[#999]">Description/Content</label>
-            <textarea className="w-full admin-input" rows={4} placeholder="Description or content..." value={formData.description || formData.content} onChange={e => setFormData({...formData, description: e.target.value, content: e.target.value})} />
+            <label className="block text-xs mb-1 text-[#999]">Excerpt</label>
+            <textarea className="w-full admin-input" rows={2} placeholder="Short excerpt..." value={formData.excerpt} onChange={e => setFormData({...formData, excerpt: e.target.value})} />
+          </div>
+          <div>
+            <label className="block text-xs mb-1 text-[#999]">Content (MDX)</label>
+            <textarea className="w-full admin-input font-mono text-sm" rows={8} placeholder="Write your blog content in MDX..." value={formData.content} onChange={e => setFormData({...formData, content: e.target.value})} />
           </div>
           <div>
             <label className="block text-xs mb-1 text-[#999]">Cover Image</label>
-            <ImageUploader currentImage={formData.imageSrc} onUpload={(v: string) => setFormData({...formData, imageSrc: v})} />
+            <ImageUploader currentImage={formData.heroImage} onUpload={(v: string) => setFormData({...formData, heroImage: v, imageSrc: v})} />
           </div>
           <div className="pt-4 border-t border-[#2a2a2a] flex justify-end">
              <button className="bg-[#C9A96E] hover:bg-[#d4b87a] text-black px-4 py-2 rounded text-sm font-medium">Save Blog</button>

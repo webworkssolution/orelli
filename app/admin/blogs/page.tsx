@@ -5,20 +5,20 @@ import { useToast } from '@/components/admin/Toast';
 import ConfirmDialog from '@/components/admin/ConfirmDialog';
 import { Plus, Pencil, Trash2, FolderOpen } from 'lucide-react';
 
+interface ListItem { id: string; title: string; slug: string; imageSrc?: string; heroImage?: string }
+
 export default function Page() {
   const { showToast } = useToast();
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState<ListItem[]>([]);
   const [loading, setLoading] = useState(true);
-  const [deleteTarget, setDeleteTarget] = useState(null);
-  const [deleting, setDeleting] = useState(false);
+  const [deleteTarget, setDeleteTarget] = useState<ListItem | null>(null);
 
   useEffect(() => {
     fetch('/api/admin/blogs').then(r => r.json()).then(setItems).catch(() => showToast('Error', 'error')).finally(() => setLoading(false));
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleDelete = async () => {
     if (!deleteTarget) return;
-    setDeleting(true);
     try {
       await fetch(`/api/admin/blogs/${deleteTarget.id}`, { method: 'DELETE' });
       setItems(prev => prev.filter(i => i.id !== deleteTarget.id));
@@ -26,11 +26,13 @@ export default function Page() {
     } catch {
       showToast('Error', 'error');
     } finally {
-      setDeleting(false); setDeleteTarget(null);
+      setDeleteTarget(null);
     }
   };
 
-  if(!loading && items.length === 0) return (
+  if (loading) return <div className="max-w-5xl mx-auto"><div className="admin-skeleton h-96 w-full" /></div>;
+
+  if(items.length === 0) return (
       <div className="max-w-5xl mx-auto">
         <div className="flex items-center justify-between mb-6">
             <h2 className="text-xl text-[#f5f5f5]">Blogs</h2>
@@ -51,11 +53,11 @@ export default function Page() {
         </Link>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {items.map((cat: any) => (
+        {items.map((cat) => (
           <div key={cat.id} className="admin-card overflow-hidden group hover:border-[#3a3a3a] transition-colors">
             <div className="relative h-40 bg-[#252525] overflow-hidden">
               {cat.imageSrc || cat.heroImage ? (
-                <img src={cat.imageSrc || cat.heroImage} alt="img" className="w-full h-full object-cover" />
+                <img src={cat.imageSrc || cat.heroImage} alt={cat.title} className="w-full h-full object-cover" />
               ) : <div className="w-full h-full flex items-center justify-center"><FolderOpen className="w-8 h-8 text-[#666]" /></div>}
             </div>
             <div className="p-4">

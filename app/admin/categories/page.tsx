@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useToast } from '@/components/admin/Toast';
 import ConfirmDialog from '@/components/admin/ConfirmDialog';
-import { Plus, Pencil, Trash2, Loader2, FolderOpen } from 'lucide-react';
+import { Plus, Pencil, Trash2, FolderOpen } from 'lucide-react';
 
 interface Category {
   id: string;
@@ -22,7 +22,6 @@ export default function CategoriesPage() {
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
   const [deleteTarget, setDeleteTarget] = useState<Category | null>(null);
-  const [deleting, setDeleting] = useState(false);
 
   const fetchCategories = async () => {
     try {
@@ -43,7 +42,6 @@ export default function CategoriesPage() {
 
   const handleDelete = async () => {
     if (!deleteTarget) return;
-    setDeleting(true);
     try {
       const res = await fetch(`/api/admin/categories/${deleteTarget.id}`, {
         method: 'DELETE',
@@ -54,7 +52,6 @@ export default function CategoriesPage() {
     } catch {
       showToast('Failed to delete category', 'error');
     } finally {
-      setDeleting(false);
       setDeleteTarget(null);
     }
   };

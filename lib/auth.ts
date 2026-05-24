@@ -48,7 +48,20 @@ export const authOptions: NextAuthOptions = {
   ],
   session: {
     strategy: "jwt",
-    maxAge: 24 * 60 * 60, // 24 hours
+    maxAge: 7 * 24 * 60 * 60, // 7 days absolute max length on server side
+  },
+  cookies: {
+    sessionToken: {
+      name: process.env.NODE_ENV === "production" ? "__Secure-next-auth.session-token" : "next-auth.session-token",
+      options: {
+        httpOnly: true,
+        sameSite: "lax",
+        path: "/",
+        secure: process.env.NODE_ENV === "production",
+        // Omitting 'maxAge' here turns it into a strict browser-session cookie.
+        // It will be deleted automatically when the tab/browser is closed.
+      },
+    },
   },
   pages: {
     signIn: "/admin/login",

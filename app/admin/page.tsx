@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
-import { FolderOpen, Briefcase, FileText, Image, ArrowRight, Loader2 } from 'lucide-react';
+import { FolderOpen, Briefcase, FileText, Image, ArrowRight } from 'lucide-react';
 
 interface Stats {
   categories: number;
