@@ -8,7 +8,6 @@ import {
   Briefcase,
   FileText,
   Image,
-  ArrowLeft,
   X,
 } from 'lucide-react';
 
@@ -96,17 +95,6 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
             );
           })}
         </nav>
-
-        {/* Back to site */}
-        <div className="px-3 pb-4 border-t border-[#2a2a2a] pt-4">
-          <Link
-            href="/"
-            className="flex items-center gap-3 px-3 py-2.5 rounded-md text-sm text-[#666] hover:text-[#f5f5f5] hover:bg-[#252525] transition-all duration-200"
-          >
-            <ArrowLeft className="w-[18px] h-[18px] shrink-0" />
-            <span>Back to Site</span>
-          </Link>
-        </div>
       </aside>
     </>
   );

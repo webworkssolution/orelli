@@ -1,16 +1,24 @@
 'use client';
 
-import { useState, FormEvent } from 'react';
-import { signIn } from 'next-auth/react';
+import { useState, useEffect, FormEvent } from 'react';
+import { signIn, useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { Loader2 } from 'lucide-react';
 
 export default function AdminLoginPage() {
   const router = useRouter();
+  const { status } = useSession();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+
+  // Redirect authenticated users to dashboard
+  useEffect(() => {
+    if (status === 'authenticated') {
+      router.replace('/admin');
+    }
+  }, [status, router]);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -35,6 +43,23 @@ export default function AdminLoginPage() {
       setLoading(false);
     }
   };
+
+  // Show loading state while checking session — prevents flash of login form
+  if (status === 'loading' || status === 'authenticated') {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-[#0f0f0f]">
+        <div className="text-center">
+          <h1
+            className="text-3xl tracking-[0.2em] text-[#C9A96E] mb-4"
+            style={{ fontFamily: 'var(--font-cormorant, "Cormorant Garamond", Georgia, serif)' }}
+          >
+            ORELLI
+          </h1>
+          <div className="admin-spinner mx-auto" />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4 bg-[#0f0f0f]">

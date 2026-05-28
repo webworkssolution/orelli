@@ -1,8 +1,11 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import dynamic from 'next/dynamic';
 import { useToast } from '@/components/admin/Toast';
 import ImageUploader from '@/components/admin/ImageUploader';
+
+const TiptapEditor = dynamic(() => import('@/components/admin/TiptapEditor'), { ssr: false });
 
 export default function Page({ params }: { params: { id: string } }) {
   const router = useRouter();
@@ -44,8 +47,8 @@ export default function Page({ params }: { params: { id: string } }) {
             <textarea className="w-full admin-input" rows={2} placeholder="Short excerpt..." value={formData.excerpt} onChange={e => setFormData({...formData, excerpt: e.target.value})} />
           </div>
           <div>
-            <label className="block text-xs mb-1 text-[#999]">Content (MDX)</label>
-            <textarea className="w-full admin-input font-mono text-sm" rows={8} placeholder="Write your blog content in MDX..." value={formData.content} onChange={e => setFormData({...formData, content: e.target.value})} />
+            <label className="block text-xs mb-1 text-[#999]">Content</label>
+            <TiptapEditor content={formData.content} onChange={(html: string) => setFormData({...formData, content: html})} />
           </div>
           <div>
             <label className="block text-xs mb-1 text-[#999]">Cover Image</label>
