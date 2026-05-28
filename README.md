@@ -55,12 +55,58 @@ Open `components/layout/Navbar.tsx`. Look for the `const links = [...]` array at
 
 ---
 
-## Running the Project
+## Development & CMS Setup
 
-First, run the development server:
+To set up the project locally, including the database and CMS, follow these steps:
 
+### 1. Install Dependencies
+```bash
+npm install
+```
+
+### 2. Environment Variables
+Create a `.env.local` file in the root of your project and configure the required settings:
+```env
+# Database (SQLite by default)
+DATABASE_URL="file:./dev.db"
+
+# NextAuth Configuration
+NEXTAUTH_SECRET="your-super-secret-key-change-in-production"
+NEXTAUTH_URL="http://localhost:3000"
+
+# Admin Credentials for CMS
+ADMIN_EMAIL="admin@orelli.com"
+ADMIN_PASSWORD_HASH=""
+```
+
+### 3. Generate Admin Password
+You need a securely hashed password for the CMS administrator. Run the included script with your desired password:
+```bash
+npx ts-node scripts/hash-password.ts your_password_here
+```
+Copy the generated `ADMIN_PASSWORD_HASH` from the output and paste it into your `.env.local` file.
+
+### 4. Database Setup
+The site uses Prisma with SQLite. Run the following commands to sync the schema and generate starter data:
+```bash
+# Push the schema to the database
+npm run db:push
+
+# Seed the database with initial data (optional)
+npm run db:seed
+```
+
+### 5. Run the Application
+Start the development server:
 ```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result. The page will auto-update as you edit the files.
+- **Main site:** [http://localhost:3000](http://localhost:3000)
+- **CMS Dashboard:** [http://localhost:3000/admin](http://localhost:3000/admin) (Log in using the email and password you configured).
+
+### 6. Prisma Studio (Optional Data Viewer)
+To explore and modify records directly in the database via a GUI, you can open Prisma Studio:
+```bash
+npm run db:studio
+```
