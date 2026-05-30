@@ -8,6 +8,7 @@ import {
   Briefcase,
   FileText,
   Image,
+  Wallpaper,
   X,
 } from 'lucide-react';
 
@@ -18,6 +19,7 @@ interface SidebarProps {
 
 const navItems = [
   { href: '/admin', label: 'Dashboard', icon: LayoutDashboard },
+  { href: '/admin/hero-images', label: 'Hero Images', icon: Wallpaper },
   { href: '/admin/categories', label: 'Categories', icon: FolderOpen },
   { href: '/admin/projects', label: 'Projects', icon: Briefcase },
   { href: '/admin/blogs', label: 'Blogs', icon: FileText },

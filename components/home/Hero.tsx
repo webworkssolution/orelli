@@ -24,22 +24,20 @@ export default function Hero({ images }: HeroProps) {
       {images.map((src, index) => (
         <div
           key={src}
-          className={`absolute inset-0 w-full h-full transition-opacity duration-[1200ms] ease-in-out ${
-            index === currentIndex ? "opacity-100 z-10" : "opacity-0 z-0"
-          }`}
+          className={`absolute inset-0 w-full h-full transition-opacity duration-[1200ms] ease-in-out ${index === currentIndex ? "opacity-100 z-10" : "opacity-0 z-0"
+            }`}
         >
           {/* Ken Burns effect applied to the image element */}
           <div
-            className={`w-full h-full bg-cover bg-center ${
-              index === currentIndex ? "animate-kenBurns" : ""
-            }`}
+            className={`w-full h-full bg-cover bg-center ${index === currentIndex ? "animate-kenBurns" : ""
+              }`}
             style={{ backgroundImage: `url(${src})` }}
           />
         </div>
       ))}
 
       {/* Overlay gradient */}
-      <div className="absolute inset-0 z-20 bg-gradient-to-b from-white/20 to-white/70 pointer-events-none" />
+      <div className="absolute inset-0 z-20 bg-gradient-to-b from-white/1 to-white/5 pointer-events-none" />
 
       {/* Content */}
       <div className="absolute inset-0 z-30 flex items-end justify-between px-12 pb-16">

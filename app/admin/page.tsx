@@ -3,16 +3,24 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
-import { FolderOpen, Briefcase, FileText, Image, ArrowRight } from 'lucide-react';
+import { FolderOpen, Briefcase, FileText, Image, Wallpaper, ArrowRight } from 'lucide-react';
 
 interface Stats {
   categories: number;
   projects: number;
   blogs: number;
   images: number;
+  heroImages: number;
 }
 
 const statCards = [
+  {
+    key: 'heroImages' as const,
+    label: 'Hero Images',
+    href: '/admin/hero-images',
+    icon: Wallpaper,
+    color: '#a78bfa',
+  },
   {
     key: 'categories' as const,
     label: 'Categories',
@@ -62,11 +70,12 @@ export default function AdminDashboard() {
 
       // Fallback: fetch counts from individual endpoints
       try {
-        const [catRes, projRes, blogRes, imgRes] = await Promise.allSettled([
+        const [catRes, projRes, blogRes, imgRes, heroRes] = await Promise.allSettled([
           fetch('/api/admin/categories'),
           fetch('/api/admin/projects'),
           fetch('/api/admin/blogs'),
           fetch('/api/admin/upload'),
+          fetch('/api/admin/hero-images'),
         ]);
 
         const getCount = async (result: PromiseSettledResult<Response>) => {
@@ -82,9 +91,10 @@ export default function AdminDashboard() {
           projects: await getCount(projRes),
           blogs: await getCount(blogRes),
           images: await getCount(imgRes),
+          heroImages: await getCount(heroRes),
         });
       } catch {
-        setStats({ categories: 0, projects: 0, blogs: 0, images: 0 });
+        setStats({ categories: 0, projects: 0, blogs: 0, images: 0, heroImages: 0 });
       } finally {
         setLoading(false);
       }
@@ -168,6 +178,12 @@ export default function AdminDashboard() {
             className="px-4 py-2 text-sm rounded-md bg-[#252525] text-[#999] hover:text-[#f5f5f5] hover:bg-[#2a2a2a] transition-colors"
           >
             + New Blog
+          </Link>
+          <Link
+            href="/admin/hero-images"
+            className="px-4 py-2 text-sm rounded-md bg-[#252525] text-[#999] hover:text-[#f5f5f5] hover:bg-[#2a2a2a] transition-colors"
+          >
+            Manage Hero Slideshow
           </Link>
           <Link
             href="/admin/images"

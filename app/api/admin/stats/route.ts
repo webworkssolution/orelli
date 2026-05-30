@@ -6,11 +6,12 @@ export async function GET() {
   try {
     await requireAuth();
 
-    const [categories, projects, blogs, images] = await Promise.all([
+    const [categories, projects, blogs, images, heroImages] = await Promise.all([
       prisma.category.count(),
       prisma.project.count(),
       prisma.blog.count(),
       prisma.uploadedImage.count(),
+      prisma.heroImage.count(),
     ]);
 
     return NextResponse.json({
@@ -18,6 +19,7 @@ export async function GET() {
       projects,
       blogs,
       images,
+      heroImages,
     });
   } catch (error: unknown) {
     if (error instanceof Error && error.message === "Unauthorized") {

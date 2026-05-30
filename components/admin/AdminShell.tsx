@@ -7,6 +7,7 @@ import AdminHeader from '@/components/admin/AdminHeader';
 
 const pageTitles: Record<string, string> = {
   '/admin': 'Dashboard',
+  '/admin/hero-images': 'Hero Images',
   '/admin/categories': 'Categories',
   '/admin/categories/new': 'New Category',
   '/admin/projects': 'Projects',
