@@ -4,49 +4,28 @@ import { useState, useEffect, useRef } from "react";
 import FadeUp from "@/components/ui/FadeUp";
 import CollectionCard from "@/components/categories/CollectionCard";
 
-const COLLECTIONS = [
-  {
-    title: "Upholstery",
-    description: "Rich textures for structured comfort.",
-    imageSrc: "/new-upholstery-1.jpeg",
-    slug: "upholstery",
-  },
-  {
-    title: "Drapery",
-    description: "Light-filtering elegance for modern spaces.",
-    imageSrc: "/new-drapery-1.jpeg",
-    slug: "drapery",
-  },
-  {
-    title: "Rugs",
-    description: "Grounding your rooms in heritage craft.",
-    imageSrc: "/new-rugs-1.jpeg",
-    slug: "rugs",
-  },
-  {
-    title: "Wallpapers",
-    description: "The perfect finishing touch.",
-    imageSrc: "/new-wallpapers-1.jpeg",
-    slug: "wallpapers",
-  },
-  {
-    title: "Outdoor",
-    description: "Bring luxury outside.",
-    imageSrc: "/new-hero-2.jpeg",
-    slug: "outdoor",
-  },
-];
+interface CategoryData {
+  title: string;
+  description: string;
+  imageSrc: string;
+  slug: string;
+}
 
-export default function CollectionsStrip() {
+interface CollectionsStripProps {
+  categories: CategoryData[];
+}
+
+export default function CollectionsStrip({ categories }: CollectionsStripProps) {
   // Duplicate the collection set on both ends to allow seamless bi-directional looping
-  const slides = [...COLLECTIONS, ...COLLECTIONS, ...COLLECTIONS];
-  const slidesCount = COLLECTIONS.length;
+  const slides = [...categories, ...categories, ...categories];
+  const slidesCount = categories.length;
   const startIndex = slidesCount; // start in the middle copy
   const [index, setIndex] = useState(startIndex); // current index into `slides`
   const [transitionEnabled, setTransitionEnabled] = useState(true);
   const intervalRef = useRef<number | null>(null);
 
   useEffect(() => {
+    if (slidesCount === 0) return;
     intervalRef.current = window.setInterval(() => {
       setIndex((i) => i + 1);
     }, 3000);
@@ -54,10 +33,12 @@ export default function CollectionsStrip() {
     return () => {
       if (intervalRef.current) window.clearInterval(intervalRef.current);
     };
-  }, []);
+  }, [slidesCount]);
 
   // When we hit the duplicate middle boundary, jump back to the original
   useEffect(() => {
+    if (slidesCount === 0) return;
+
     // If we've moved past the right boundary (beyond the middle copy), jump to the middle start
     if (index >= startIndex + slidesCount) {
       const t = window.setTimeout(() => {
@@ -88,6 +69,8 @@ export default function CollectionsStrip() {
     setTransitionEnabled(true);
     setIndex((i) => i + 1);
   };
+
+  if (categories.length === 0) return null;
 
   return (
     <section className="bg-background py-24 px-6 md:px-12">
@@ -137,7 +120,7 @@ export default function CollectionsStrip() {
 
       {/* Indicators */}
       <div className="flex justify-center gap-2 mt-12">
-        {COLLECTIONS.map((_, i) => (
+        {categories.map((_, i) => (
           <button
             key={i}
             onClick={() => {

@@ -2,53 +2,30 @@ import { Metadata } from "next";
 import Link from "next/link";
 import FadeUp from "@/components/ui/FadeUp";
 import CollectionCard from "@/components/categories/CollectionCard";
+import { prisma } from "@/lib/prisma";
 
 export const metadata: Metadata = {
   title: "Categories | Orelli Bombay",
   description: "Handwoven textiles for contemporary living. Explore our upholstery, drapery, and rugs.",
 };
 
-const FILTERS = ["ALL", "UPHOLSTERY", "DRAPERY", "RUGS", "WALLPAPERS", "OUTDOOR"];
+export default async function CollectionsPage() {
+  const categories = await prisma.category.findMany({
+    orderBy: { order: "asc" },
+  });
 
-const PRODUCTS = [
-  {
-    title: "Upholstery",
-    description: "Rich textures for structured comfort.",
-    imageSrc: "/new-upholstery-1.jpeg",
-    slug: "upholstery",
-    tags: ["UPHOLSTERY"],
-  },
-  {
-    title: "Drapery",
-    description: "Light-filtering elegance for modern spaces.",
-    imageSrc: "/new-drapery-1.jpeg",
-    slug: "drapery",
-    tags: ["DRAPERY"],
-  },
-  {
-    title: "Rugs",
-    description: "Grounding your rooms in heritage craft.",
-    imageSrc: "/new-rugs-1.jpeg",
-    slug: "rugs",
-    tags: ["RUGS"],
-  },
-  {
-    title: "Wallpapers",
-    description: "The perfect finishing touch.",
-    imageSrc: "/new-wallpapers-1.jpeg",
-    slug: "wallpapers",
-    tags: ["WALLPAPERS"],
-  },
-  {
-    title: "Outdoor",
-    description: "Bring luxury outside.",
-    imageSrc: "/new-hero-2.jpeg",
-    slug: "outdoor",
-    tags: ["OUTDOOR"],
-  },
-];
+  // Build filter list dynamically from all unique tags
+  const allTags = new Set<string>();
+  categories.forEach((cat) => {
+    try {
+      const tags = JSON.parse(cat.tags) as string[];
+      tags.forEach((t) => allTags.add(t));
+    } catch {
+      // ignore parse errors
+    }
+  });
+  const FILTERS = ["ALL", ...Array.from(allTags)];
 
-export default function CollectionsPage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
@@ -85,22 +62,33 @@ export default function CollectionsPage() {
       {/* Product Grid */}
       <section className="py-16 px-6 md:px-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-          {PRODUCTS.map((product, index) => (
-            <FadeUp key={product.slug} delay={(index % 3) * 0.1}>
-              <CollectionCard {...product} />
-              <div className="mt-2 flex gap-2">
-                {product.tags.map((tag) => (
-                  <span key={tag} className="font-sans uppercase tracking-widest text-[11px] text-[#888]">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </FadeUp>
-          ))}
-        </div>
+          {categories.map((category, index) => {
+            const tags = (() => {
+              try {
+                return JSON.parse(category.tags) as string[];
+              } catch {
+                return [];
+              }
+            })();
 
-        <div className="flex justify-center">
-          <button className="btn-outline">Load More</button>
+            return (
+              <FadeUp key={category.slug} delay={(index % 3) * 0.1}>
+                <CollectionCard
+                  title={category.title}
+                  description={category.description}
+                  imageSrc={category.imageSrc}
+                  slug={category.slug}
+                />
+                <div className="mt-2 flex gap-2">
+                  {tags.map((tag) => (
+                    <span key={tag} className="font-sans uppercase tracking-widest text-[11px] text-[#888]">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </FadeUp>
+            );
+          })}
         </div>
       </section>
     </div>

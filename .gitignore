@@ -40,3 +40,12 @@ orelli-bombay-agent-brief.md
 /.github
 
 textissuefix.md
+
+# Prisma
+prisma/dev.db
+prisma/dev.db-journal
+.env
+
+# Uploads (user-generated content)
+public/uploads/*
+!public/uploads/.gitkeep

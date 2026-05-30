@@ -1,59 +1,107 @@
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import EnquireButton from "@/components/ui/EnquireButton";
 import FadeUp from "@/components/ui/FadeUp";
+import { prisma } from "@/lib/prisma";
 
-const getImageUrl = (slug: string) => {
-  switch(slug) {
-    case 'upholstery': return '/new-upholstery-1.jpeg';
-    case 'drapery': return '/new-drapery-1.jpeg';
-    case 'rugs': return '/new-rugs-1.jpeg';
-    case 'wallpapers': return '/new-wallpapers-1.jpeg';
-    case 'outdoor': return '/new-hero-2.jpeg';
-    default: return '/new-upholstery-1.jpeg';
+export async function generateStaticParams() {
+  const categories = await prisma.category.findMany({
+    select: { slug: true },
+  });
+  return categories.map((cat) => ({ slug: cat.slug }));
+}
+
+export default async function ProductDetailPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const category = await prisma.category.findUnique({
+    where: { slug: params.slug },
+  });
+
+  if (!category) {
+    notFound();
   }
-};
 
-export default function ProductDetailPage({ params }: { params: { slug: string } }) {
-  const imageSrc = getImageUrl(params.slug);
+  const gallery = (() => {
+    try {
+      return JSON.parse(category.gallery) as string[];
+    } catch {
+      return [category.imageSrc];
+    }
+  })();
+
+  const tags = (() => {
+    try {
+      return JSON.parse(category.tags) as string[];
+    } catch {
+      return [];
+    }
+  })();
 
   return (
     <div className="min-h-screen bg-background pt-[72px]">
       <div className="flex flex-col md:flex-row w-full min-h-[calc(100vh-72px)]">
-        
         {/* Left: Image Gallery */}
         <div className="w-full md:w-1/2 p-6 md:p-12 flex flex-col gap-4">
           <FadeUp>
             <div className="w-full aspect-square bg-border rounded-[4px] overflow-hidden relative">
               <img
-                src={imageSrc}
-                alt={params.slug}
+                src={category.imageSrc}
+                alt={category.title}
                 className="absolute inset-0 w-full h-full object-cover"
               />
             </div>
           </FadeUp>
+
+          {/* Thumbnail Gallery */}
+          {gallery.length > 1 && (
+            <div className="flex gap-3 overflow-x-auto">
+              {gallery.map((img, idx) => (
+                <div
+                  key={idx}
+                  className="w-20 h-20 flex-shrink-0 rounded-[4px] overflow-hidden border border-border"
+                >
+                  <img
+                    src={img}
+                    alt={`${category.title} ${idx + 1}`}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Right: Info Panel */}
         <div className="w-full md:w-1/2 p-6 md:p-16 flex flex-col justify-center">
           <FadeUp delay={0.1}>
             <div className="font-sans text-[12px] text-[#888] mb-6">
-              <Link href="/categories" className="hover:text-foreground transition-colors">Categories</Link>
+              <Link
+                href="/categories"
+                className="hover:text-foreground transition-colors"
+              >
+                Categories
+              </Link>
               <span className="mx-2">/</span>
-              <span className="text-foreground capitalize">{params.slug.replace(/-/g, " ")}</span>
+              <span className="text-foreground capitalize">
+                {category.title}
+              </span>
             </div>
 
-            <h1 className="font-cormorant text-[clamp(28px,3vw,44px)] text-foreground leading-tight mb-2 capitalize">
-              {params.slug.replace(/-/g, " ")}
+            <h1 className="font-cormorant text-[clamp(28px,3vw,44px)] text-foreground leading-tight mb-2">
+              {category.title}
             </h1>
-            
+
             <div className="font-sans uppercase tracking-[0.12em] text-[11px] text-[#888]">
-              {params.slug.replace(/-/g, " ").toUpperCase()} · NATURAL FIBRE
+              {tags.join(" · ")} {tags.length > 0 ? "· " : ""}NATURAL FIBRE
             </div>
 
             <div className="w-full h-[1px] bg-border my-5" />
 
             <p className="font-sans text-[14px] text-[#555] leading-[1.8] mb-8">
-              Woven on traditional looms by master artisans, this textile brings exceptional tactile richness and enduring strength. Ideal for high-use residential seating and statement pieces, it softens beautifully with age while maintaining its structured weave.
+              {category.detailDescription || category.description}
             </p>
 
             <EnquireButton className="btn-filled w-full text-center block mb-4" />
@@ -62,7 +110,6 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
             </p>
           </FadeUp>
         </div>
-
       </div>
     </div>
   );
