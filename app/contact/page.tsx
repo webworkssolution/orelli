@@ -40,13 +40,14 @@ export default function ContactPage() {
                 Orelli Bombay
               </h2>
               <div className="font-sans text-[14px] text-[#555] leading-[1.9] mb-6">
-                <p>Santacruz</p>
-                <p>Mumbai, 400055</p>
-                <p>India</p>
+                <p>1st Floor, Rudra Paradise</p>
+                <p>Guru Narayan Rd, Madhuvan Society</p>
+                <p>Sen Nagar, Santacruz East</p>
+                <p>Mumbai, Maharashtra 400055</p>
               </div>
               
-              <a href="mailto:hello@orellibombay.com" className="font-sans text-[14px] text-accent hover:underline decoration-accent/50 underline-offset-4 mb-6 block w-fit">
-                hello@orellibombay.com
+              <a href="mailto:orellibombay@orelli.co.in" className="font-sans text-[14px] text-accent hover:underline decoration-accent/50 underline-offset-4 mb-6 block w-fit">
+                orellibombay@orelli.co.in
               </a>
 
               <div className="font-sans text-[14px] text-[#555] mb-8">

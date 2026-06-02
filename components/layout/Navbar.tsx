@@ -26,7 +26,8 @@ export default function Navbar() {
     { name: "Categories", href: "/categories" },
     { name: "About", href: "/about" },
     { name: "Blogs", href: "/blogs" },
-    { name: "Enquiry", href: "/contact" },
+    { name: "Contact", href: "/contact" },
+    { name: "Enquiry", href: "#" },
   ];
 
   const isHome = pathname === "/";

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { X, Loader2, CheckCircle, AlertCircle, Clock } from "lucide-react";
+import { X, Loader2, CheckCircle, AlertCircle, Clock, Upload, Trash2 } from "lucide-react";
 
 interface EnquiryModalProps {
   isOpen: boolean;
@@ -9,6 +9,15 @@ interface EnquiryModalProps {
 }
 
 type FormStatus = "idle" | "loading" | "success" | "error" | "rate_limited";
+
+const MAX_FILE_SIZE_MB = 25;
+const MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_MB * 1024 * 1024;
+
+function formatFileSize(bytes: number): string {
+  if (bytes < 1024) return `${bytes} B`;
+  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+}
 
 export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
   const [formData, setFormData] = useState({
@@ -18,12 +27,15 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
     hasArchitect: "",
     architectName: "",
     helperText: "",
-    photos: null as File | null,
-    colourPalette: null as File | null,
+    photos: [] as File[],
+    colourPalette: [] as File[],
   });
 
   const [status, setStatus] = useState<FormStatus>("idle");
   const [statusMessage, setStatusMessage] = useState("");
+  const [fileSizeError, setFileSizeError] = useState<Record<string, string>>({});
+
+  const getTotalSize = (files: File[]) => files.reduce((sum, f) => sum + f.size, 0);
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -34,9 +46,46 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, files } = e.target;
-    if (files?.[0]) {
-      setFormData((prev) => ({ ...prev, [name]: files[0] }));
+    if (files && files.length > 0) {
+      const fieldName = name as "photos" | "colourPalette";
+      const newFiles = Array.from(files);
+      const existingFiles = formData[fieldName];
+      const allFiles = [...existingFiles, ...newFiles];
+      const totalSize = getTotalSize(allFiles);
+
+      if (totalSize > MAX_FILE_SIZE_BYTES) {
+        setFileSizeError((prev) => ({
+          ...prev,
+          [fieldName]: `Total size exceeds ${MAX_FILE_SIZE_MB}MB. Current: ${formatFileSize(totalSize)}`,
+        }));
+        return;
+      }
+
+      setFileSizeError((prev) => {
+        const next = { ...prev };
+        delete next[fieldName];
+        return next;
+      });
+
+      setFormData((prev) => ({
+        ...prev,
+        [fieldName]: allFiles,
+      }));
     }
+    // Reset input so the same files can be re-selected
+    e.target.value = "";
+  };
+
+  const removeFile = (fieldName: "photos" | "colourPalette", index: number) => {
+    setFormData((prev) => ({
+      ...prev,
+      [fieldName]: prev[fieldName].filter((_, i) => i !== index),
+    }));
+    setFileSizeError((prev) => {
+      const next = { ...prev };
+      delete next[fieldName];
+      return next;
+    });
   };
 
   const resetForm = () => {
@@ -47,11 +96,12 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
       hasArchitect: "",
       architectName: "",
       helperText: "",
-      photos: null,
-      colourPalette: null,
+      photos: [],
+      colourPalette: [],
     });
     setStatus("idle");
     setStatusMessage("");
+    setFileSizeError({});
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -68,8 +118,8 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
       body.append("hasArchitect", formData.hasArchitect);
       body.append("architectName", formData.architectName);
       body.append("helperText", formData.helperText);
-      if (formData.photos) body.append("photos", formData.photos);
-      if (formData.colourPalette) body.append("colourPalette", formData.colourPalette);
+      formData.photos.forEach((file) => body.append("photos", file));
+      formData.colourPalette.forEach((file) => body.append("colourPalette", file));
 
       const res = await fetch("/api/contact", {
         method: "POST",
@@ -104,6 +154,83 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
   };
 
   if (!isOpen) return null;
+
+  const renderFileUpload = (
+    fieldName: "photos" | "colourPalette",
+    label: string,
+    inputId: string
+  ) => {
+    const files = formData[fieldName];
+    const totalSize = getTotalSize(files);
+    const error = fileSizeError[fieldName];
+
+    return (
+      <div>
+        <label className="block font-sans text-[10px] sm:text-[12px] uppercase tracking-[0.1em] text-[#555] mb-2">
+          {label}
+        </label>
+        <div className="border-2 border-dashed border-border rounded-[4px] p-4 hover:border-accent transition-colors">
+          <input
+            type="file"
+            name={fieldName}
+            onChange={handleFileChange}
+            accept="image/*"
+            multiple
+            className="hidden"
+            id={inputId}
+            disabled={status === "loading"}
+          />
+          <label
+            htmlFor={inputId}
+            className="cursor-pointer flex flex-col items-center justify-center py-2"
+          >
+            <Upload size={18} className="text-[#888] mb-1" />
+            <p className="font-sans text-xs sm:text-[14px] text-[#555]">
+              Click to upload images
+            </p>
+            <p className="font-sans text-[10px] sm:text-[12px] text-[#888] mt-1">
+              PNG, JPG, GIF — up to {MAX_FILE_SIZE_MB}MB total
+            </p>
+          </label>
+
+          {files.length > 0 && (
+            <div className="mt-3 space-y-1.5 border-t border-border pt-3">
+              {files.map((file, i) => (
+                <div
+                  key={`${file.name}-${i}`}
+                  className="flex items-center justify-between gap-2 text-xs font-sans bg-border/30 rounded px-2 py-1.5"
+                >
+                  <span className="truncate text-foreground max-w-[70%]">
+                    {file.name}
+                  </span>
+                  <div className="flex items-center gap-2 shrink-0">
+                    <span className="text-[#888]">
+                      {formatFileSize(file.size)}
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => removeFile(fieldName, i)}
+                      className="text-red-400 hover:text-red-600 transition-colors p-0.5"
+                      aria-label={`Remove ${file.name}`}
+                    >
+                      <Trash2 size={12} />
+                    </button>
+                  </div>
+                </div>
+              ))}
+              <p className="text-[10px] text-[#888] font-sans pt-1">
+                {files.length} file(s) · {formatFileSize(totalSize)} total
+              </p>
+            </div>
+          )}
+
+          {error && (
+            <p className="text-[10px] text-red-500 font-sans mt-2">{error}</p>
+          )}
+        </div>
+      </div>
+    );
+  };
 
   return (
     <>
@@ -265,54 +392,8 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                  <div>
-                    <label className="block font-sans text-[10px] sm:text-[12px] uppercase tracking-[0.1em] text-[#555] mb-2">
-                      Project Photos
-                    </label>
-                    <div className="border-2 border-dashed border-border rounded-[4px] p-4 sm:p-6 text-center hover:border-accent transition-colors cursor-pointer h-[120px] flex flex-col items-center justify-center">
-                      <input
-                        type="file"
-                        name="photos"
-                        onChange={handleFileChange}
-                        accept="image/*"
-                        className="hidden"
-                        id="photos-input"
-                        disabled={status === "loading"}
-                      />
-                      <label htmlFor="photos-input" className="cursor-pointer block w-full h-full flex flex-col items-center justify-center">
-                        <p className="font-sans text-xs sm:text-[14px] text-[#555]">
-                          {formData.photos?.name || "Click to upload"}
-                        </p>
-                        <p className="font-sans text-[10px] sm:text-[12px] text-[#888] mt-1">
-                          PNG, JPG, GIF up to 10MB
-                        </p>
-                      </label>
-                    </div>
-                  </div>
-                  <div>
-                    <label className="block font-sans text-[10px] sm:text-[12px] uppercase tracking-[0.1em] text-[#555] mb-2">
-                      Colour Reference
-                    </label>
-                    <div className="border-2 border-dashed border-border rounded-[4px] p-4 sm:p-6 text-center hover:border-accent transition-colors cursor-pointer h-[120px] flex flex-col items-center justify-center">
-                      <input
-                        type="file"
-                        name="colourPalette"
-                        onChange={handleFileChange}
-                        accept="image/*"
-                        className="hidden"
-                        id="colour-input"
-                        disabled={status === "loading"}
-                      />
-                      <label htmlFor="colour-input" className="cursor-pointer block w-full h-full flex flex-col items-center justify-center">
-                        <p className="font-sans text-xs sm:text-[14px] text-[#555]">
-                          {formData.colourPalette?.name || "Click to upload"}
-                        </p>
-                        <p className="font-sans text-[10px] sm:text-[12px] text-[#888] mt-1">
-                          PNG, JPG, GIF up to 10MB
-                        </p>
-                      </label>
-                    </div>
-                  </div>
+                  {renderFileUpload("photos", "Project Photos", "photos-input")}
+                  {renderFileUpload("colourPalette", "Colour Reference", "colour-input")}
                 </div>
 
                 <div>

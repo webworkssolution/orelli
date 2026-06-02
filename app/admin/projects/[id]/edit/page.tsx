@@ -47,6 +47,10 @@ export default function Page({ params }: { params: { id: string } }) {
             <label className="block text-xs mb-1 text-[#999]">Image</label>
             <ImageUploader currentImage={formData.imageSrc} onUpload={(v: string) => setFormData({...formData, imageSrc: v})} />
           </div>
+          <div className="flex items-center gap-2">
+            <input type="checkbox" id="featured" checked={formData.featured} onChange={e => setFormData({...formData, featured: e.target.checked})} className="accent-[#C9A96E]" />
+            <label htmlFor="featured" className="text-xs text-[#999]">Featured on homepage</label>
+          </div>
           <div className="pt-4 border-t border-[#2a2a2a] flex justify-end">
              <button className="bg-[#C9A96E] hover:bg-[#d4b87a] text-black px-4 py-2 rounded text-sm font-medium">Update Project</button>
           </div>

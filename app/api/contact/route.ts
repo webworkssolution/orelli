@@ -5,6 +5,8 @@ import nodemailer from "nodemailer";
 const rateLimitMap = new Map<string, number>();
 const RATE_LIMIT_MS = 5 * 60 * 1000; // 5 minutes
 
+const MAX_FILE_SIZE_BYTES = 25 * 1024 * 1024; // 25MB per field
+
 // Clean up old entries every 10 minutes to prevent memory leaks
 setInterval(() => {
   const now = Date.now();
@@ -44,7 +46,7 @@ export async function POST(request: Request) {
       }
     }
 
-    // ── Parse FormData (supports file uploads) ──
+    // ── Parse FormData (supports multiple file uploads) ──
     const formData = await request.formData();
 
     const name = formData.get("name") as string;
@@ -53,8 +55,8 @@ export async function POST(request: Request) {
     const hasArchitect = formData.get("hasArchitect") as string;
     const architectName = formData.get("architectName") as string;
     const helperText = formData.get("helperText") as string;
-    const photos = formData.get("photos") as File | null;
-    const colourPalette = formData.get("colourPalette") as File | null;
+    const photos = formData.getAll("photos") as File[];
+    const colourPalette = formData.getAll("colourPalette") as File[];
 
     // ── Validate required fields ──
     if (!name || !email || !contact) {
@@ -64,17 +66,39 @@ export async function POST(request: Request) {
       );
     }
 
+    // ── Validate file sizes ──
+    const photosTotalSize = photos.reduce((sum, f) => sum + (f?.size || 0), 0);
+    const paletteTotalSize = colourPalette.reduce((sum, f) => sum + (f?.size || 0), 0);
+
+    if (photosTotalSize > MAX_FILE_SIZE_BYTES) {
+      return NextResponse.json(
+        { error: "validation", message: "Project photos total size exceeds 25MB limit." },
+        { status: 400 }
+      );
+    }
+
+    if (paletteTotalSize > MAX_FILE_SIZE_BYTES) {
+      return NextResponse.json(
+        { error: "validation", message: "Colour reference total size exceeds 25MB limit." },
+        { status: 400 }
+      );
+    }
+
     // ── Build attachments from uploaded files ──
     const attachments: { filename: string; content: Buffer }[] = [];
 
-    if (photos && photos.size > 0) {
-      const buffer = Buffer.from(await photos.arrayBuffer());
-      attachments.push({ filename: photos.name, content: buffer });
+    for (const photo of photos) {
+      if (photo && photo.size > 0) {
+        const buffer = Buffer.from(await photo.arrayBuffer());
+        attachments.push({ filename: `Project_${photo.name}`, content: buffer });
+      }
     }
 
-    if (colourPalette && colourPalette.size > 0) {
-      const buffer = Buffer.from(await colourPalette.arrayBuffer());
-      attachments.push({ filename: colourPalette.name, content: buffer });
+    for (const palette of colourPalette) {
+      if (palette && palette.size > 0) {
+        const buffer = Buffer.from(await palette.arrayBuffer());
+        attachments.push({ filename: `ColourRef_${palette.name}`, content: buffer });
+      }
     }
 
     // ── Build HTML email ──
@@ -168,7 +192,7 @@ export async function POST(request: Request) {
 
     await transporter.sendMail({
       from: `"Orelli Website" <${process.env.SMTP_USER}>`,
-      to: process.env.OWNER_EMAIL || "hello@orellibombay.com",
+      to: process.env.OWNER_EMAIL || "orellibombay@orelli.co.in",
       replyTo: email,
       subject: `New Enquiry from ${name}`,
       html,
