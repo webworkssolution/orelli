@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import EnquireButton from "@/components/ui/EnquireButton";
 import FadeUp from "@/components/ui/FadeUp";
 import { prisma } from "@/lib/prisma";
+import CategoryProjects from "@/components/categories/CategoryProjects";
 
 export async function generateStaticParams() {
   const categories = await prisma.category.findMany({
@@ -18,6 +19,11 @@ export default async function ProductDetailPage({
 }) {
   const category = await prisma.category.findUnique({
     where: { slug: params.slug },
+    include: {
+      projects: {
+        orderBy: { order: 'asc' }
+      }
+    }
   });
 
   if (!category) {
@@ -111,6 +117,9 @@ export default async function ProductDetailPage({
           </FadeUp>
         </div>
       </div>
+      
+      {/* Related Projects Grid & Modal */}
+      <CategoryProjects projects={category.projects} />
     </div>
   );
 }

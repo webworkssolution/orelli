@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useToast } from '@/components/admin/Toast';
 import ImageUploader from '@/components/admin/ImageUploader';
@@ -7,12 +7,22 @@ import ImageUploader from '@/components/admin/ImageUploader';
 export default function Page() {
   const router = useRouter();
   const { showToast } = useToast();
-  const [formData, setFormData] = useState({ title: '', slug: '', description: '', imageSrc: '', featured: false });
+  const [formData, setFormData] = useState({ title: '', slug: '', description: '', imageSrc: '', featured: false, categoryId: '' });
+  const [categories, setCategories] = useState<{id: string, title: string}[]>([]);
+
+  useEffect(() => {
+    fetch('/api/admin/categories').then(r => r.json()).then(setCategories);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await fetch('/api/admin/projects', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(formData) });
+      const res = await fetch('/api/admin/projects', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...formData, categoryId: formData.categoryId || null }) });
+      if (!res.ok) {
+        const data = await res.json();
+        showToast(data.error || 'Error', 'error');
+        return;
+      }
       showToast('Created', 'success');
       router.push('/admin/projects');
     } catch {
@@ -32,6 +42,15 @@ export default function Page() {
           <div>
             <label className="block text-xs mb-1 text-[#999]">Slug</label>
             <input className="w-full admin-input" placeholder="Slug" value={formData.slug} onChange={e => setFormData({...formData, slug: e.target.value})} required/>
+          </div>
+          <div>
+            <label className="block text-xs mb-1 text-[#999]">Category (Optional)</label>
+            <select className="w-full admin-input" value={formData.categoryId} onChange={e => setFormData({...formData, categoryId: e.target.value})}>
+              <option value="">No Category</option>
+              {categories.map(c => (
+                <option key={c.id} value={c.id}>{c.title}</option>
+              ))}
+            </select>
           </div>
           <div>
             <label className="block text-xs mb-1 text-[#999]">Description</label>

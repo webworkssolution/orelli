@@ -33,11 +33,16 @@ export default function Page() {
   const toggleFeatured = async (item: ListItem) => {
     const newFeatured = !item.featured;
     try {
-      await fetch(`/api/admin/projects/${item.id}`, {
+      const res = await fetch(`/api/admin/projects/${item.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ featured: newFeatured }),
       });
+      if (!res.ok) {
+        const data = await res.json();
+        showToast(data.error || 'Error updating', 'error');
+        return;
+      }
       setItems(prev => prev.map(i => i.id === item.id ? { ...i, featured: newFeatured } : i));
       showToast(newFeatured ? 'Shown on homepage' : 'Hidden from homepage', 'success');
     } catch {

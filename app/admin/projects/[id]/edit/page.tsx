@@ -7,16 +7,23 @@ import ImageUploader from '@/components/admin/ImageUploader';
 export default function Page({ params }: { params: { id: string } }) {
   const router = useRouter();
   const { showToast } = useToast();
-  const [formData, setFormData] = useState({ title: '', slug: '', description: '', imageSrc: '', featured: false });
+  const [formData, setFormData] = useState({ title: '', slug: '', description: '', imageSrc: '', featured: false, categoryId: '' });
+  const [categories, setCategories] = useState<{id: string, title: string}[]>([]);
 
   useEffect(() => {
-    fetch(`/api/admin/projects/${params.id}`).then(r => r.json()).then(setFormData);
+    fetch(`/api/admin/projects/${params.id}`).then(r => r.json()).then(data => setFormData({ ...data, categoryId: data.categoryId || '' }));
+    fetch('/api/admin/categories').then(r => r.json()).then(setCategories);
   }, [params.id]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await fetch(`/api/admin/projects/${params.id}`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(formData) });
+      const res = await fetch(`/api/admin/projects/${params.id}`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...formData, categoryId: formData.categoryId || null }) });
+      if (!res.ok) {
+        const data = await res.json();
+        showToast(data.error || 'Error', 'error');
+        return;
+      }
       showToast('Updated', 'success');
       router.push('/admin/projects');
     } catch {
@@ -38,6 +45,15 @@ export default function Page({ params }: { params: { id: string } }) {
           <div>
             <label className="block text-xs mb-1 text-[#999]">Slug</label>
             <input className="w-full admin-input" placeholder="Slug" value={formData.slug} onChange={e => setFormData({...formData, slug: e.target.value})} required/>
+          </div>
+          <div>
+            <label className="block text-xs mb-1 text-[#999]">Category (Optional)</label>
+            <select className="w-full admin-input" value={formData.categoryId} onChange={e => setFormData({...formData, categoryId: e.target.value})}>
+              <option value="">No Category</option>
+              {categories.map(c => (
+                <option key={c.id} value={c.id}>{c.title}</option>
+              ))}
+            </select>
           </div>
           <div>
             <label className="block text-xs mb-1 text-[#999]">Description</label>
