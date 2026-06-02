@@ -89,6 +89,8 @@ export default function ContactForm() {
       
       <select 
         name="projectType"
+        title="Type of Project"
+        aria-label="Type of Project"
         required
         disabled={formStatus === "loading" || formStatus === "success"}
         className="w-full bg-transparent border-b border-foreground py-3 text-[14px] font-sans text-foreground focus:outline-none focus:border-accent transition-colors appearance-none disabled:opacity-50"

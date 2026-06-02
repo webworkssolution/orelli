@@ -48,7 +48,7 @@ export default function Page({ params }: { params: { id: string } }) {
           </div>
           <div>
             <label className="block text-xs mb-1 text-[#999]">Category (Optional)</label>
-            <select className="w-full admin-input" value={formData.categoryId} onChange={e => setFormData({...formData, categoryId: e.target.value})}>
+            <select title="Category" aria-label="Category" className="w-full admin-input" value={formData.categoryId} onChange={e => setFormData({...formData, categoryId: e.target.value})}>
               <option value="">No Category</option>
               {categories.map(c => (
                 <option key={c.id} value={c.id}>{c.title}</option>

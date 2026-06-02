@@ -67,6 +67,8 @@ export default function CategoryProjects({ projects }: CategoryProjectsProps) {
           <div className="bg-background relative w-full max-w-5xl max-h-[90vh] rounded-[8px] overflow-hidden flex flex-col md:flex-row shadow-2xl animate-in fade-in zoom-in-95 duration-300">
             <button 
               onClick={() => setSelectedProject(null)}
+              title="Close project modal"
+              aria-label="Close project modal"
               className="absolute top-4 right-4 z-10 p-2 bg-black/20 hover:bg-black/40 text-white rounded-full backdrop-blur-md transition-colors"
             >
               <X size={20} />

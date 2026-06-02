@@ -250,6 +250,8 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
             </h2>
             <button
               onClick={handleClose}
+              title="Close enquiry modal"
+              aria-label="Close enquiry modal"
               className="p-2 hover:bg-border rounded-[4px] transition-colors flex-shrink-0"
             >
               <X size={20} className="text-foreground" />
@@ -361,6 +363,8 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
                     </label>
                     <select
                       name="hasArchitect"
+                      title="Do you have an architect"
+                      aria-label="Do you have an architect"
                       value={formData.hasArchitect}
                       onChange={handleInputChange}
                       disabled={status === "loading"}
