@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, DM_Sans } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
-import StickyActionBar from "@/components/layout/StickyActionBar";
+import LayoutShell from "@/components/layout/LayoutShell";
 import { ModalProvider } from "@/components/context/ModalContext";
+import StickyActionBar from "@/components/layout/StickyActionBar";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -33,12 +32,11 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${cormorant.variable} ${dmSans.variable} font-sans antialiased bg-background text-foreground`}>
         <ModalProvider>
-          <Navbar />
-          <main>{children}</main>
-          <Footer />
+          <LayoutShell>{children}</LayoutShell>
           <StickyActionBar />
         </ModalProvider>
       </body>
     </html>
   );
 }
+

@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { signOut } from 'next-auth/react';
 import {
   LayoutDashboard,
   FolderOpen,
@@ -10,6 +11,7 @@ import {
   Image,
   Wallpaper,
   X,
+  LogOut,
 } from 'lucide-react';
 
 interface SidebarProps {
@@ -97,6 +99,17 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
             );
           })}
         </nav>
+
+        {/* Logout button */}
+        <div className="px-3 py-4 border-t border-[#2a2a2a]">
+          <button
+            onClick={() => signOut({ callbackUrl: '/admin/login' })}
+            className="flex items-center gap-3 px-3 py-2.5 rounded-md text-sm text-[#999] hover:text-[#ef4444] hover:bg-[#ef4444]/10 border-l-[3px] border-transparent pl-[9px] w-full transition-all duration-200"
+          >
+            <LogOut className="w-[18px] h-[18px] shrink-0" />
+            <span className="font-medium">Log Out</span>
+          </button>
+        </div>
       </aside>
     </>
   );

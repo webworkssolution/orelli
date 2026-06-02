@@ -1,7 +1,7 @@
 'use client';
 
-import { signOut } from 'next-auth/react';
-import { Menu, LogOut } from 'lucide-react';
+import Link from 'next/link';
+import { Menu, ExternalLink } from 'lucide-react';
 
 interface AdminHeaderProps {
   title: string;
@@ -27,14 +27,16 @@ export default function AdminHeader({ title, onMenuToggle }: AdminHeaderProps) {
         </h1>
       </div>
 
-      {/* Right: logout */}
-      <button
-        onClick={() => signOut({ callbackUrl: '/admin/login' })}
-        className="flex items-center gap-2 text-sm text-[#999] hover:text-[#ef4444] transition-colors"
+      {/* Right: visit site */}
+      <Link
+        href="/"
+        target="_blank"
+        className="flex items-center gap-2 px-4 py-2 text-sm rounded-md border border-[#C9A96E]/40 text-[#C9A96E] hover:bg-[#C9A96E]/10 transition-colors"
       >
-        <LogOut className="w-4 h-4" />
-        <span className="hidden sm:inline">Logout</span>
-      </button>
+        <span>Visit Website</span>
+        <ExternalLink className="w-3.5 h-3.5" />
+      </Link>
     </header>
   );
 }
+
