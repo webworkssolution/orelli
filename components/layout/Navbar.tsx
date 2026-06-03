@@ -107,7 +107,7 @@ export default function Navbar() {
             >
               <span
                 className={`block h-[1px] transition-all duration-300 w-full ${
-                  menuOpen ? "rotate-45 translate-y-[7px] bg-whiteAlt" : `${useDarkText ? "bg-foreground" : "bg-whiteAlt"}`
+                  menuOpen ? "rotate-45 translate-y-[7px] bg-foreground" : `${useDarkText ? "bg-foreground" : "bg-whiteAlt"}`
                 }`}
               />
               <span
@@ -117,7 +117,7 @@ export default function Navbar() {
               />
               <span
                 className={`block h-[1px] transition-all duration-300 w-full ${
-                  menuOpen ? "-rotate-45 -translate-y-[7px] bg-whiteAlt" : `${useDarkText ? "bg-foreground" : "bg-whiteAlt"}`
+                  menuOpen ? "-rotate-45 -translate-y-[7px] bg-foreground" : `${useDarkText ? "bg-foreground" : "bg-whiteAlt"}`
                 }`}
               />
             </button>
@@ -128,33 +128,37 @@ export default function Navbar() {
       {/* Mobile Menu Overlay — only for non-admin pages */}
       {!isAdmin && (
         <div
-          className={`fixed inset-0 bg-footerBg z-[55] flex flex-col items-center justify-center transition-opacity duration-500 ${
+          className={`fixed inset-0 bg-background/95 backdrop-blur-md z-[45] flex flex-col items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
             menuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
           }`}
         >
-          <div className="flex flex-col items-center gap-8">
-            {links.map((link) => (
-              link.name === "Enquiry" ? (
-                <button
-                  key={link.name}
-                  onClick={() => {
-                    setMenuOpen(false);
-                    openModal();
-                  }}
-                  className="font-cormorant text-whiteAlt text-4xl"
-                >
-                  {link.name}
-                </button>
-              ) : (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  onClick={() => setMenuOpen(false)}
-                  className="font-cormorant text-whiteAlt text-4xl"
-                >
-                  {link.name}
-                </Link>
-              )
+          <div className="flex flex-col items-center gap-10 w-full px-6">
+            {links.map((link, idx) => (
+              <div 
+                key={link.name}
+                className={`transition-all duration-700 ease-out ${menuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+                style={{ transitionDelay: `${menuOpen ? 150 + idx * 75 : 0}ms` }}
+              >
+                {link.name === "Enquiry" ? (
+                  <button
+                    onClick={() => {
+                      setMenuOpen(false);
+                      openModal();
+                    }}
+                    className="font-cormorant text-foreground text-4xl sm:text-5xl hover:text-accent transition-colors"
+                  >
+                    {link.name}
+                  </button>
+                ) : (
+                  <Link
+                    href={link.href}
+                    onClick={() => setMenuOpen(false)}
+                    className="font-cormorant text-foreground text-4xl sm:text-5xl hover:text-accent transition-colors block"
+                  >
+                    {link.name}
+                  </Link>
+                )}
+              </div>
             ))}
           </div>
         </div>
