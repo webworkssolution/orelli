@@ -53,7 +53,7 @@ export default async function ArticlePage({
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="max-w-[720px] mx-auto px-6 pt-40 pb-24">
+      <div className="max-w-[720px] mx-auto px-6 pt-32 pb-12">
         <FadeUp>
           <div className="font-sans text-[12px] text-[#888] mb-6 uppercase tracking-widest">
             <Link href="/blogs" className="hover:text-foreground transition-colors">Blogs</Link>

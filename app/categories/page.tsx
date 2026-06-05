@@ -29,7 +29,7 @@ export default async function CollectionsPage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <section className="pt-48 pb-16 px-6 md:px-12 border-b border-border">
+      <section className="pt-32 pb-8 px-6 md:px-12 border-b border-border">
         <FadeUp>
           <h1 className="font-cormorant text-[clamp(48px,6vw,80px)] text-foreground leading-none mb-4">
             Categories
@@ -60,8 +60,8 @@ export default async function CollectionsPage() {
       </div>
 
       {/* Product Grid */}
-      <section className="py-16 px-6 md:px-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+      <section className="py-8 px-6 md:px-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
           {categories.map((category, index) => {
             const tags = (() => {
               try {

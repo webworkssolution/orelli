@@ -27,7 +27,7 @@ export default function AboutPage() {
       </section>
 
       {/* Brand Story */}
-      <section className="bg-background py-24 px-6 md:px-12">
+      <section className="bg-background py-12 px-6 md:px-12">
         <div className="flex flex-col md:flex-row w-full gap-12 lg:gap-24">
           <div className="w-full md:w-1/2">
             <FadeUp>
@@ -66,7 +66,7 @@ export default function AboutPage() {
       </section>
 
       {/* Values Strip */}
-      <section className="bg-background py-24 px-6 md:px-12">
+      <section className="bg-background py-12 px-6 md:px-12">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
           {[
             {

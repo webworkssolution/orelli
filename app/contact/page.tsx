@@ -11,7 +11,7 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <section className="pt-40 pb-8 px-6 md:px-12">
+      <section className="pt-32 pb-8 px-6 md:px-12">
         <FadeUp>
           <h1 className="font-cormorant text-[clamp(36px,5vw,64px)] text-foreground leading-none">
             Let&apos;s Work Together
@@ -20,7 +20,7 @@ export default function ContactPage() {
       </section>
 
       {/* Main Content */}
-      <section className="pb-32 px-6 md:px-12">
+      <section className="pb-16 px-6 md:px-12">
         <div className="flex flex-col md:flex-row w-full gap-16 md:gap-0">
           
           {/* Left: Enquiry Form */}

@@ -20,7 +20,7 @@ export default async function BlogsPage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <section className="pt-48 pb-12 px-6 md:px-12 border-b border-border">
+      <section className="pt-32 pb-8 px-6 md:px-12 border-b border-border">
         <FadeUp>
           <h1 className="font-cormorant text-[clamp(48px,6vw,80px)] text-foreground leading-none">
             Blogs

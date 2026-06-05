@@ -29,7 +29,7 @@ export default function FeaturedProject({ projects }: FeaturedProjectProps) {
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="w-full md:w-7/12 flex items-center p-8 md:px-16 md:py-24 lg:px-24">
+            <div className="w-full md:w-7/12 flex items-center p-8 md:px-16 md:py-12 lg:px-16">
               <FadeUp>
                 <span className="font-sans uppercase tracking-[0.12em] text-[11px] text-[#888] block mb-4">
                   FEATURED PROJECT

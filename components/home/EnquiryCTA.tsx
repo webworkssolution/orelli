@@ -8,7 +8,7 @@ export default function EnquiryCTA() {
 
   return (
     <>
-      <section className="bg-background py-32 px-6 md:px-12 border-t border-border flex flex-col items-center text-center">
+      <section className="bg-background py-16 px-6 md:px-12 border-t border-border flex flex-col items-center text-center">
         <FadeUp className="flex flex-col items-center">
           <h2 className="font-cormorant text-[clamp(32px,4vw,56px)] text-foreground mb-4 leading-tight">
             Have a project in mind?

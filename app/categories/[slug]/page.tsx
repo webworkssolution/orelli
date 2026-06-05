@@ -48,11 +48,11 @@ export default async function ProductDetailPage({
 
   return (
     <div className="min-h-screen bg-background pt-[72px]">
-      <div className="flex flex-col md:flex-row w-full min-h-[calc(100vh-72px)]">
+      <div className="flex flex-col md:flex-row w-full py-8 md:py-12 items-stretch">
         {/* Left: Image Gallery */}
-        <div className="w-full md:w-1/2 p-6 md:p-12 flex flex-col gap-4">
+        <div className="w-full md:w-1/2 px-6 md:px-12 flex flex-col gap-4">
           <FadeUp>
-            <div className="w-full aspect-square bg-border rounded-[4px] overflow-hidden relative">
+            <div className="w-full aspect-square md:aspect-[4/3] xl:aspect-[16/9] max-h-[550px] bg-border rounded-[4px] overflow-hidden relative">
               <img
                 src={category.imageSrc}
                 alt={category.title}
@@ -81,7 +81,7 @@ export default async function ProductDetailPage({
         </div>
 
         {/* Right: Info Panel */}
-        <div className="w-full md:w-1/2 p-6 md:p-16 flex flex-col justify-center">
+        <div className="w-full md:w-1/2 px-6 md:px-12 mt-8 md:mt-0 flex flex-col justify-center">
           <FadeUp delay={0.1}>
             <div className="font-sans text-[12px] text-[#888] mb-6">
               <Link

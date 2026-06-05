@@ -7,7 +7,7 @@ export default function Footer() {
   const { openModal } = useModal();
 
   return (
-    <footer className="bg-footerBg py-20 px-12 text-foreground">
+    <footer className="bg-footerBg py-12 px-12 text-foreground">
       <div className="max-w-7xl mx-auto flex flex-col items-center">
         {/* Top section */}
         <div className="flex flex-col items-center mb-12">
@@ -30,6 +30,8 @@ export default function Footer() {
           <Link href="/blogs" className="hover:text-foreground transition-colors">Blogs</Link>
           <span>·</span>
           <Link href="/contact" className="hover:text-foreground transition-colors">Contact</Link>
+          <span>·</span>
+          <Link href="/faq" className="hover:text-foreground transition-colors">FAQ</Link>
           <span>·</span>
           <button onClick={openModal} className="hover:text-foreground transition-colors uppercase tracking-[0.12em] text-[12px]">Enquiry</button>
           <span>·</span>

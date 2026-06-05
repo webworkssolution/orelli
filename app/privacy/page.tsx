@@ -8,7 +8,7 @@ export const metadata = {
 
 export default function PrivacyPolicyPage() {
   return (
-    <div className="min-h-screen bg-background pt-32 pb-24 px-6 md:px-12">
+    <div className="min-h-screen bg-background pt-32 pb-12 px-6 md:px-12">
       <div className="max-w-3xl mx-auto">
         <FadeUp>
           <div className="font-sans text-[12px] text-[#888] mb-6">

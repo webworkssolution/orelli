@@ -22,7 +22,7 @@ export default function CategoryProjects({ projects }: CategoryProjectsProps) {
 
   return (
     <>
-      <section className="py-24 px-6 md:px-12 bg-background">
+      <section className="py-12 px-6 md:px-12 bg-background">
         <FadeUp>
           <div className="w-full h-[1px] bg-border mb-16" />
           <h2 className="font-cormorant text-[clamp(28px,3vw,44px)] text-foreground mb-12">
