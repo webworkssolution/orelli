@@ -60,16 +60,14 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
         {/* Logo area */}
         <div className="flex items-center justify-between h-16 px-6 border-b border-[#2a2a2a]">
           <Link href="/admin" className="flex items-center gap-2" onClick={onClose}>
-            <span
-              className="text-xl tracking-[0.15em] text-[#C9A96E]"
-              style={{ fontFamily: 'var(--font-cormorant, "Cormorant Garamond", Georgia, serif)' }}
-            >
+            <span className="text-xl tracking-[0.15em] text-[#C9A96E] font-cormorant">
               ORELLI
             </span>
             <span className="text-[10px] uppercase tracking-[0.2em] text-[#666] mt-1">CMS</span>
           </Link>
           <button
             onClick={onClose}
+            aria-label="Close menu"
             className="lg:hidden text-[#666] hover:text-[#f5f5f5] transition-colors"
           >
             <X className="w-5 h-5" />

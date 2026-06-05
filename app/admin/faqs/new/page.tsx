@@ -57,10 +57,11 @@ export default function NewFaqPage() {
           <h3 className="text-sm font-medium text-[#f5f5f5]">FAQ Details</h3>
 
           <div>
-            <label className="block text-xs uppercase tracking-wider text-[#999] mb-2">
+            <label htmlFor="question" className="block text-xs uppercase tracking-wider text-[#999] mb-2">
               Question <span className="text-[#ef4444]">*</span>
             </label>
             <input
+              id="question"
               type="text"
               value={question}
               onChange={(e) => setQuestion(e.target.value)}
@@ -73,10 +74,11 @@ export default function NewFaqPage() {
           </div>
 
           <div>
-            <label className="block text-xs uppercase tracking-wider text-[#999] mb-2">
+            <label htmlFor="answer" className="block text-xs uppercase tracking-wider text-[#999] mb-2">
               Answer <span className="text-[#ef4444]">*</span>
             </label>
             <textarea
+              id="answer"
               value={answer}
               onChange={(e) => setAnswer(e.target.value)}
               rows={5}
@@ -89,10 +91,11 @@ export default function NewFaqPage() {
           </div>
 
           <div>
-            <label className="block text-xs uppercase tracking-wider text-[#999] mb-2">
+            <label htmlFor="order" className="block text-xs uppercase tracking-wider text-[#999] mb-2">
               Display Order
             </label>
             <input
+              id="order"
               type="number"
               value={order}
               onChange={(e) => setOrder(parseInt(e.target.value) || 0)}
