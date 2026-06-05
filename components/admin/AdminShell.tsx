@@ -14,6 +14,8 @@ const pageTitles: Record<string, string> = {
   '/admin/projects/new': 'New Project',
   '/admin/blogs': 'Blogs',
   '/admin/blogs/new': 'New Blog',
+  '/admin/faqs': 'FAQs',
+  '/admin/faqs/new': 'New FAQ',
   '/admin/images': 'Images',
 };
 

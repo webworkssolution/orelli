@@ -12,6 +12,7 @@ import {
   Wallpaper,
   X,
   LogOut,
+  HelpCircle,
 } from 'lucide-react';
 
 interface SidebarProps {
@@ -25,6 +26,7 @@ const navItems = [
   { href: '/admin/categories', label: 'Categories', icon: FolderOpen },
   { href: '/admin/projects', label: 'Projects', icon: Briefcase },
   { href: '/admin/blogs', label: 'Blogs', icon: FileText },
+  { href: '/admin/faqs', label: 'FAQs', icon: HelpCircle },
   { href: '/admin/images', label: 'Images', icon: Image },
 ];
 

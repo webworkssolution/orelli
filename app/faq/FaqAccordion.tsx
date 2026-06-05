@@ -3,35 +3,18 @@
 import { useState } from "react";
 import FadeUp from "@/components/ui/FadeUp";
 
-interface FAQ {
+export interface FAQ {
+  id: string;
   question: string;
   answer: string;
+  order: number;
 }
 
-const faqs: FAQ[] = [
-  {
-    question: "What materials are used in your textiles?",
-    answer: "Our textiles are handwoven using natural fibers such as cotton, linen, silk, and wool. We prioritize sustainable and high-quality yarns to ensure durability and a premium feel.",
-  },
-  {
-    question: "Do you offer custom or bespoke designs?",
-    answer: "Yes, we collaborate closely with interior designers and architects to create bespoke textiles tailored to specific project requirements.",
-  },
-  {
-    question: "How should I care for my Orelli Bombay textiles?",
-    answer: "We recommend professional dry cleaning for most of our upholstery and drapery fabrics to maintain their structural integrity and color. Spot cleaning can be done with a mild, water-free solvent.",
-  },
-  {
-    question: "Can I order fabric samples?",
-    answer: "Absolutely. We encourage ordering samples to experience the texture and color firsthand. Please contact us via our enquiry form to request swatches.",
-  },
-  {
-    question: "What is your typical lead time for orders?",
-    answer: "Lead times vary depending on the product and order size. In-stock fabrics typically ship within 3-5 business days, while custom handwoven orders may take 6-12 weeks.",
-  },
-];
+interface FaqAccordionProps {
+  faqs: FAQ[];
+}
 
-export default function FaqAccordion() {
+export default function FaqAccordion({ faqs }: FaqAccordionProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const toggleFAQ = (index: number) => {
