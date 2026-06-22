@@ -4,6 +4,7 @@ import EnquireButton from "@/components/ui/EnquireButton";
 import FadeUp from "@/components/ui/FadeUp";
 import { prisma } from "@/lib/prisma";
 import CategoryProjects from "@/components/categories/CategoryProjects";
+import CategoryGallery from "@/components/categories/CategoryGallery";
 
 export async function generateStaticParams() {
   const categories = await prisma.category.findMany({
@@ -50,35 +51,7 @@ export default async function ProductDetailPage({
     <div className="min-h-screen bg-background pt-[72px]">
       <div className="flex flex-col md:flex-row w-full py-8 md:py-12 items-stretch">
         {/* Left: Image Gallery */}
-        <div className="w-full md:w-1/2 px-6 md:px-12 flex flex-col gap-4">
-          <FadeUp>
-            <div className="w-full aspect-square md:aspect-[4/3] xl:aspect-[16/9] max-h-[550px] bg-border rounded-[4px] overflow-hidden relative">
-              <img
-                src={category.imageSrc}
-                alt={category.title}
-                className="absolute inset-0 w-full h-full object-cover"
-              />
-            </div>
-          </FadeUp>
-
-          {/* Thumbnail Gallery */}
-          {gallery.length > 1 && (
-            <div className="flex gap-3 overflow-x-auto">
-              {gallery.map((img, idx) => (
-                <div
-                  key={idx}
-                  className="w-20 h-20 flex-shrink-0 rounded-[4px] overflow-hidden border border-border"
-                >
-                  <img
-                    src={img}
-                    alt={`${category.title} ${idx + 1}`}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
+        <CategoryGallery title={category.title} gallery={gallery} />
 
         {/* Right: Info Panel */}
         <div className="w-full md:w-1/2 px-6 md:px-12 mt-8 md:mt-0 flex flex-col justify-center">
@@ -111,9 +84,6 @@ export default async function ProductDetailPage({
             </p>
 
             <EnquireButton className="btn-filled w-full text-center block mb-4" />
-            <p className="font-sans text-[12px] text-[#888] text-center">
-              Custom orders welcome. Lead time 4–6 weeks.
-            </p>
           </FadeUp>
         </div>
       </div>
