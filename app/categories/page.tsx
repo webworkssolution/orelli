@@ -65,13 +65,7 @@ export default async function CollectionsPage() {
       <section className="py-8 px-6 md:px-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
           {categories.map((category, index) => {
-            const tags = (() => {
-              try {
-                return JSON.parse(category.tags) as string[];
-              } catch {
-                return [];
-              }
-            })();
+
 
             return (
               <FadeUp key={category.slug} delay={(index % 3) * 0.1}>

@@ -41,13 +41,7 @@ export default async function ProductDetailPage({
     }
   })();
 
-  const tags = (() => {
-    try {
-      return JSON.parse(category.tags) as string[];
-    } catch {
-      return [];
-    }
-  })();
+
 
   return (
     <div className="min-h-screen bg-background pt-[72px]">
