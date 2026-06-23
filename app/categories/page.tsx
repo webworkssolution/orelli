@@ -81,13 +81,7 @@ export default async function CollectionsPage() {
                   imageSrc={category.imageSrc}
                   slug={category.slug}
                 />
-                <div className="mt-2 flex gap-2">
-                  {tags.map((tag) => (
-                    <span key={tag} className="font-sans uppercase tracking-widest text-[11px] text-[#888]">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
+
               </FadeUp>
             );
           })}
