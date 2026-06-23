@@ -42,7 +42,7 @@ export default function BlogsTeaser({ blogs }: BlogsTeaserProps) {
               </Link>
               <div className="w-full md:w-[58%] md:pl-[48px]">
                 <span className="font-sans uppercase tracking-[0.12em] text-[11px] text-[#888] block mb-4">
-                  {featured.date} · {featured.category}
+                  {featured.category}
                 </span>
                 <h3 className="font-cormorant text-[clamp(22px,3vw,38px)] text-foreground mb-4 leading-tight hover:text-accent transition-colors">
                   <Link href={`/blogs/${featured.slug}`}>
@@ -74,7 +74,7 @@ export default function BlogsTeaser({ blogs }: BlogsTeaserProps) {
                     />
                   </div>
                   <span className="font-sans uppercase tracking-[0.12em] text-[11px] text-[#888] block mb-3">
-                    {article.date} · {article.category}
+                    {article.category}
                   </span>
                   <h4 className="font-cormorant text-[24px] text-foreground mb-4 leading-tight group-hover:text-accent transition-colors">
                     {article.title}

@@ -68,7 +68,7 @@ export default async function ArticlePage({
           </h1>
 
           <div className="font-sans uppercase tracking-[0.12em] text-[11px] text-[#888] mb-6">
-            {blog.date} · {blog.readTime}
+            {blog.readTime}
           </div>
 
           <div className="w-full h-[1px] bg-border my-6" />

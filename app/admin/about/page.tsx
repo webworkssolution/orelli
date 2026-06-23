@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useToast } from '@/components/admin/Toast';
-import ImageUpload from '@/components/admin/ImageUpload';
+import ImageUploader from '@/components/admin/ImageUploader';
 import { Save } from 'lucide-react';
 
 export default function AdminAboutPage() {
@@ -151,7 +151,7 @@ export default function AdminAboutPage() {
         <div className="space-y-6">
           <div className="admin-card p-6">
             <h3 className="text-sm font-medium text-[#f5f5f5] mb-4">Side Image</h3>
-            <ImageUpload
+            <ImageUploader
               value={imageSrc}
               onChange={setImageSrc}
               folder="about"

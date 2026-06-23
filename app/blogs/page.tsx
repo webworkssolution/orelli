@@ -43,8 +43,8 @@ export default async function BlogsPage() {
                   {featured.title}
                 </Link>
               </h2>
-              <span className="font-sans uppercase tracking-[0.12em] text-[11px] text-[#888] mb-6">
-                {featured.date} · {featured.readTime}
+              <span className="font-sans uppercase tracking-[0.12em] text-[11px] text-[#888] block mb-4">
+                {featured.readTime}
               </span>
               <p className="font-sans text-[14px] text-[#555] mb-6 max-w-2xl line-clamp-3">
                 {featured.excerpt}
@@ -69,7 +69,7 @@ export default async function BlogsPage() {
                   />
                 </div>
                 <span className="font-sans uppercase tracking-[0.12em] text-[11px] text-[#888] block mb-2">
-                  {article.date} · {article.category}
+                  {article.category}
                 </span>
                 <h3 className="font-cormorant text-[22px] text-foreground mb-3 leading-tight group-hover:text-accent transition-colors">
                   {article.title}
