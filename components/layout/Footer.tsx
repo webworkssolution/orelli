@@ -7,12 +7,12 @@ export default function Footer() {
   const { openModal } = useModal();
 
   return (
-    <footer className="bg-footerBg py-12 px-12 text-foreground">
+    <footer className="bg-footerBg py-8 px-12 text-foreground">
       <div className="max-w-7xl mx-auto flex flex-col items-center">
         {/* Top section */}
-        <div className="flex flex-col items-center mb-12">
+        <div className="flex flex-col items-center mb-8">
           {/* Mandala logo mark */}
-          <div className="w-[272px] h-[272px] mb-4 flex items-center justify-center">
+          <div className="w-[200px] h-[200px] mb-2 flex items-center justify-center">
             <img 
               src="/logo.png" 
               alt="Orelli Bombay Logo" 
@@ -22,7 +22,7 @@ export default function Footer() {
         </div>
 
         {/* Middle section - Nav */}
-        <div className="flex flex-wrap justify-center items-center gap-4 mb-12 text-[12px] uppercase tracking-[0.12em] text-foreground/60">
+        <div className="flex flex-wrap justify-center items-center gap-4 mb-6 text-[12px] uppercase tracking-[0.12em] text-foreground/60">
           <Link href="/categories" className="hover:text-foreground transition-colors">Categories</Link>
           <span>·</span>
           <Link href="/about" className="hover:text-foreground transition-colors">About</Link>
@@ -39,7 +39,7 @@ export default function Footer() {
         </div>
 
         {/* Social Icons (using simple text/span as placeholders for outline SVGs) */}
-        <div className="flex gap-6 mb-12 text-foreground/50">
+        <div className="flex gap-6 mb-6 text-foreground/50">
           <a href="https://www.instagram.com/orellibombay" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors" aria-label="Instagram">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
               <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
@@ -56,7 +56,7 @@ export default function Footer() {
           </a>
         </div>
 
-        <div className="w-full border-t border-foreground/10 pt-5 mt-5 text-center">
+        <div className="w-full border-t border-foreground/10 pt-4 mt-2 text-center">
           <p className="font-sans text-[11px] text-foreground/50">
             © 2026 Orelli Bombay. All rights reserved.
           </p>

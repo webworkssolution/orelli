@@ -1,12 +1,27 @@
+export const dynamic = "force-dynamic";
+
 import { Metadata } from "next";
 import FadeUp from "@/components/ui/FadeUp";
+import { prisma } from "@/lib/prisma";
 
 export const metadata: Metadata = {
   title: "Our Story | Orelli Bombay",
   description: "Rooted in Bombay. Crafted for the world. Discover the heritage and craft behind Orelli Bombay textiles.",
 };
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const content = await prisma.aboutContent.findUnique({
+    where: { id: 1 }
+  });
+
+  // Default fallbacks if the database is empty
+  const heading = content?.heading || "A legacy of textiles,\nreimagined for today.";
+  const paragraph1 = content?.paragraph1 || "Orelli Bombay was born from a deep reverence for the textile heritage of India. We set out to create fabrics that honor the meticulous techniques of the past while speaking fluently to the sensibilities of modern interior architecture.";
+  const quote = content?.quote || "True luxury lies in the unseen details—the tension of the warp, the subtle irregularity of the hand-spun weft.";
+  const paragraph2 = content?.paragraph2 || "We collaborate directly with master weaving communities across the subcontinent. By pairing their generational expertise with contemporary color palettes and refined natural fibers, we produce textiles that are both inherently grounded and effortlessly sophisticated.";
+  const paragraph3 = content?.paragraph3 || "Every yard we create is a testament to slow production. We believe that textiles should not just cover a piece of furniture or frame a window—they should bring soul, depth, and a sense of enduring calm to the spaces you live in.";
+  const imageSrc = content?.imageSrc || "/new-wallpapers-1.jpeg";
+
   return (
     <div className="min-h-screen bg-background">
       {/* Hero */}
@@ -34,21 +49,21 @@ export default function AboutPage() {
               <span className="font-sans uppercase tracking-[0.12em] text-[11px] text-[#888] block mb-6">
                 OUR STORY
               </span>
-              <h2 className="font-cormorant text-[clamp(32px,4vw,52px)] text-foreground mb-8 leading-tight">
-                A legacy of textiles,<br />reimagined for today.
+              <h2 className="font-cormorant text-[clamp(32px,4vw,52px)] text-foreground mb-8 leading-tight whitespace-pre-wrap">
+                {heading}
               </h2>
               <div className="font-sans text-[15px] text-[#555] leading-[1.9] space-y-6">
                 <p>
-                  Orelli Bombay was born from a deep reverence for the textile heritage of India. We set out to create fabrics that honor the meticulous techniques of the past while speaking fluently to the sensibilities of modern interior architecture.
+                  {paragraph1}
                 </p>
                 <blockquote className="font-cormorant italic text-[22px] text-accent border-l-2 border-accent pl-[20px] my-8">
-                  &quot;True luxury lies in the unseen details—the tension of the warp, the subtle irregularity of the hand-spun weft.&quot;
+                  &quot;{quote}&quot;
                 </blockquote>
                 <p>
-                  We collaborate directly with master weaving communities across the subcontinent. By pairing their generational expertise with contemporary color palettes and refined natural fibers, we produce textiles that are both inherently grounded and effortlessly sophisticated.
+                  {paragraph2}
                 </p>
                 <p>
-                  Every yard we create is a testament to slow production. We believe that textiles should not just cover a piece of furniture or frame a window—they should bring soul, depth, and a sense of enduring calm to the spaces you live in.
+                  {paragraph3}
                 </p>
               </div>
             </FadeUp>
@@ -56,8 +71,8 @@ export default function AboutPage() {
           <div className="w-full md:w-1/2">
             <FadeUp delay={0.2} className="h-full">
               <img
-                src="/new-wallpapers-1.jpeg"
-                alt="Artisan weaving on loom"
+                src={imageSrc}
+                alt="Our Story"
                 className="w-full h-full object-cover rounded-[4px]"
               />
             </FadeUp>

@@ -13,6 +13,7 @@ import {
   X,
   LogOut,
   HelpCircle,
+  Info,
 } from 'lucide-react';
 
 interface SidebarProps {
@@ -27,6 +28,7 @@ const navItems = [
   { href: '/admin/projects', label: 'Projects', icon: Briefcase },
   { href: '/admin/blogs', label: 'Blogs', icon: FileText },
   { href: '/admin/faqs', label: 'FAQs', icon: HelpCircle },
+  { href: '/admin/about', label: 'About Page', icon: Info },
   { href: '/admin/images', label: 'Images', icon: Image },
 ];
 

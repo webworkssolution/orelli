@@ -79,3 +79,14 @@ model Faq {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+model AboutContent {
+  id         Int      @id @default(1)
+  heading    String
+  paragraph1 String
+  quote      String
+  paragraph2 String
+  paragraph3 String
+  imageSrc   String
+  updatedAt  DateTime @updatedAt
+}
