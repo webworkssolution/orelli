@@ -75,9 +75,7 @@ export default async function ProductDetailPage({
               {category.title}
             </h1>
 
-            <div className="font-sans uppercase tracking-[0.12em] text-[11px] text-[#888]">
-              {tags.join(" · ")} {tags.length > 0 ? "· " : ""}NATURAL FIBRE
-            </div>
+
 
             <div className="w-full h-[1px] bg-border my-5" />
 
@@ -86,6 +84,9 @@ export default async function ProductDetailPage({
             </p>
 
             <EnquireButton className="btn-filled w-full text-center block mb-4" />
+            <p className="font-sans text-[12px] text-[#888] text-center">
+              Custom orders welcome.
+            </p>
           </FadeUp>
         </div>
       </div>
