@@ -152,9 +152,8 @@ export default function AdminAboutPage() {
           <div className="admin-card p-6">
             <h3 className="text-sm font-medium text-[#f5f5f5] mb-4">Side Image</h3>
             <ImageUploader
-              value={imageSrc}
-              onChange={setImageSrc}
-              folder="about"
+              currentImage={imageSrc}
+              onUpload={setImageSrc}
             />
             <p className="text-xs text-[#666] mt-4">
               This image will be displayed on the right side of the story text. Recommended ratio: 3:4 or 4:5.
