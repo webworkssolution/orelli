@@ -10,6 +10,14 @@ const aboutSchema = z.object({
   paragraph2: z.string(),
   paragraph3: z.string(),
   imageSrc: z.string(),
+  heroImageSrc: z.string(),
+  heroText: z.string(),
+  value1Title: z.string(),
+  value1Desc: z.string(),
+  value2Title: z.string(),
+  value2Desc: z.string(),
+  value3Title: z.string(),
+  value3Desc: z.string(),
 });
 
 export async function GET() {
@@ -30,6 +38,14 @@ export async function GET() {
         paragraph2: "",
         paragraph3: "",
         imageSrc: "",
+        heroImageSrc: "",
+        heroText: "",
+        value1Title: "",
+        value1Desc: "",
+        value2Title: "",
+        value2Desc: "",
+        value3Title: "",
+        value3Desc: "",
         updatedAt: new Date(),
       };
     }

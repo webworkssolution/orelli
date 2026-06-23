@@ -81,12 +81,20 @@ model Faq {
 }
 
 model AboutContent {
-  id         Int      @id @default(1)
-  heading    String
-  paragraph1 String
-  quote      String
-  paragraph2 String
-  paragraph3 String
-  imageSrc   String
-  updatedAt  DateTime @updatedAt
+  id          Int      @id @default(1)
+  heading     String
+  paragraph1  String
+  quote       String
+  paragraph2  String
+  paragraph3  String
+  imageSrc    String
+  heroImageSrc String   @default("")
+  heroText    String   @default("")
+  value1Title String   @default("")
+  value1Desc  String   @default("")
+  value2Title String   @default("")
+  value2Desc  String   @default("")
+  value3Title String   @default("")
+  value3Desc  String   @default("")
+  updatedAt   DateTime @updatedAt
 }

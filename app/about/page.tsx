@@ -22,20 +22,32 @@ export default async function AboutPage() {
   const paragraph3 = content?.paragraph3 || "Every yard we create is a testament to slow production. We believe that textiles should not just cover a piece of furniture or frame a window—they should bring soul, depth, and a sense of enduring calm to the spaces you live in.";
   const imageSrc = content?.imageSrc || "/new-wallpapers-1.jpeg";
 
+  const heroImageSrc = content?.heroImageSrc || "/new-hero-2.jpeg";
+  const heroText = content?.heroText || "Rooted in Bombay.\nCrafted for the world.";
+
+  const value1Title = content?.value1Title || "Craft";
+  const value1Desc = content?.value1Desc || "We embrace the slight imperfections of the human hand. Each textile carries the unique signature of the artisan who wove it, ensuring no two runs are ever identically machine-perfect.";
+
+  const value2Title = content?.value2Title || "Heritage";
+  const value2Desc = content?.value2Desc || "By sustaining traditional looms and techniques, we ensure that ancient knowledge continues to evolve rather than become artifacts. We are a living bridge between eras.";
+
+  const value3Title = content?.value3Title || "Intention";
+  const value3Desc = content?.value3Desc || "We produce in small, considered batches. Our focus is on enduring quality and timeless aesthetics, rejecting the cycle of rapid trends in favor of pieces that age beautifully.";
+
   return (
     <div className="min-h-screen bg-background">
       {/* Hero */}
       <section className="relative w-full h-[60vh] overflow-hidden mt-[72px]">
         <img
-          src="/new-hero-2.jpeg"
+          src={heroImageSrc}
           alt="Orelli Bombay Studio"
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-white/50 z-10" />
         <div className="absolute inset-0 z-20 flex items-center justify-center px-6">
           <FadeUp>
-            <h1 className="font-cormorant italic text-black text-[clamp(36px,5vw,72px)] text-center leading-tight">
-              Rooted in Bombay.<br />Crafted for the world.
+            <h1 className="font-cormorant italic text-black text-[clamp(36px,5vw,72px)] text-center leading-tight whitespace-pre-wrap">
+              {heroText}
             </h1>
           </FadeUp>
         </div>
@@ -85,24 +97,24 @@ export default async function AboutPage() {
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
           {[
             {
-              title: "Craft",
-              description: "We embrace the slight imperfections of the human hand. Each textile carries the unique signature of the artisan who wove it, ensuring no two runs are ever identically machine-perfect.",
+              title: value1Title,
+              description: value1Desc,
             },
             {
-              title: "Heritage",
-              description: "By sustaining traditional looms and techniques, we ensure that ancient knowledge continues to evolve rather than become artifacts. We are a living bridge between eras.",
+              title: value2Title,
+              description: value2Desc,
             },
             {
-              title: "Intention",
-              description: "We produce in small, considered batches. Our focus is on enduring quality and timeless aesthetics, rejecting the cycle of rapid trends in favor of pieces that age beautifully.",
+              title: value3Title,
+              description: value3Desc,
             },
           ].map((value, index) => (
-            <FadeUp key={value.title} delay={index * 0.15}>
+            <FadeUp key={index} delay={index * 0.15}>
               <div className="border border-accent/40 rounded-[4px] p-10 h-full">
                 <h3 className="font-cormorant text-[28px] text-accent mb-4">
                   {value.title}
                 </h3>
-                <p className="font-sans text-[14px] text-black/75 leading-[1.8]">
+                <p className="font-sans text-[14px] text-black/75 leading-[1.8] whitespace-pre-wrap">
                   {value.description}
                 </p>
               </div>
