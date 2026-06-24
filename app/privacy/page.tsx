@@ -11,7 +11,7 @@ export default function PrivacyPolicyPage() {
     <div className="min-h-screen bg-background pt-32 pb-12 px-6 md:px-12">
       <div className="max-w-3xl mx-auto">
         <FadeUp>
-          <div className="font-sans text-[12px] text-[#888] mb-6">
+          <div className="font-sans text-[14px] text-[#888] mb-6">
             <Link href="/" className="hover:text-foreground transition-colors">
               Home
             </Link>
@@ -23,7 +23,7 @@ export default function PrivacyPolicyPage() {
             Privacy Policy
           </h1>
           
-          <div className="font-sans text-[15px] text-[#555] leading-[1.8] space-y-8">
+          <div className="font-sans text-[17px] text-[#555] leading-[1.8] space-y-8">
             <p>
               Last updated: {new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
             </p>

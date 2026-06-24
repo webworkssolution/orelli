@@ -22,7 +22,7 @@ export default function Footer() {
         </div>
 
         {/* Middle section - Nav */}
-        <div className="flex flex-wrap justify-center items-center gap-4 mb-6 text-[12px] uppercase tracking-[0.12em] text-foreground/60">
+        <div className="flex flex-wrap justify-center items-center gap-4 mb-6 text-[14px] uppercase tracking-[0.12em] text-foreground/60">
           <Link href="/categories" className="hover:text-foreground transition-colors">Categories</Link>
           <span>·</span>
           <Link href="/about" className="hover:text-foreground transition-colors">About</Link>
@@ -33,7 +33,7 @@ export default function Footer() {
           <span>·</span>
           <Link href="/faq" className="hover:text-foreground transition-colors">FAQ</Link>
           <span>·</span>
-          <button onClick={openModal} className="hover:text-foreground transition-colors uppercase tracking-[0.12em] text-[12px]">Enquiry</button>
+          <button onClick={openModal} className="hover:text-foreground transition-colors uppercase tracking-[0.12em] text-[14px]">Enquiry</button>
           <span>·</span>
           <Link href="/privacy" className="hover:text-foreground transition-colors">Privacy Policy</Link>
         </div>
@@ -57,7 +57,7 @@ export default function Footer() {
         </div>
 
         <div className="w-full border-t border-foreground/10 pt-4 mt-2 text-center">
-          <p className="font-sans text-[11px] text-foreground/50">
+          <p className="font-sans text-[13px] text-foreground/50">
             © 2026 Orelli Bombay. All rights reserved.
           </p>
         </div>

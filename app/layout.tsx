@@ -18,21 +18,29 @@ const dmSans = DM_Sans({
   variable: "--font-dm-sans",
 });
 
+import { prisma } from "@/lib/prisma";
+
 export const metadata: Metadata = {
   title: "Orelli Bombay | Premium Luxury Textiles",
   description: "Crafted for the spaces you live in. Where Indian craft meets contemporary living.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Fetch active categories for the navigation sub-menu
+  const categories = await prisma.category.findMany({
+    orderBy: { order: "asc" },
+    select: { title: true, slug: true },
+  });
+
   return (
     <html lang="en">
       <body className={`${cormorant.variable} ${dmSans.variable} font-sans antialiased bg-background text-foreground`}>
         <ModalProvider>
-          <LayoutShell>{children}</LayoutShell>
+          <LayoutShell categories={categories}>{children}</LayoutShell>
           <StickyActionBar />
         </ModalProvider>
       </body>

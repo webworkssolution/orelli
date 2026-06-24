@@ -22,7 +22,7 @@ export default async function FaqPage() {
           <h1 className="font-cormorant text-[clamp(48px,6vw,80px)] text-foreground leading-none mb-6">
             Frequently Asked Questions
           </h1>
-          <p className="font-sans text-[16px] text-[#555] max-w-2xl mx-auto">
+          <p className="font-sans text-[18px] text-[#555] max-w-2xl mx-auto">
             Find answers to common questions about our handwoven textiles, ordering process, and care guidelines.
           </p>
         </FadeUp>

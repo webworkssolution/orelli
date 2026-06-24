@@ -44,7 +44,7 @@ export default function FaqAccordion({ faqs }: FaqAccordionProps) {
                 openIndex === index ? "max-h-96 opacity-100 mt-4" : "max-h-0 opacity-0"
               }`}
             >
-              <p className="font-sans text-[16px] text-[#555] leading-relaxed">
+              <p className="font-sans text-[18px] text-[#555] leading-relaxed">
                 {faq.answer}
               </p>
             </div>

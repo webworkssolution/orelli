@@ -4,10 +4,16 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useModal } from "@/components/context/ModalContext";
+import { ChevronDown } from "lucide-react";
 
-export default function Navbar() {
+interface NavbarProps {
+  categories?: { title: string; slug: string }[];
+}
+
+export default function Navbar({ categories = [] }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [mobileCategoriesOpen, setMobileCategoriesOpen] = useState(false);
   const pathname = usePathname();
   const { openModal } = useModal();
 
@@ -49,7 +55,7 @@ export default function Navbar() {
             alt="Orelli Logo"
             className="w-10 h-10 object-contain"
           />
-          <span className={`font-baskerville text-[20px] tracking-[0.10em] transition-colors duration-400 ${
+          <span className={`font-baskerville text-[22px] tracking-[0.10em] transition-colors duration-400 ${
             isAdmin ? "text-[#f5f5f5]" : useDarkText ? "text-foreground" : "text-black"
           }`}>
             ORELLI BOMBAY
@@ -62,7 +68,7 @@ export default function Navbar() {
             href="/"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 bg-[#C9A96E] text-[#0f0f0f] hover:bg-[#d4b87a]"
+            className="flex items-center gap-2 px-4 py-2 rounded-md text-[16px] font-medium transition-all duration-200 bg-[#C9A96E] text-[#0f0f0f] hover:bg-[#d4b87a]"
           >
             Visit Website
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -75,18 +81,57 @@ export default function Navbar() {
           <>
             {/* Desktop Nav */}
             <div className="hidden md:flex items-center gap-8">
-              {links.map((link) => (
-                link.name === "Enquiry" ? (
-                  <button
-                    key={link.name}
-                    onClick={openModal}
-                    className={`nav-link ${
-                      useDarkText ? "text-foreground" : "text-whiteAlt"
-                    } transition-colors duration-400 bg-transparent outline-none pb-1`}
-                  >
-                    {link.name}
-                  </button>
-                ) : (
+              {links.map((link) => {
+                if (link.name === "Enquiry") {
+                  return (
+                    <button
+                      key={link.name}
+                      onClick={openModal}
+                      className={`nav-link ${
+                        useDarkText ? "text-foreground" : "text-whiteAlt"
+                      } transition-colors duration-400 bg-transparent outline-none pb-1`}
+                    >
+                      {link.name}
+                    </button>
+                  );
+                }
+
+                if (link.name === "Categories") {
+                  return (
+                    <div key={link.name} className="relative group py-6">
+                      <Link
+                        href={link.href}
+                        className={`nav-link flex items-center gap-1 ${pathname.startsWith(link.href) ? "active" : ""} ${
+                          useDarkText ? "text-foreground" : "text-whiteAlt"
+                        } transition-colors duration-400`}
+                      >
+                        {link.name}
+                        {categories.length > 0 && (
+                          <ChevronDown className="w-3 h-3 opacity-70" />
+                        )}
+                      </Link>
+
+                      {/* Dropdown Menu */}
+                      {categories.length > 0 && (
+                        <div className="absolute top-[100%] left-1/2 -translate-x-1/2 pt-2 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300">
+                          <div className="bg-background border border-border shadow-lg p-3 min-w-[180px] flex flex-col gap-2 rounded-[2px]">
+                            {categories.map((cat) => (
+                              <Link
+                                key={cat.slug}
+                                href={`/categories/${cat.slug}`}
+                                className="font-sans text-[15px] uppercase tracking-widest text-[#555] hover:text-accent transition-colors px-4 py-2 whitespace-nowrap text-center block"
+                              >
+                                {cat.title}
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  );
+                }
+
+                return (
                   <Link
                     key={link.name}
                     href={link.href}
@@ -96,8 +141,8 @@ export default function Navbar() {
                   >
                     {link.name}
                   </Link>
-                )
-              ))}
+                );
+              })}
             </div>
 
             {/* Mobile Hamburger */}
@@ -126,18 +171,18 @@ export default function Navbar() {
         )}
       </nav>
 
-      {/* Mobile Menu Overlay — only for non-admin pages */}
+      {/* Mobile Menu Overlay */}
       {!isAdmin && (
         <div
-          className={`fixed inset-0 bg-background/95 backdrop-blur-md z-[45] flex flex-col items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+          className={`fixed inset-0 bg-background/95 backdrop-blur-md z-[45] flex flex-col items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] overflow-y-auto ${
             menuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
           }`}
         >
-          <div className="flex flex-col items-center gap-10 w-full px-6">
+          <div className="flex flex-col items-center gap-10 w-full px-6 py-24">
             {links.map((link, idx) => (
               <div 
                 key={link.name}
-                className={`transition-all duration-700 ease-out ${menuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+                className={`transition-all duration-700 ease-out flex flex-col items-center ${menuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
                 style={{ transitionDelay: `${menuOpen ? 150 + idx * 75 : 0}ms` }}
               >
                 {link.name === "Enquiry" ? (
@@ -150,6 +195,42 @@ export default function Navbar() {
                   >
                     {link.name}
                   </button>
+                ) : link.name === "Categories" ? (
+                  <div className="flex flex-col items-center">
+                    <div className="flex items-center gap-2">
+                      <Link
+                        href={link.href}
+                        onClick={() => setMenuOpen(false)}
+                        className="font-cormorant text-foreground text-4xl sm:text-5xl hover:text-accent transition-colors"
+                      >
+                        {link.name}
+                      </Link>
+                      {categories.length > 0 && (
+                        <button 
+                          onClick={() => setMobileCategoriesOpen(!mobileCategoriesOpen)}
+                          className="p-2 text-foreground/50 hover:text-foreground transition-colors"
+                        >
+                          <ChevronDown className={`w-6 h-6 transition-transform ${mobileCategoriesOpen ? "rotate-180" : ""}`} />
+                        </button>
+                      )}
+                    </div>
+                    
+                    {/* Mobile Submenu */}
+                    {categories.length > 0 && (
+                      <div className={`flex flex-col items-center gap-6 overflow-hidden transition-all duration-300 ${mobileCategoriesOpen ? "max-h-[500px] opacity-100 mt-8" : "max-h-0 opacity-0 mt-0"}`}>
+                        {categories.map((cat) => (
+                          <Link
+                            key={cat.slug}
+                            href={`/categories/${cat.slug}`}
+                            onClick={() => setMenuOpen(false)}
+                            className="font-sans text-[15px] sm:text-[17px] text-[#555] uppercase tracking-widest hover:text-accent transition-colors"
+                          >
+                            {cat.title}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 ) : (
                   <Link
                     href={link.href}

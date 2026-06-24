@@ -65,7 +65,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
             <span className="text-xl tracking-[0.15em] text-[#C9A96E] font-cormorant">
               ORELLI
             </span>
-            <span className="text-[10px] uppercase tracking-[0.2em] text-[#666] mt-1">CMS</span>
+            <span className="text-[12px] uppercase tracking-[0.2em] text-[#666] mt-1">CMS</span>
           </Link>
           <button
             onClick={onClose}

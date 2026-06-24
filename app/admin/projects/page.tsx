@@ -80,7 +80,7 @@ export default function Page() {
                 <img src={cat.imageSrc || cat.heroImage} alt={cat.title} className="w-full h-full object-cover" />
               ) : <div className="w-full h-full flex items-center justify-center"><FolderOpen className="w-8 h-8 text-[#666]" /></div>}
               {cat.featured && (
-                <span className="absolute top-2 left-2 flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-medium bg-[#C9A96E] text-[#0f0f0f]">
+                <span className="absolute top-2 left-2 flex items-center gap-1 px-2 py-0.5 rounded text-[12px] font-medium bg-[#C9A96E] text-[#0f0f0f]">
                   <Star className="w-3 h-3" /> HOMEPAGE
                 </span>
               )}

@@ -69,7 +69,7 @@ export default function ContactForm() {
         required
         placeholder="Full Name"
         disabled={formStatus === "loading" || formStatus === "success"}
-        className="w-full bg-transparent border-b border-foreground py-3 text-[14px] font-sans text-foreground placeholder:text-[#888] focus:outline-none focus:border-accent transition-colors disabled:opacity-50"
+        className="w-full bg-transparent border-b border-foreground py-3 text-[16px] font-sans text-foreground placeholder:text-[#888] focus:outline-none focus:border-accent transition-colors disabled:opacity-50"
       />
       <input
         type="email"
@@ -77,14 +77,14 @@ export default function ContactForm() {
         required
         placeholder="Email Address"
         disabled={formStatus === "loading" || formStatus === "success"}
-        className="w-full bg-transparent border-b border-foreground py-3 text-[14px] font-sans text-foreground placeholder:text-[#888] focus:outline-none focus:border-accent transition-colors disabled:opacity-50"
+        className="w-full bg-transparent border-b border-foreground py-3 text-[16px] font-sans text-foreground placeholder:text-[#888] focus:outline-none focus:border-accent transition-colors disabled:opacity-50"
       />
       <input
         type="tel"
         name="phone"
         placeholder="Phone Number"
         disabled={formStatus === "loading" || formStatus === "success"}
-        className="w-full bg-transparent border-b border-foreground py-3 text-[14px] font-sans text-foreground placeholder:text-[#888] focus:outline-none focus:border-accent transition-colors disabled:opacity-50"
+        className="w-full bg-transparent border-b border-foreground py-3 text-[16px] font-sans text-foreground placeholder:text-[#888] focus:outline-none focus:border-accent transition-colors disabled:opacity-50"
       />
       
       <select 
@@ -93,7 +93,7 @@ export default function ContactForm() {
         aria-label="Type of Project"
         required
         disabled={formStatus === "loading" || formStatus === "success"}
-        className="w-full bg-transparent border-b border-foreground py-3 text-[14px] font-sans text-foreground focus:outline-none focus:border-accent transition-colors appearance-none disabled:opacity-50"
+        className="w-full bg-transparent border-b border-foreground py-3 text-[16px] font-sans text-foreground focus:outline-none focus:border-accent transition-colors appearance-none disabled:opacity-50"
         defaultValue=""
       >
         <option value="" disabled className="text-[#888]">Type of Project</option>
@@ -109,13 +109,13 @@ export default function ContactForm() {
         rows={4}
         placeholder="Tell us about your project"
         disabled={formStatus === "loading" || formStatus === "success"}
-        className="w-full bg-transparent border-b border-foreground py-3 text-[14px] font-sans text-foreground placeholder:text-[#888] focus:outline-none focus:border-accent transition-colors resize-none disabled:opacity-50"
+        className="w-full bg-transparent border-b border-foreground py-3 text-[16px] font-sans text-foreground placeholder:text-[#888] focus:outline-none focus:border-accent transition-colors resize-none disabled:opacity-50"
       />
 
       <button 
         type="submit" 
         disabled={formStatus === "loading" || formStatus === "success"}
-        className={`mt-4 px-[36px] py-[14px] text-[12px] font-sans uppercase tracking-widest transition-all ${
+        className={`mt-4 px-[36px] py-[14px] text-[14px] font-sans uppercase tracking-widest transition-all ${
           formStatus === "success" 
             ? "bg-[#E8E4DF] text-black"
             : "bg-transparent border border-black text-black hover:bg-[#E8E4DF]"

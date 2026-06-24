@@ -36,7 +36,7 @@ export default async function CollectionsPage() {
           <h1 className="font-cormorant text-[clamp(48px,6vw,80px)] text-foreground leading-none mb-4">
             Categories
           </h1>
-          <p className="font-sans text-[16px] text-[#555]">
+          <p className="font-sans text-[18px] text-[#555]">
             Handwoven textiles for contemporary living.
           </p>
         </FadeUp>
@@ -49,7 +49,7 @@ export default async function CollectionsPage() {
             <Link
               key={filter}
               href={filter === "ALL" ? "/categories" : `/categories/${filter.toLowerCase()}`}
-              className={`font-sans uppercase tracking-[0.12em] text-[11px] px-4 py-1.5 rounded-full border transition-colors ${
+              className={`font-sans uppercase tracking-[0.12em] text-[13px] px-4 py-1.5 rounded-full border transition-colors ${
                 idx === 0
                   ? "bg-[#E8E4DF] text-black border-[#E8E4DF]"
                   : "bg-transparent text-foreground border-border hover:border-foreground"

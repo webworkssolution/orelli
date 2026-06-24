@@ -52,7 +52,7 @@ export default async function ProductDetailPage({
         {/* Right: Info Panel */}
         <div className="w-full md:w-1/2 px-6 md:px-12 mt-8 md:mt-0 flex flex-col justify-center">
           <FadeUp delay={0.1}>
-            <div className="font-sans text-[12px] text-[#888] mb-6">
+            <div className="font-sans text-[14px] text-[#888] mb-6">
               <Link
                 href="/categories"
                 className="hover:text-foreground transition-colors"
@@ -73,12 +73,12 @@ export default async function ProductDetailPage({
 
             <div className="w-full h-[1px] bg-border my-5" />
 
-            <p className="font-sans text-[14px] text-[#555] leading-[1.8] mb-8">
+            <p className="font-sans text-[16px] text-[#555] leading-[1.8] mb-8">
               {category.detailDescription || category.description}
             </p>
 
             <EnquireButton className="btn-filled w-full text-center block mb-4" />
-            <p className="font-sans text-[12px] text-[#888] text-center">
+            <p className="font-sans text-[14px] text-[#888] text-center">
               Custom orders welcome.
             </p>
           </FadeUp>

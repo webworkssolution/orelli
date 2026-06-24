@@ -13,7 +13,7 @@ export default function EnquiryCTA() {
           <h2 className="font-cormorant text-[clamp(32px,4vw,56px)] text-foreground mb-4 leading-tight">
             Have a project in mind?
           </h2>
-          <p className="font-sans text-[15px] text-[#555] mb-10 max-w-[500px]">
+          <p className="font-sans text-[17px] text-[#555] mb-10 max-w-[500px]">
             We work with architects, interior designers, and discerning homeowners.
           </p>
           <button onClick={openModal} className="btn-outline uppercase tracking-[0.15em]">

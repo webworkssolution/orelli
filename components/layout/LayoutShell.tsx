@@ -5,7 +5,13 @@ import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import StickyActionBar from '@/components/layout/StickyActionBar';
 
-export default function LayoutShell({ children }: { children: React.ReactNode }) {
+export default function LayoutShell({ 
+  children, 
+  categories = [] 
+}: { 
+  children: React.ReactNode;
+  categories?: { title: string; slug: string }[];
+}) {
   const pathname = usePathname();
   const isAdmin = pathname.startsWith('/admin');
 
@@ -15,7 +21,7 @@ export default function LayoutShell({ children }: { children: React.ReactNode })
 
   return (
     <>
-      <Navbar />
+      <Navbar categories={categories} />
       <main>{children}</main>
       <Footer />
       <StickyActionBar />

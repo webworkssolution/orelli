@@ -166,7 +166,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
 
     return (
       <div>
-        <label className="block font-sans text-[10px] sm:text-[12px] uppercase tracking-[0.1em] text-[#555] mb-2">
+        <label className="block font-sans text-[12px] sm:text-[14px] uppercase tracking-[0.1em] text-[#555] mb-2">
           {label}
         </label>
         <div className="border-2 border-dashed border-border rounded-[4px] p-4 hover:border-accent transition-colors">
@@ -185,10 +185,10 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
             className="cursor-pointer flex flex-col items-center justify-center py-2"
           >
             <Upload size={18} className="text-[#888] mb-1" />
-            <p className="font-sans text-xs sm:text-[14px] text-[#555]">
+            <p className="font-sans text-xs sm:text-[16px] text-[#555]">
               Click to upload images
             </p>
-            <p className="font-sans text-[10px] sm:text-[12px] text-[#888] mt-1">
+            <p className="font-sans text-[12px] sm:text-[14px] text-[#888] mt-1">
               PNG, JPG, GIF — up to {MAX_FILE_SIZE_MB}MB total
             </p>
           </label>
@@ -218,14 +218,14 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
                   </div>
                 </div>
               ))}
-              <p className="text-[10px] text-[#888] font-sans pt-1">
+              <p className="text-[12px] text-[#888] font-sans pt-1">
                 {files.length} file(s) · {formatFileSize(totalSize)} total
               </p>
             </div>
           )}
 
           {error && (
-            <p className="text-[10px] text-red-500 font-sans mt-2">{error}</p>
+            <p className="text-[12px] text-red-500 font-sans mt-2">{error}</p>
           )}
         </div>
       </div>
@@ -293,13 +293,13 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
 
               {/* Contact Information */}
               <div className="space-y-4">
-                <h3 className="font-sans text-xs sm:text-[14px] uppercase tracking-[0.12em] text-[#888]">
+                <h3 className="font-sans text-xs sm:text-[16px] uppercase tracking-[0.12em] text-[#888]">
                   Contact Information
                 </h3>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                   <div>
-                    <label className="block font-sans text-[10px] sm:text-[12px] uppercase tracking-[0.1em] text-[#555] mb-2">
+                    <label className="block font-sans text-[12px] sm:text-[14px] uppercase tracking-[0.1em] text-[#555] mb-2">
                       Name <span className="text-accent">*</span>
                     </label>
                     <input
@@ -310,12 +310,12 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
                       placeholder="Your name"
                       required
                       disabled={status === "loading"}
-                      className="w-full px-3 sm:px-4 py-2 border border-border rounded-[4px] font-sans text-sm sm:text-[14px] focus:outline-none focus:ring-1 focus:ring-accent bg-background disabled:opacity-50"
+                      className="w-full px-3 sm:px-4 py-2 border border-border rounded-[4px] font-sans text-sm sm:text-[16px] focus:outline-none focus:ring-1 focus:ring-accent bg-background disabled:opacity-50"
                     />
                   </div>
 
                   <div>
-                    <label className="block font-sans text-[10px] sm:text-[12px] uppercase tracking-[0.1em] text-[#555] mb-2">
+                    <label className="block font-sans text-[12px] sm:text-[14px] uppercase tracking-[0.1em] text-[#555] mb-2">
                       Email <span className="text-accent">*</span>
                     </label>
                     <input
@@ -326,12 +326,12 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
                       placeholder="your@email.com"
                       required
                       disabled={status === "loading"}
-                      className="w-full px-3 sm:px-4 py-2 border border-border rounded-[4px] font-sans text-sm sm:text-[14px] focus:outline-none focus:ring-1 focus:ring-accent bg-background disabled:opacity-50"
+                      className="w-full px-3 sm:px-4 py-2 border border-border rounded-[4px] font-sans text-sm sm:text-[16px] focus:outline-none focus:ring-1 focus:ring-accent bg-background disabled:opacity-50"
                     />
                   </div>
 
                   <div className="sm:col-span-2">
-                    <label className="block font-sans text-[10px] sm:text-[12px] uppercase tracking-[0.1em] text-[#555] mb-2">
+                    <label className="block font-sans text-[12px] sm:text-[14px] uppercase tracking-[0.1em] text-[#555] mb-2">
                       Phone <span className="text-accent">*</span>
                     </label>
                     <input
@@ -342,7 +342,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
                       placeholder="+91 XXXXX XXXXX"
                       required
                       disabled={status === "loading"}
-                      className="w-full px-3 sm:px-4 py-2 border border-border rounded-[4px] font-sans text-sm sm:text-[14px] focus:outline-none focus:ring-1 focus:ring-accent bg-background disabled:opacity-50"
+                      className="w-full px-3 sm:px-4 py-2 border border-border rounded-[4px] font-sans text-sm sm:text-[16px] focus:outline-none focus:ring-1 focus:ring-accent bg-background disabled:opacity-50"
                     />
                   </div>
                 </div>
@@ -352,13 +352,13 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
 
               {/* Additional Information */}
               <div className="space-y-4">
-                <h3 className="font-sans text-xs sm:text-[14px] uppercase tracking-[0.12em] text-[#888]">
+                <h3 className="font-sans text-xs sm:text-[16px] uppercase tracking-[0.12em] text-[#888]">
                   Additional Details
                 </h3>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                   <div>
-                    <label className="block font-sans text-[10px] sm:text-[12px] uppercase tracking-[0.1em] text-[#555] mb-2">
+                    <label className="block font-sans text-[12px] sm:text-[14px] uppercase tracking-[0.1em] text-[#555] mb-2">
                       Do you have your own architect / designer?
                     </label>
                     <select
@@ -368,7 +368,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
                       value={formData.hasArchitect}
                       onChange={handleInputChange}
                       disabled={status === "loading"}
-                      className="w-full px-3 sm:px-4 py-2 border border-border rounded-[4px] font-sans text-sm sm:text-[14px] focus:outline-none focus:ring-1 focus:ring-accent bg-background disabled:opacity-50"
+                      className="w-full px-3 sm:px-4 py-2 border border-border rounded-[4px] font-sans text-sm sm:text-[16px] focus:outline-none focus:ring-1 focus:ring-accent bg-background disabled:opacity-50"
                     >
                       <option value="">Select option</option>
                       <option value="yes">Yes</option>
@@ -378,7 +378,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
 
                   {formData.hasArchitect === "yes" && (
                     <div>
-                      <label className="block font-sans text-[10px] sm:text-[12px] uppercase tracking-[0.1em] text-[#555] mb-2">
+                      <label className="block font-sans text-[12px] sm:text-[14px] uppercase tracking-[0.1em] text-[#555] mb-2">
                         Architect&apos;s Name <span className="text-accent">*</span>
                       </label>
                       <input
@@ -389,7 +389,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
                         placeholder="Enter architect's name"
                         required
                         disabled={status === "loading"}
-                        className="w-full px-3 sm:px-4 py-2 border border-border rounded-[4px] font-sans text-sm sm:text-[14px] focus:outline-none focus:ring-1 focus:ring-accent bg-background disabled:opacity-50"
+                        className="w-full px-3 sm:px-4 py-2 border border-border rounded-[4px] font-sans text-sm sm:text-[16px] focus:outline-none focus:ring-1 focus:ring-accent bg-background disabled:opacity-50"
                       />
                     </div>
                   )}
@@ -401,7 +401,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
                 </div>
 
                 <div>
-                  <label className="block font-sans text-[10px] sm:text-[12px] uppercase tracking-[0.1em] text-[#555] mb-2">
+                  <label className="block font-sans text-[12px] sm:text-[14px] uppercase tracking-[0.1em] text-[#555] mb-2">
                     Additional Notes
                   </label>
                   <textarea
@@ -411,7 +411,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
                     placeholder="Tell us about your project, vision, budget, timeline..."
                     rows={4}
                     disabled={status === "loading"}
-                    className="w-full px-3 sm:px-4 py-2 border border-border rounded-[4px] font-sans text-sm sm:text-[14px] focus:outline-none focus:ring-1 focus:ring-accent bg-background resize-none disabled:opacity-50"
+                    className="w-full px-3 sm:px-4 py-2 border border-border rounded-[4px] font-sans text-sm sm:text-[16px] focus:outline-none focus:ring-1 focus:ring-accent bg-background resize-none disabled:opacity-50"
                   />
                 </div>
               </div>
@@ -421,7 +421,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
                 <button
                   type="submit"
                   disabled={status === "loading"}
-                  className="flex-1 flex items-center justify-center gap-2 bg-foreground text-background py-3 rounded-[4px] font-sans font-medium text-sm sm:text-[14px] uppercase tracking-[0.1em] hover:bg-foreground/90 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+                  className="flex-1 flex items-center justify-center gap-2 bg-foreground text-background py-3 rounded-[4px] font-sans font-medium text-sm sm:text-[16px] uppercase tracking-[0.1em] hover:bg-foreground/90 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
                 >
                   {status === "loading" ? (
                     <>
@@ -436,7 +436,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
                   type="button"
                   onClick={handleClose}
                   disabled={status === "loading"}
-                  className="flex-1 border border-border text-foreground py-3 rounded-[4px] font-sans font-medium text-sm sm:text-[14px] uppercase tracking-[0.1em] hover:bg-border transition-colors disabled:opacity-60"
+                  className="flex-1 border border-border text-foreground py-3 rounded-[4px] font-sans font-medium text-sm sm:text-[16px] uppercase tracking-[0.1em] hover:bg-border transition-colors disabled:opacity-60"
                 >
                   Cancel
                 </button>

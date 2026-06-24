@@ -45,7 +45,7 @@ export default function CategoryProjects({ projects }: CategoryProjectsProps) {
                   />
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500" />
                 </div>
-                <h3 className="font-sans text-[14px] text-foreground font-medium uppercase tracking-[0.1em] group-hover:text-accent transition-colors">
+                <h3 className="font-sans text-[16px] text-foreground font-medium uppercase tracking-[0.1em] group-hover:text-accent transition-colors">
                   {project.title}
                 </h3>
               </div>
@@ -83,14 +83,14 @@ export default function CategoryProjects({ projects }: CategoryProjectsProps) {
             </div>
             
             <div className="w-full md:w-2/5 p-8 md:p-12 flex flex-col justify-center overflow-y-auto">
-              <span className="font-sans uppercase tracking-[0.12em] text-[11px] text-accent mb-4 block">
+              <span className="font-sans uppercase tracking-[0.12em] text-[13px] text-accent mb-4 block">
                 Project Detail
               </span>
               <h3 className="font-cormorant text-3xl md:text-4xl text-foreground mb-6 leading-tight">
                 {selectedProject.title}
               </h3>
               <div className="w-12 h-[1px] bg-border mb-6" />
-              <p className="font-sans text-[14px] text-[#555] leading-[1.8] whitespace-pre-wrap">
+              <p className="font-sans text-[16px] text-[#555] leading-[1.8] whitespace-pre-wrap">
                 {selectedProject.description}
               </p>
             </div>

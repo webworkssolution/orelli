@@ -58,17 +58,17 @@ export default async function AboutPage() {
         <div className="flex flex-col md:flex-row w-full gap-12 lg:gap-24">
           <div className="w-full md:w-1/2">
             <FadeUp>
-              <span className="font-sans uppercase tracking-[0.12em] text-[11px] text-[#888] block mb-6">
+              <span className="font-sans uppercase tracking-[0.12em] text-[13px] text-[#888] block mb-6">
                 OUR STORY
               </span>
               <h2 className="font-cormorant text-[clamp(32px,4vw,52px)] text-foreground mb-8 leading-tight whitespace-pre-wrap">
                 {heading}
               </h2>
-              <div className="font-sans text-[15px] text-[#555] leading-[1.9] space-y-6">
+              <div className="font-sans text-[17px] text-[#555] leading-[1.9] space-y-6">
                 <p>
                   {paragraph1}
                 </p>
-                <blockquote className="font-cormorant italic text-[22px] text-accent border-l-2 border-accent pl-[20px] my-8">
+                <blockquote className="font-cormorant italic text-[24px] text-accent border-l-2 border-accent pl-[20px] my-8">
                   &quot;{quote}&quot;
                 </blockquote>
                 <p>
@@ -111,10 +111,10 @@ export default async function AboutPage() {
           ].map((value, index) => (
             <FadeUp key={index} delay={index * 0.15}>
               <div className="border border-accent/40 rounded-[4px] p-10 h-full">
-                <h3 className="font-cormorant text-[28px] text-accent mb-4">
+                <h3 className="font-cormorant text-[30px] text-accent mb-4">
                   {value.title}
                 </h3>
-                <p className="font-sans text-[14px] text-black/75 leading-[1.8] whitespace-pre-wrap">
+                <p className="font-sans text-[16px] text-black/75 leading-[1.8] whitespace-pre-wrap">
                   {value.description}
                 </p>
               </div>

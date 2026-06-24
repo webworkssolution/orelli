@@ -19,14 +19,14 @@ export default function CollectionCard({ title, description, imageSrc, slug }: C
         
         {/* Dark overlay that fades in from bottom */}
         <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-white/80 to-transparent opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100 flex items-end p-6">
-          <p className="font-sans text-black text-[14px] line-clamp-1">
+          <p className="font-sans text-black text-[16px] line-clamp-1">
             {description}
           </p>
         </div>
       </div>
       
       {/* Title outside the image */}
-      <h3 className="font-cormorant text-[18px] text-foreground mt-3">
+      <h3 className="font-cormorant text-[20px] text-foreground mt-3">
         {title}
       </h3>
     </Link>

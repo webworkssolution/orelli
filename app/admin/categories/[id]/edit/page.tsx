@@ -167,7 +167,7 @@ export default function EditCategoryPage() {
                   setSlugManual(true);
                   setSlug(e.target.value);
                 }}
-                className="admin-input font-mono text-[13px]"
+                className="admin-input font-mono text-[15px]"
               />
               {slugManual && (
                 <button
