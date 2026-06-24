@@ -1,112 +1,150 @@
-# Orelli Bombay - Frontend Web Application
+# Orelli Bombay - Premium Luxury Textiles Platform
 
-This is the frontend web application for Orelli Bombay, a premium luxury textiles and interiors brand. The site is an enquiry-based portfolio (no e-commerce checkout) built to showcase collections and drive client contact.
-
-## Tech Stack
-- **Framework:** Next.js 14 (App Router)
-- **Styling:** Tailwind CSS (Customized for bespoke design)
-- **Fonts:** Next.js Font Optimization (Google Fonts: Cormorant Garamond & DM Sans)
-- **Icons:** Inline SVGs (No heavy icon libraries to maintain performance)
+This repository contains the complete full-stack web application for **Orelli Bombay**, a premium luxury textiles, wallpaper, and interiors brand. The platform serves as an elegant, high-end digital portfolio designed to drive bespoke client enquiries, talent recruitment, and showcase collections, seamlessly powered by a custom-built, fully authenticated Content Management System (CMS).
 
 ---
 
-## Folder Structure & Where to Find Things
+## 🚀 Tech Stack & Architecture
 
-To make changes for the client, here is where you need to look:
-
-### 1. Global Styles & Theming
-- **`tailwind.config.ts`**: This is your design system's source of truth. If the client wants to change the main brand colors (`bg`, `foreground`, `accent` gold), you change them here under `theme.extend.colors`.
-- **`app/globals.css`**: Global CSS overrides and reusable Tailwind `@apply` classes. Button styles (`.btn-filled`, `.btn-outline`), animation utilities, and custom underline effects are defined here.
-- **`app/layout.tsx`**: The main wrapper for every page. If you need to change the global `<title>`, description for SEO, or swap out Google Fonts, do it here.
-
-### 2. Page Content & Layouts
-- **`app/page.tsx`**: The Homepage. It simply imports and stacks sections.
-- **`app/categories/`**: Contains the categories listing and individual product pages.
-- **`components/home/`**: This folder contains all the individual sections of the homepage.
-  - `Hero.tsx`: Change the hero images, tagline text, or timing of the crossfade.
-  - `CollectionsStrip.tsx`: Update the four featured collections in the grid.
-  - `BrandStatement.tsx`: Update the large center quote.
-  - `FeaturedProject.tsx`: Update the full-width side-by-side featured project blocks.
-  - `BlogsTeaser.tsx`: Update the blog previews.
-  - `EnquiryCTA.tsx`: The bottom contact banner.
-- **`components/layout/`**: Contains the `Navbar.tsx` and `Footer.tsx`. Update the links, logo text, or social media links here.
-
-### 3. Images and Assets
-- Currently, the site uses placeholder images from `picsum.photos`. 
-- **To add real client images:**
-  1. Drop the image files into the `public/` directory (you can create a `public/images` folder to keep it organized).
-  2. Go into the respective component (e.g., `Hero.tsx`) and change the image URL from `https://picsum.photos/...` to `/images/your-file-name.jpg`.
+- **Framework**: Next.js 14 (App Router)
+- **Styling**: Tailwind CSS (Fully customized bespoke aesthetic: dark/light modes, micro-animations, glassmorphism)
+- **Typography**: `next/font` using Google Fonts: *Cormorant Garamond* (Headings) & *DM Sans* (Body)
+- **Database**: PostgreSQL (Hosted on Neon)
+- **ORM**: Prisma Client
+- **Authentication**: NextAuth.js (Session-based, restricted to Admin Dashboard)
+- **Email Delivery**: Nodemailer (SMTP routing for Enquiry and Careers forms)
+- **Storage/File Uploads**: Custom API file-handling architecture storing directly into `/public/uploads` (can be adapted for S3).
+- **Icons**: Lucide React
 
 ---
 
-## How to Make Common Changes
-
-**1. "Can we change the text in the Hero section?"**
-Open `components/home/Hero.tsx` and look for the `<h1>` tag around line 43. Change the text inside.
-
-**2. "Can we change the main gold accent color?"**
-Open `tailwind.config.ts`, find `accent: "#C9A96E"`, and replace the hex code. The entire site will instantly update.
-
-**3. "Can we speed up the scrolling fade animation?"**
-Open `components/ui/FadeUp.tsx` and `app/globals.css`. Look for the `0.7s` duration in the `.fade-up-animate` class and lower it.
-
-**4. "How do I add a new link to the Navbar?"**
-Open `components/layout/Navbar.tsx`. Look for the `const links = [...]` array at the top of the component and add a new object to the list.
+## 🎨 Design Philosophy & UX
+The frontend design is strictly governed by luxury design principles:
+- **Rich Aesthetics**: A cohesive warm palette (`#F7F4F0` backgrounds, `#E7DED3` footers, `#1A1A1A` deep typography, and `#C9A96E` elegant gold accents).
+- **Subtle Micro-Animations**: Elements gently fade up on scroll. Hover states expand underlines, dim backgrounds, and slide sub-menus to make the interface feel alive and responsive.
+- **Dynamic Headers**: The Navbar intelligently switches text colors based on scroll position and active page themes, providing a flawless dropdown sub-menu explicitly populated by the live database.
 
 ---
 
-## Development & CMS Setup
+## 🛠 Features & Capabilities
 
-To set up the project locally, including the database and CMS, follow these steps:
+### 1. The Public Facing Website
+- **Home**: Dynamic Hero Slider (CMS controllable), Collections Strip, Brand Statement, Featured Projects, Blog Teasers, and a bottom Enquiry CTA.
+- **About Us**: A deeply personalized page divided into a dynamic Hero section, "Our Story", and a 3-part "Values Strip" (Craft, Heritage, Intention). All text and imagery are pulled straight from the CMS.
+- **Categories & Projects**: 
+  - Dynamic dropdown sub-menus injected into the global Navbar.
+  - Category detail pages featuring automated thumbnail gallery sliders (intelligently combining the main cover image + additional gallery assets).
+  - Attached individual projects with modal popups for deep diving.
+- **Journal (Blogs)**: Read times, publishing dates, author attributions ("BY ORELLI BOMBAY"), dynamic Drop-Cap typography on the first paragraph, and sleek layouts.
+- **Contact / Careers**: 
+  - Dual-layout Contact page cleanly organizing official studio information.
+  - Fully integrated **Careers Application Form Modal** taking text inputs, dropdown selections, and PDF Resume uploads.
+- **FAQ Page**: Accordion-style layout managed directly via the CMS.
 
-### 1. Install Dependencies
+### 2. The Internal Email Engine
+Both major forms are securely handled by internal APIs and passed through Nodemailer to directly ping `orellibombay@orelli.co.in`.
+- **Enquiry Form (`/api/contact`)**: Captures names, numbers, email, architect details, large multi-file uploads (Project Photos up to 25MB, Color Palettes up to 25MB).
+- **Careers Form (`/api/careers`)**: Captures applicant data and strictly handles PDF Resume uploads (up to 5MB).
+- **Protection**: Both endpoints feature in-memory IP rate-limiting (max 1 submission per 5 minutes) to prevent spam.
+
+### 3. The Custom CMS Dashboard (`/admin`)
+Hidden behind NextAuth authentication, the custom CMS allows the owner to change the website instantly without touching code.
+- **Hero Slider**: Upload, order, and remove the massive sliding homepage images.
+- **About Page**: Fully edit the Hero text, Our Story paragraphs, and Values descriptions.
+- **Categories & Projects**: Create new collections, generate clean URLs (slugs), order their appearance, upload cover images, and upload infinite gallery arrays.
+- **Blogs Manager**: A robust text and content manager to publish or hide journal entries.
+- **FAQ Manager**: Add, edit, or delete Question & Answer pairings.
+
+---
+
+## 📁 Repository Structure
+
+```
+orelli/
+├── app/
+│   ├── about/            # Public About page
+│   ├── admin/            # Secure CMS Dashboard pages (Requires Login)
+│   ├── api/              # Secure backend Next.js API Routes (Auth, Contact, Careers, CMS)
+│   ├── blogs/            # Public Journal/Blog rendering
+│   ├── categories/       # Dynamic collections & gallery logic
+│   ├── contact/          # Public Contact & Careers page
+│   ├── faq/              # Public FAQ rendering
+│   ├── globals.css       # Core Tailwind injections and CSS Variables
+│   └── layout.tsx        # Root layout, fetches Categories for Navbar
+├── components/
+│   ├── admin/            # Reusable UI for the CMS (Toasts, Image Uploaders)
+│   ├── categories/       # Category Galleries, Project Modals
+│   ├── contact/          # Enquiry and Careers Modals
+│   ├── home/             # Segmented Homepage blocks
+│   ├── layout/           # Global Navbar, Footer, Sticky Nav
+│   └── ui/               # Base UI components (FadeUp animations, Buttons)
+├── lib/
+│   ├── prisma.ts         # Prisma DB Client Singleton
+│   └── auth.ts           # NextAuth configurations
+├── prisma/
+│   └── schema.prisma     # The complete database architecture and models
+├── public/
+│   ├── uploads/          # Live directory for CMS uploaded images/PDFs
+│   └── ...               # Static SVGs, logos, fonts
+└── tailwind.config.ts    # The absolute design system source of truth
+```
+
+---
+
+## ⚙️ Development Setup & Deployment
+
+### 1. Installation
+Clone the repository and install all Node dependencies:
 ```bash
 npm install
 ```
 
 ### 2. Environment Variables
-Create a `.env.local` file in the root of your project and configure the required settings:
+Create a `.env` file in the root directory. You will need:
 ```env
-# Database (SQLite by default)
-DATABASE_URL="file:./dev.db"
+# Database (PostgreSQL / Neon)
+DATABASE_URL="postgresql://user:password@host/dbname"
+DIRECT_URL="postgresql://user:password@host/dbname"
 
-# NextAuth Configuration
-NEXTAUTH_SECRET="your-super-secret-key-change-in-production"
+# Authentication (NextAuth)
+NEXTAUTH_SECRET="generate-a-secure-random-string-here"
 NEXTAUTH_URL="http://localhost:3000"
 
-# Admin Credentials for CMS
-ADMIN_EMAIL="admin@orelli.com"
-ADMIN_PASSWORD_HASH=""
+# CMS Login Credentials
+ADMIN_EMAIL="orellibombay@orelli.co.in"
+ADMIN_PASSWORD_HASH="generate-this-via-bcrypt"
+
+# Email Server (Nodemailer Configuration)
+SMTP_HOST="smtp.gmail.com"
+SMTP_PORT="587"
+SMTP_USER="your-sending-email@gmail.com"
+SMTP_PASS="your-app-password"
+OWNER_EMAIL="orellibombay@orelli.co.in"
 ```
 
-### 3. Generate Admin Password
-You need a securely hashed password for the CMS administrator. Run the included script with your desired password:
+### 3. Generate the Admin Password Hash
+To create the `ADMIN_PASSWORD_HASH` for your `.env` file, run:
 ```bash
-npx ts-node scripts/hash-password.ts your_password_here
+npx ts-node scripts/hash-password.ts your_secure_password
 ```
-Copy the generated `ADMIN_PASSWORD_HASH` from the output and paste it into your `.env.local` file.
 
-### 4. Database Setup
-The site uses Prisma with SQLite. Run the following commands to sync the schema and generate starter data:
+### 4. Sync the Database
+Push the Prisma schema to your PostgreSQL database.
 ```bash
-# Push the schema to the database
-npm run db:push
-
-# Seed the database with initial data (optional)
-npm run db:seed
+npx prisma generate
+npx prisma db push
 ```
 
-### 5. Run the Application
-Start the development server:
+### 5. Start the Application
+Run the local development server:
 ```bash
 npm run dev
 ```
+- **Live Site**: `http://localhost:3000`
+- **CMS Login**: `http://localhost:3000/admin/login`
 
-- **Main site:** [http://localhost:3000](http://localhost:3000)
-- **CMS Dashboard:** [http://localhost:3000/admin](http://localhost:3000/admin) (Log in using the email and password you configured).
+---
 
-### 6. Prisma Studio (Optional Data Viewer)
-To explore and modify records directly in the database via a GUI, you can open Prisma Studio:
-```bash
-npm run db:studio
-```
+## 🛠 Maintaining Global Styles
+- **Colors**: The base background (`#F7F4F0`) and footer (`#E7DED3`) are hardcoded as CSS Variables inside `app/globals.css`. The primary Accent gold is located in `tailwind.config.ts`.
+- **Fonts**: All text layers utilize Tailwind's specific pixel tracking. To safely bump global font sizes up or down, utilize a Regex script over the codebase rather than altering root em sizes, as clamping is actively used for responsive Desktop/Mobile hero headings.
