@@ -35,9 +35,12 @@ export default async function ProductDetailPage({
 
   const gallery = (() => {
     try {
-      return JSON.parse(category.gallery) as string[];
+      const parsed = JSON.parse(category.gallery) as string[];
+      // Combine the main image with the gallery images, filtering out any empty strings or duplicates
+      const allImages = [category.imageSrc, ...(Array.isArray(parsed) ? parsed : [])];
+      return Array.from(new Set(allImages)).filter(Boolean);
     } catch {
-      return [category.imageSrc];
+      return [category.imageSrc].filter(Boolean);
     }
   })();
 
