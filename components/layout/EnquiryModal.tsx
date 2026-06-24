@@ -359,7 +359,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                   <div>
                     <label className="block font-sans text-[10px] sm:text-[12px] uppercase tracking-[0.1em] text-[#555] mb-2">
-                      Do you have your own architect?
+                      Do you have your own architect / designer?
                     </label>
                     <select
                       name="hasArchitect"
