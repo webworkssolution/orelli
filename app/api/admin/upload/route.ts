@@ -3,8 +3,8 @@ import { prisma } from "@/lib/prisma";
 import { requireAuth } from "@/lib/auth";
 import { supabase } from "@/lib/supabase";
 
-const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp", "image/gif"];
-const MAX_SIZE = 5 * 1024 * 1024; // 5MB
+const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp", "image/gif", "image/svg+xml"];
+const MAX_SIZE = 10 * 1024 * 1024; // 10MB
 
 export async function GET() {
   try {
@@ -43,7 +43,7 @@ export async function POST(request: NextRequest) {
     // Validate file type
     if (!ALLOWED_TYPES.includes(file.type)) {
       return NextResponse.json(
-        { error: "Invalid file type. Allowed: jpeg, png, webp, gif" },
+        { error: `Invalid file type. Allowed: ${ALLOWED_TYPES.map(t => t.replace('image/', '')).join(', ')}` },
         { status: 400 }
       );
     }
@@ -51,13 +51,14 @@ export async function POST(request: NextRequest) {
     // Validate file size
     if (file.size > MAX_SIZE) {
       return NextResponse.json(
-        { error: "File too large. Maximum size is 5MB" },
+        { error: "File too large. Maximum size is 10MB" },
         { status: 400 }
       );
     }
 
     // Generate unique filename
-    const ext = file.name.substring(file.name.lastIndexOf("."));
+    const lastDotIndex = file.name.lastIndexOf(".");
+    const ext = lastDotIndex !== -1 ? file.name.substring(lastDotIndex) : "";
     const randomSuffix = Math.random().toString(36).substring(2, 8);
     const filename = `${Date.now()}-${randomSuffix}${ext}`;
 
