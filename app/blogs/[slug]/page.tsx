@@ -85,7 +85,10 @@ export default async function ArticlePage({
           <div className="w-full h-[1px] bg-border my-10" />
 
           <div className="article-content max-w-3xl mx-auto">
-            <MDXRemote source={blog.content || "Content coming soon."} components={components} />
+            <MDXRemote 
+              source={(blog.content || "Content coming soon.").replace(/<(img|br|hr)([^>]*?)(?:\s*\/)?>/g, '<$1$2 />')} 
+              components={components} 
+            />
           </div>
         </FadeUp>
 

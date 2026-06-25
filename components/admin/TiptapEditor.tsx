@@ -3,7 +3,8 @@
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import Link from '@tiptap/extension-link';
-import { useEffect } from 'react';
+import Image from '@tiptap/extension-image';
+import { useEffect, useRef, useState } from 'react';
 
 interface TiptapEditorProps {
   content: string;
@@ -20,6 +21,11 @@ export default function TiptapEditor({ content, onChange }: TiptapEditorProps) {
         openOnClick: false,
         HTMLAttributes: {
           class: 'tiptap-link',
+        },
+      }),
+      Image.configure({
+        HTMLAttributes: {
+          class: 'tiptap-image max-w-full h-auto rounded-md my-4',
         },
       }),
     ],
@@ -40,6 +46,38 @@ export default function TiptapEditor({ content, onChange }: TiptapEditorProps) {
       editor.commands.setContent(content);
     }
   }, [content, editor]);
+
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [uploading, setUploading] = useState(false);
+
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file || !editor) return;
+
+    try {
+      setUploading(true);
+      const formData = new FormData();
+      formData.append('file', file);
+
+      const res = await fetch('/api/admin/upload', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || 'Upload failed');
+      }
+
+      const data = await res.json();
+      editor.chain().focus().setImage({ src: data.path }).run();
+    } catch (err) {
+      alert(err instanceof Error ? err.message : 'Upload failed');
+    } finally {
+      setUploading(false);
+      if (fileInputRef.current) fileInputRef.current.value = '';
+    }
+  };
 
   if (!editor) return null;
 
@@ -162,6 +200,35 @@ export default function TiptapEditor({ content, onChange }: TiptapEditorProps) {
               <line x1="2" y1="2" x2="22" y2="22" />
             </svg>
           </button>
+        </div>
+
+        <span className="tiptap-separator" />
+
+        <div className="tiptap-toolbar-group">
+          <button
+            type="button"
+            onClick={() => fileInputRef.current?.click()}
+            className="tiptap-btn"
+            title="Insert Image"
+            disabled={uploading}
+          >
+            {uploading ? (
+              <span className="text-xs text-[#999]">...</span>
+            ) : (
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                <circle cx="8.5" cy="8.5" r="1.5" />
+                <polyline points="21 15 16 10 5 21" />
+              </svg>
+            )}
+          </button>
+          <input
+            type="file"
+            accept="image/*"
+            ref={fileInputRef}
+            onChange={handleImageUpload}
+            className="hidden"
+          />
         </div>
       </div>
 
