@@ -207,7 +207,7 @@ export async function POST(request: Request) {
     const message = err instanceof Error ? err.message : String(err);
     console.error("Contact Form Error:", message);
     return NextResponse.json(
-      { error: "server", message: "Something went wrong. Please try again later." },
+      { error: "server", message: `Error: ${message}` },
       { status: 500 }
     );
   }
