@@ -9,11 +9,11 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "#fff2e8",
+        background: "#F7F4F0",
         foreground: "#000000",
         accent: "#000000",
         border: "#E8E4DF",
-        footerBg: "#e5d0be",
+        footerBg: "#E7DED3",
         whiteAlt: "#000000",
       },
       fontFamily: {
