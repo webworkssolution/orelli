@@ -31,11 +31,7 @@ export default function Footer() {
           <span>·</span>
           <Link href="/faq" className="hover:text-foreground transition-colors">FAQ</Link>
           <span>·</span>
-<<<<<<< HEAD
           <Link href="/enquiry" className="hover:text-foreground transition-colors uppercase tracking-[0.12em] text-[14px]">Enquiry</Link>
-=======
-          <button onClick={openModal} className="hover:text-foreground transition-colors uppercase tracking-[0.12em] text-[14px]">Enquiry</button>
->>>>>>> 3019d50b33b2a6ffb48c9bfc83ee1b1cf98732a6
           <span>·</span>
           <Link href="/privacy" className="hover:text-foreground transition-colors">Privacy Policy</Link>
         </div>
