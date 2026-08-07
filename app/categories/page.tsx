@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { Metadata } from "next";
 import Link from "next/link";
 import FadeUp from "@/components/ui/FadeUp";
@@ -29,12 +31,12 @@ export default async function CollectionsPage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <section className="pt-48 pb-16 px-6 md:px-12 border-b border-border">
+      <section className="pt-32 pb-8 px-6 md:px-12 border-b border-border">
         <FadeUp>
           <h1 className="font-cormorant text-[clamp(48px,6vw,80px)] text-foreground leading-none mb-4">
             Categories
           </h1>
-          <p className="font-sans text-[16px] text-[#555]">
+          <p className="font-sans text-[18px] text-[#555]">
             Handwoven textiles for contemporary living.
           </p>
         </FadeUp>
@@ -47,7 +49,7 @@ export default async function CollectionsPage() {
             <Link
               key={filter}
               href={filter === "ALL" ? "/categories" : `/categories/${filter.toLowerCase()}`}
-              className={`font-sans uppercase tracking-[0.12em] text-[11px] px-4 py-1.5 rounded-full border transition-colors ${
+              className={`font-sans uppercase tracking-[0.12em] text-[13px] px-4 py-1.5 rounded-full border transition-colors ${
                 idx === 0
                   ? "bg-[#E8E4DF] text-black border-[#E8E4DF]"
                   : "bg-transparent text-foreground border-border hover:border-foreground"
@@ -60,16 +62,10 @@ export default async function CollectionsPage() {
       </div>
 
       {/* Product Grid */}
-      <section className="py-16 px-6 md:px-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+      <section className="py-8 px-6 md:px-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
           {categories.map((category, index) => {
-            const tags = (() => {
-              try {
-                return JSON.parse(category.tags) as string[];
-              } catch {
-                return [];
-              }
-            })();
+
 
             return (
               <FadeUp key={category.slug} delay={(index % 3) * 0.1}>
@@ -79,13 +75,7 @@ export default async function CollectionsPage() {
                   imageSrc={category.imageSrc}
                   slug={category.slug}
                 />
-                <div className="mt-2 flex gap-2">
-                  {tags.map((tag) => (
-                    <span key={tag} className="font-sans uppercase tracking-widest text-[11px] text-[#888]">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
+
               </FadeUp>
             );
           })}

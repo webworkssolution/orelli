@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { Metadata } from "next";
 import Link from "next/link";
 import FadeUp from "@/components/ui/FadeUp";
@@ -20,7 +22,7 @@ export default async function BlogsPage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <section className="pt-48 pb-12 px-6 md:px-12 border-b border-border">
+      <section className="pt-32 pb-8 px-6 md:px-12 border-b border-border">
         <FadeUp>
           <h1 className="font-cormorant text-[clamp(48px,6vw,80px)] text-foreground leading-none">
             Blogs
@@ -33,7 +35,7 @@ export default async function BlogsPage() {
         {featured && (
           <FadeUp>
             <div className="w-full bg-border rounded-[4px] p-8 md:p-12 mb-8 flex flex-col justify-center items-start">
-              <span className="font-sans uppercase tracking-[0.12em] text-[11px] text-accent mb-4">
+              <span className="font-sans uppercase tracking-[0.12em] text-[13px] text-accent mb-4">
                 FEATURED
               </span>
               <h2 className="font-cormorant text-[clamp(28px,3.5vw,48px)] text-foreground leading-tight mb-4 max-w-3xl hover:text-accent transition-colors">
@@ -41,10 +43,10 @@ export default async function BlogsPage() {
                   {featured.title}
                 </Link>
               </h2>
-              <span className="font-sans uppercase tracking-[0.12em] text-[11px] text-[#888] mb-6">
-                {featured.date} · {featured.readTime}
+              <span className="font-sans uppercase tracking-[0.12em] text-[13px] text-[#888] block mb-4">
+                {featured.readTime}
               </span>
-              <p className="font-sans text-[14px] text-[#555] mb-6 max-w-2xl line-clamp-3">
+              <p className="font-sans text-[16px] text-[#555] mb-6 max-w-2xl line-clamp-3">
                 {featured.excerpt}
               </p>
               <Link href={`/blogs/${featured.slug}`} className="text-link">
@@ -66,10 +68,10 @@ export default async function BlogsPage() {
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
-                <span className="font-sans uppercase tracking-[0.12em] text-[11px] text-[#888] block mb-2">
-                  {article.date} · {article.category}
+                <span className="font-sans uppercase tracking-[0.12em] text-[13px] text-[#888] block mb-2">
+                  {article.category}
                 </span>
-                <h3 className="font-cormorant text-[22px] text-foreground mb-3 leading-tight group-hover:text-accent transition-colors">
+                <h3 className="font-cormorant text-[24px] text-foreground mb-3 leading-tight group-hover:text-accent transition-colors">
                   {article.title}
                 </h3>
                 <span className="text-link pointer-events-none">

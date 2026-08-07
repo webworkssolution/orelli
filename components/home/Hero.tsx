@@ -39,8 +39,8 @@ export default function Hero({ images }: HeroProps) {
       {/* Overlay gradient */}
       <div className="absolute inset-0 z-20 bg-gradient-to-b from-white/1 to-white/5 pointer-events-none" />
 
-      {/* Content */}
-      <div className="absolute inset-0 z-30 flex items-end justify-between px-12 pb-16">
+      {/* Content - commented out */}
+      {/* <div className="absolute inset-0 z-30 flex items-end justify-between px-12 pb-16">
         <h1 className="font-cormorant italic text-black text-[clamp(28px,4vw,52px)] max-w-[600px] leading-tight">
           Crafted for the spaces you live in.
         </h1>
@@ -48,7 +48,7 @@ export default function Hero({ images }: HeroProps) {
         <div className="hidden md:flex flex-col items-center gap-4 animate-pulseLine opacity-60">
           <div className="w-[2px] h-[60px] bg-black" />
         </div>
-      </div>
+      </div> */}
     </section>
   );
 }

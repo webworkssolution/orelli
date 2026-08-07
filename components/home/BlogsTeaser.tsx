@@ -21,7 +21,7 @@ export default function BlogsTeaser({ blogs }: BlogsTeaserProps) {
   const secondary = blogs.slice(1, 3);
 
   return (
-    <section className="bg-background py-24 px-6 md:px-12">
+    <section className="bg-background py-12 px-6 md:px-12">
       <FadeUp>
         <h2 className="font-cormorant text-[clamp(36px,5vw,64px)] text-foreground mb-12">
           From the Blogs
@@ -41,15 +41,15 @@ export default function BlogsTeaser({ blogs }: BlogsTeaserProps) {
                 />
               </Link>
               <div className="w-full md:w-[58%] md:pl-[48px]">
-                <span className="font-sans uppercase tracking-[0.12em] text-[11px] text-[#888] block mb-4">
-                  {featured.date} · {featured.category}
+                <span className="font-sans uppercase tracking-[0.12em] text-[13px] text-[#888] block mb-4">
+                  {featured.category}
                 </span>
                 <h3 className="font-cormorant text-[clamp(22px,3vw,38px)] text-foreground mb-4 leading-tight hover:text-accent transition-colors">
                   <Link href={`/blogs/${featured.slug}`}>
                     {featured.title}
                   </Link>
                 </h3>
-                <p className="font-sans text-[14px] text-[#555] mb-6 line-clamp-3 max-w-[500px]">
+                <p className="font-sans text-[16px] text-[#555] mb-6 line-clamp-3 max-w-[500px]">
                   {featured.excerpt}
                 </p>
                 <Link href={`/blogs/${featured.slug}`} className="text-link">
@@ -73,10 +73,10 @@ export default function BlogsTeaser({ blogs }: BlogsTeaserProps) {
                       className="w-full aspect-video object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                   </div>
-                  <span className="font-sans uppercase tracking-[0.12em] text-[11px] text-[#888] block mb-3">
-                    {article.date} · {article.category}
+                  <span className="font-sans uppercase tracking-[0.12em] text-[13px] text-[#888] block mb-3">
+                    {article.category}
                   </span>
-                  <h4 className="font-cormorant text-[24px] text-foreground mb-4 leading-tight group-hover:text-accent transition-colors">
+                  <h4 className="font-cormorant text-[26px] text-foreground mb-4 leading-tight group-hover:text-accent transition-colors">
                     {article.title}
                   </h4>
                   <span className="text-link pointer-events-none">

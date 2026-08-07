@@ -10,6 +10,7 @@ const updateProjectSchema = z.object({
   imageSrc: z.string().optional(),
   featured: z.boolean().optional(),
   order: z.number().optional(),
+  categoryId: z.string().optional().nullable(),
 });
 
 export async function GET(
@@ -60,6 +61,24 @@ export async function PUT(
         { error: "Validation failed", details: validation.error.flatten() },
         { status: 400 }
       );
+    }
+
+    if (validation.data.featured === true) {
+      const currentProject = await prisma.project.findUnique({
+        where: { id },
+      });
+      
+      if (!currentProject?.featured) {
+        const featuredCount = await prisma.project.count({
+          where: { featured: true },
+        });
+        if (featuredCount >= 2) {
+          return NextResponse.json(
+            { error: "Limit reached: You can only feature 2 projects." },
+            { status: 400 }
+          );
+        }
+      }
     }
 
     const project = await prisma.project.update({

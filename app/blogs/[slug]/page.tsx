@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import React from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -14,13 +16,13 @@ export async function generateStaticParams() {
 
 const components = {
   p: (props: React.ComponentPropsWithoutRef<"p">) => (
-    <p className="font-sans text-[16px] text-[#333] leading-[1.9] mb-6" {...props} />
+    <p className="font-sans text-[18px] text-[#333] leading-[1.9] mb-6" {...props} />
   ),
   h2: (props: React.ComponentPropsWithoutRef<"h2">) => (
-    <h2 className="font-cormorant text-[28px] text-foreground mt-10 mb-4" {...props} />
+    <h2 className="font-cormorant text-[30px] text-foreground mt-10 mb-4" {...props} />
   ),
   blockquote: (props: React.ComponentPropsWithoutRef<"blockquote">) => (
-    <blockquote className="font-cormorant italic text-[20px] text-accent border-l-2 border-accent pl-[20px] my-8" {...props} />
+    <blockquote className="font-cormorant italic text-[22px] text-accent border-l-2 border-accent pl-[20px] my-8" {...props} />
   ),
   img: ({ alt, ...props }: React.ImgHTMLAttributes<HTMLImageElement>) => (
     /* eslint-disable-next-line @next/next/no-img-element */
@@ -53,24 +55,8 @@ export default async function ArticlePage({
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="max-w-[720px] mx-auto px-6 pt-40 pb-24">
+      <div className="max-w-[960px] mx-auto px-6 pt-32 pb-12">
         <FadeUp>
-          <div className="font-sans text-[12px] text-[#888] mb-6 uppercase tracking-widest">
-            <Link href="/blogs" className="hover:text-foreground transition-colors">Blogs</Link>
-            <span className="mx-2">/</span>
-            <span>{blog.category}</span>
-          </div>
-
-          <h1 className="font-cormorant text-[clamp(32px,4vw,56px)] text-foreground leading-[1.2] mb-4">
-            {blog.title}
-          </h1>
-
-          <div className="font-sans uppercase tracking-[0.12em] text-[11px] text-[#888] mb-6">
-            {blog.date} · {blog.readTime}
-          </div>
-
-          <div className="w-full h-[1px] bg-border my-6" />
-
           {blog.heroImage && (
             /* eslint-disable-next-line @next/next/no-img-element */
             <img
@@ -80,15 +66,36 @@ export default async function ArticlePage({
             />
           )}
 
-          <div className="article-content">
-            <MDXRemote source={blog.content || "Content coming soon."} components={components} />
+          <div className="text-center mb-10 max-w-3xl mx-auto">
+            <div className="font-sans text-[14px] text-accent mb-4 uppercase tracking-widest">
+              <Link href="/blogs" className="hover:text-foreground transition-colors">Blogs</Link>
+              <span className="mx-2">/</span>
+              <span>{blog.category}</span>
+            </div>
+
+            <h1 className="font-cormorant text-[clamp(36px,5vw,64px)] text-foreground leading-[1.1] mb-6">
+              {blog.title}
+            </h1>
+
+            <div className="font-sans uppercase tracking-[0.12em] text-[13px] text-[#888]">
+              BY ORELLI BOMBAY
+            </div>
+          </div>
+
+          <div className="w-full h-[1px] bg-border my-10" />
+
+          <div className="article-content max-w-3xl mx-auto">
+            <MDXRemote 
+              source={(blog.content || "Content coming soon.").replace(/<(img|br|hr)([^>]*?)(?:\s*\/)?>/g, '<$1$2 />')} 
+              components={components} 
+            />
           </div>
         </FadeUp>
 
         {relatedBlogs.length > 0 && (
           <FadeUp delay={0.2}>
             <div className="border-t border-border mt-16 pt-12">
-              <h3 className="font-cormorant text-[28px] text-foreground mb-8">
+              <h3 className="font-cormorant text-[30px] text-foreground mb-8">
                 More from the Blogs
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
@@ -102,7 +109,7 @@ export default async function ArticlePage({
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                       />
                     </div>
-                    <h4 className="font-cormorant text-[20px] text-foreground group-hover:text-accent transition-colors">
+                    <h4 className="font-cormorant text-[22px] text-foreground group-hover:text-accent transition-colors">
                       {related.title}
                     </h4>
                   </Link>

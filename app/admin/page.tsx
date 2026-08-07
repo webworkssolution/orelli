@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
-import { FolderOpen, Briefcase, FileText, Image, Wallpaper, ArrowRight } from 'lucide-react';
+import { FolderOpen, Briefcase, FileText, Image, Wallpaper, ArrowRight, HelpCircle } from 'lucide-react';
 
 interface Stats {
   categories: number;
@@ -11,6 +11,7 @@ interface Stats {
   blogs: number;
   images: number;
   heroImages: number;
+  faqs: number;
 }
 
 const statCards = [
@@ -19,35 +20,48 @@ const statCards = [
     label: 'Hero Images',
     href: '/admin/hero-images',
     icon: Wallpaper,
-    color: '#a78bfa',
+    colorClass: 'text-[#a78bfa]',
+    bgClass: 'bg-[#a78bfa]/15',
   },
   {
     key: 'categories' as const,
     label: 'Categories',
     href: '/admin/categories',
     icon: FolderOpen,
-    color: '#C9A96E',
+    colorClass: 'text-[#C9A96E]',
+    bgClass: 'bg-[#C9A96E]/15',
   },
   {
     key: 'projects' as const,
     label: 'Projects',
     href: '/admin/projects',
     icon: Briefcase,
-    color: '#60a5fa',
+    colorClass: 'text-[#60a5fa]',
+    bgClass: 'bg-[#60a5fa]/15',
   },
   {
     key: 'blogs' as const,
     label: 'Blogs',
     href: '/admin/blogs',
     icon: FileText,
-    color: '#4ade80',
+    colorClass: 'text-[#4ade80]',
+    bgClass: 'bg-[#4ade80]/15',
+  },
+  {
+    key: 'faqs' as const,
+    label: 'FAQs',
+    href: '/admin/faqs',
+    icon: HelpCircle,
+    colorClass: 'text-[#ec4899]',
+    bgClass: 'bg-[#ec4899]/15',
   },
   {
     key: 'images' as const,
     label: 'Images',
     href: '/admin/images',
     icon: Image,
-    color: '#f59e0b',
+    colorClass: 'text-[#f43f5e]',
+    bgClass: 'bg-[#f43f5e]/15',
   },
 ];
 
@@ -58,7 +72,7 @@ export default function AdminDashboard() {
 
   useEffect(() => {
     // Try to fetch from stats API, fall back to individual endpoints
-    async function fetchStats() {
+    const fetchStats = async () => {
       try {
         const res = await fetch('/api/admin/stats');
         if (res.ok) {
@@ -70,12 +84,13 @@ export default function AdminDashboard() {
 
       // Fallback: fetch counts from individual endpoints
       try {
-        const [catRes, projRes, blogRes, imgRes, heroRes] = await Promise.allSettled([
+        const [catRes, projRes, blogRes, imgRes, heroRes, faqRes] = await Promise.allSettled([
           fetch('/api/admin/categories'),
           fetch('/api/admin/projects'),
           fetch('/api/admin/blogs'),
           fetch('/api/admin/upload'),
           fetch('/api/admin/hero-images'),
+          fetch('/api/admin/faqs'),
         ]);
 
         const getCount = async (result: PromiseSettledResult<Response>) => {
@@ -92,9 +107,10 @@ export default function AdminDashboard() {
           blogs: await getCount(blogRes),
           images: await getCount(imgRes),
           heroImages: await getCount(heroRes),
+          faqs: await getCount(faqRes),
         });
       } catch {
-        setStats({ categories: 0, projects: 0, blogs: 0, images: 0, heroImages: 0 });
+        setStats({ categories: 0, projects: 0, blogs: 0, images: 0, heroImages: 0, faqs: 0 });
       } finally {
         setLoading(false);
       }
@@ -107,10 +123,7 @@ export default function AdminDashboard() {
     <div className="max-w-5xl mx-auto space-y-8">
       {/* Welcome */}
       <div>
-        <h2
-          className="text-2xl text-[#f5f5f5] mb-1"
-          style={{ fontFamily: 'var(--font-cormorant, "Cormorant Garamond", Georgia, serif)' }}
-        >
+        <h2 className="text-2xl text-[#f5f5f5] mb-1 font-cormorant">
           Welcome back{session?.user?.name ? `, ${session.user.name}` : ''}
         </h2>
         <p className="text-sm text-[#999]">
@@ -142,10 +155,9 @@ export default function AdminDashboard() {
                   )}
                 </div>
                 <div
-                  className="flex items-center justify-center w-10 h-10 rounded-lg"
-                  style={{ backgroundColor: `${card.color}15` }}
+                  className={`flex items-center justify-center w-10 h-10 rounded-lg ${card.bgClass}`}
                 >
-                  <Icon className="w-5 h-5" style={{ color: card.color }} />
+                  <Icon className={`w-5 h-5 ${card.colorClass}`} />
                 </div>
               </div>
               <div className="mt-4 flex items-center gap-1 text-xs text-[#666] group-hover:text-[#C9A96E] transition-colors">
@@ -178,6 +190,12 @@ export default function AdminDashboard() {
             className="px-4 py-2 text-sm rounded-md bg-[#252525] text-[#999] hover:text-[#f5f5f5] hover:bg-[#2a2a2a] transition-colors"
           >
             + New Blog
+          </Link>
+          <Link
+            href="/admin/faqs/new"
+            className="px-4 py-2 text-sm rounded-md bg-[#252525] text-[#999] hover:text-[#f5f5f5] hover:bg-[#2a2a2a] transition-colors"
+          >
+            + New FAQ
           </Link>
           <Link
             href="/admin/hero-images"

@@ -130,7 +130,7 @@ export default function NewCategoryPage() {
                   setSlug(e.target.value);
                 }}
                 placeholder="luxury-silk-collection"
-                className="admin-input font-mono text-[13px]"
+                className="admin-input font-mono text-[15px]"
               />
               {slugManual && (
                 <button

@@ -147,13 +147,13 @@ export default function CategoriesPage() {
                     {cat.tags.slice(0, 3).map((tag, i) => (
                       <span
                         key={i}
-                        className="px-2 py-0.5 text-[10px] rounded-full bg-[#252525] text-[#999]"
+                        className="px-2 py-0.5 text-[12px] rounded-full bg-[#252525] text-[#999]"
                       >
                         {tag}
                       </span>
                     ))}
                     {cat.tags.length > 3 && (
-                      <span className="px-2 py-0.5 text-[10px] text-[#666]">
+                      <span className="px-2 py-0.5 text-[12px] text-[#666]">
                         +{cat.tags.length - 3}
                       </span>
                     )}

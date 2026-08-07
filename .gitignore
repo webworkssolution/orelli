@@ -49,3 +49,4 @@ prisma/dev.db-journal
 # Uploads (user-generated content)
 public/uploads/*
 !public/uploads/.gitkeep
+orelli.zip

@@ -10,6 +10,7 @@ const createProjectSchema = z.object({
   imageSrc: z.string(),
   featured: z.boolean().optional().default(false),
   order: z.number().optional().default(0),
+  categoryId: z.string().optional().nullable(),
 });
 
 export async function GET() {
@@ -44,6 +45,18 @@ export async function POST(request: NextRequest) {
         { error: "Validation failed", details: validation.error.flatten() },
         { status: 400 }
       );
+    }
+
+    if (validation.data.featured) {
+      const featuredCount = await prisma.project.count({
+        where: { featured: true },
+      });
+      if (featuredCount >= 2) {
+        return NextResponse.json(
+          { error: "Limit reached: You can only feature 2 projects." },
+          { status: 400 }
+        );
+      }
     }
 
     const project = await prisma.project.create({

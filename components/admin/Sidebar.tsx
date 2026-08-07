@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { signOut } from 'next-auth/react';
 import {
   LayoutDashboard,
   FolderOpen,
@@ -10,6 +11,9 @@ import {
   Image,
   Wallpaper,
   X,
+  LogOut,
+  HelpCircle,
+  Info,
 } from 'lucide-react';
 
 interface SidebarProps {
@@ -23,6 +27,8 @@ const navItems = [
   { href: '/admin/categories', label: 'Categories', icon: FolderOpen },
   { href: '/admin/projects', label: 'Projects', icon: Briefcase },
   { href: '/admin/blogs', label: 'Blogs', icon: FileText },
+  { href: '/admin/faqs', label: 'FAQs', icon: HelpCircle },
+  { href: '/admin/about', label: 'About Page', icon: Info },
   { href: '/admin/images', label: 'Images', icon: Image },
 ];
 
@@ -56,16 +62,14 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
         {/* Logo area */}
         <div className="flex items-center justify-between h-16 px-6 border-b border-[#2a2a2a]">
           <Link href="/admin" className="flex items-center gap-2" onClick={onClose}>
-            <span
-              className="text-xl tracking-[0.15em] text-[#C9A96E]"
-              style={{ fontFamily: 'var(--font-cormorant, "Cormorant Garamond", Georgia, serif)' }}
-            >
+            <span className="text-xl tracking-[0.15em] text-[#C9A96E] font-cormorant">
               ORELLI
             </span>
-            <span className="text-[10px] uppercase tracking-[0.2em] text-[#666] mt-1">CMS</span>
+            <span className="text-[12px] uppercase tracking-[0.2em] text-[#666] mt-1">CMS</span>
           </Link>
           <button
             onClick={onClose}
+            aria-label="Close menu"
             className="lg:hidden text-[#666] hover:text-[#f5f5f5] transition-colors"
           >
             <X className="w-5 h-5" />
@@ -97,6 +101,17 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
             );
           })}
         </nav>
+
+        {/* Logout button */}
+        <div className="px-3 py-4 border-t border-[#2a2a2a]">
+          <button
+            onClick={() => signOut({ callbackUrl: '/admin/login' })}
+            className="flex items-center gap-3 px-3 py-2.5 rounded-md text-sm text-[#999] hover:text-[#ef4444] hover:bg-[#ef4444]/10 border-l-[3px] border-transparent pl-[9px] w-full transition-all duration-200"
+          >
+            <LogOut className="w-[18px] h-[18px] shrink-0" />
+            <span className="font-medium">Log Out</span>
+          </button>
+        </div>
       </aside>
     </>
   );

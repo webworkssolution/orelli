@@ -1,60 +1,51 @@
 import { Metadata } from "next";
 import FadeUp from "@/components/ui/FadeUp";
-import ContactForm from "@/components/contact/ContactForm";
+import CareersSection from "@/components/contact/CareersSection";
 
 export const metadata: Metadata = {
   title: "Contact Us | Orelli Bombay",
-  description: "Let&apos;s work together. Reach out for project inquiries, custom orders, or studio visits.",
+  description: "Contact us for inquiries, custom orders, or studio visits. Explore careers at Orelli Bombay.",
 };
 
 export default function ContactPage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <section className="pt-40 pb-8 px-6 md:px-12">
+      <section className="pt-32 pb-8 px-6 md:px-12">
         <FadeUp>
           <h1 className="font-cormorant text-[clamp(36px,5vw,64px)] text-foreground leading-none">
-            Let&apos;s Work Together
+            Contact Us
           </h1>
         </FadeUp>
       </section>
 
       {/* Main Content */}
-      <section className="pb-32 px-6 md:px-12">
+      <section className="pb-16 px-6 md:px-12">
         <div className="flex flex-col md:flex-row w-full gap-16 md:gap-0">
           
-          {/* Left: Enquiry Form */}
-          <div className="w-full md:w-1/2">
-            <FadeUp delay={0.1}>
-              <ContactForm />
-            </FadeUp>
-          </div>
-
-          {/* Right: Studio Info */}
-          <div className="w-full md:w-1/2 md:pl-16">
-            <FadeUp delay={0.2} className="h-full">
-              <span className="font-sans uppercase tracking-[0.12em] text-[11px] text-[#888] block mb-4">
-                STUDIO
-              </span>
-              <h2 className="font-cormorant text-[26px] text-foreground mb-4">
+          {/* Left: Studio Info */}
+          <div className="w-full md:w-1/2 md:pr-16 order-1">
+            <FadeUp delay={0.1} className="h-full">
+              <h2 className="font-cormorant text-[28px] text-foreground mb-4">
                 Orelli Bombay
               </h2>
-              <div className="font-sans text-[14px] text-[#555] leading-[1.9] mb-6">
-                <p>Santacruz</p>
-                <p>Mumbai, 400055</p>
-                <p>India</p>
+              <div className="font-sans text-[16px] text-[#555] leading-[1.9] mb-6">
+                <p>1st Floor, Rudra Paradise</p>
+                <p>Guru Narayan Rd, Madhuvan Society</p>
+                <p>Sen Nagar, Santacruz East</p>
+                <p>Mumbai, Maharashtra 400055</p>
               </div>
               
-              <a href="mailto:hello@orellibombay.com" className="font-sans text-[14px] text-accent hover:underline decoration-accent/50 underline-offset-4 mb-6 block w-fit">
-                hello@orellibombay.com
+              <a href="mailto:orellibombay@orelli.co.in" className="font-sans text-[16px] text-accent hover:underline decoration-accent/50 underline-offset-4 mb-6 block w-fit">
+                orellibombay@orelli.co.in
               </a>
 
-              <div className="font-sans text-[14px] text-[#555] mb-8">
+              <div className="font-sans text-[16px] text-[#555] mb-8">
                 <p>Monday – Friday: 10am – 6pm</p>
                 <p>Saturday: By appointment only</p>
               </div>
 
-              <div className="w-full h-[200px] bg-border rounded-[4px] overflow-hidden">
+              <div className="w-full h-[250px] bg-border rounded-[4px] overflow-hidden">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img 
                   src="/new-hero-2.jpeg" 
@@ -63,6 +54,11 @@ export default function ContactPage() {
                 />
               </div>
             </FadeUp>
+          </div>
+
+          {/* Right: Careers Section */}
+          <div className="w-full md:w-1/2 md:pl-16 order-2 mt-12 md:mt-0 md:border-l md:border-border/60">
+            <CareersSection />
           </div>
 
         </div>

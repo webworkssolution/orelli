@@ -1,6 +1,7 @@
 datasource db {
-  provider = "sqlite"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 generator client {
@@ -16,9 +17,10 @@ model Category {
   imageSrc          String
   tags              String   @default("[]") // JSON array stored as string
   gallery           String   @default("[]") // JSON array of image paths
-  order             Int      @default(0)
-  createdAt         DateTime @default(now())
-  updatedAt         DateTime @updatedAt
+  order             Int       @default(0)
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  projects          Project[]
 }
 
 model Project {
@@ -27,10 +29,12 @@ model Project {
   slug        String   @unique
   description String
   imageSrc    String
-  featured    Boolean  @default(false)
-  order       Int      @default(0)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  featured    Boolean   @default(false)
+  order       Int       @default(0)
+  categoryId  String?
+  category    Category? @relation(fields: [categoryId], references: [id])
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
 }
 
 model Blog {
@@ -65,4 +69,32 @@ model UploadedImage {
   size      Int
   mimeType  String
   createdAt DateTime @default(now())
+}
+
+model Faq {
+  id        String   @id @default(cuid())
+  question  String
+  answer    String
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model AboutContent {
+  id          Int      @id @default(1)
+  heading     String
+  paragraph1  String
+  quote       String
+  paragraph2  String
+  paragraph3  String
+  imageSrc    String
+  heroImageSrc String   @default("")
+  heroText    String   @default("")
+  value1Title String   @default("")
+  value1Desc  String   @default("")
+  value2Title String   @default("")
+  value2Desc  String   @default("")
+  value3Title String   @default("")
+  value3Desc  String   @default("")
+  updatedAt   DateTime @updatedAt
 }

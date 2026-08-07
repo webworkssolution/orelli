@@ -73,7 +73,7 @@ export default function CollectionsStrip({ categories }: CollectionsStripProps) 
   if (categories.length === 0) return null;
 
   return (
-    <section className="bg-background py-24 px-6 md:px-12">
+    <section className="bg-background py-12 px-6 md:px-12">
       <FadeUp>
         <h2 className="font-cormorant text-[clamp(36px,5vw,64px)] text-foreground mb-12">
           Our Categories

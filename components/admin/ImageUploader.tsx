@@ -75,6 +75,7 @@ export default function ImageUploader({ onUpload, currentImage }: ImageUploaderP
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const file = e.target.files?.[0];
       if (file) handleFile(file);
+      if (e.target) e.target.value = '';
     },
     [handleFile]
   );
