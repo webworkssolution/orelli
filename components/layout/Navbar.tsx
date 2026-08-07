@@ -3,7 +3,11 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useModal } from "@/components/context/ModalContext";
+import { ChevronDown } from "lucide-react";
+
+interface NavbarProps {
+  categories?: { title: string; slug: string }[];
+}
 
 export default function Navbar({ categories = [] }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
@@ -28,7 +32,7 @@ export default function Navbar({ categories = [] }: NavbarProps) {
     { name: "Blogs", href: "/blogs" },
     { name: "Contact", href: "/contact" },
     { name: "FAQ", href: "/faq" },
-    { name: "Enquiry", href: "/enquiry" },
+    { name: "Enquiry", href: "#" },
   ];
 
   const isHome = pathname === "/";
@@ -75,18 +79,57 @@ export default function Navbar({ categories = [] }: NavbarProps) {
           <>
             {/* Desktop Nav */}
             <div className="hidden md:flex items-center gap-8">
-              {links.map((link) => (
-                link.name === "Enquiry" ? (
-                  <button
-                    key={link.name}
-                    onClick={openModal}
-                    className={`nav-link ${
-                      useDarkText ? "text-foreground" : "text-whiteAlt"
-                    } transition-colors duration-400 bg-transparent outline-none pb-1`}
-                  >
-                    {link.name}
-                  </button>
-                ) : (
+              {links.map((link) => {
+                if (link.name === "Enquiry") {
+                  return (
+                    <Link
+                      key={link.name}
+                      href="/enquiry"
+                      className={`nav-link ${
+                        useDarkText ? "text-foreground" : "text-whiteAlt"
+                      } transition-colors duration-400 bg-transparent outline-none pb-1`}
+                    >
+                      {link.name}
+                    </Link>
+                  );
+                }
+
+                if (link.name === "Categories") {
+                  return (
+                    <div key={link.name} className="relative group py-6">
+                      <Link
+                        href={link.href}
+                        className={`nav-link flex items-center gap-1 ${pathname.startsWith(link.href) ? "active" : ""} ${
+                          useDarkText ? "text-foreground" : "text-whiteAlt"
+                        } transition-colors duration-400`}
+                      >
+                        {link.name}
+                        {categories.length > 0 && (
+                          <ChevronDown className="w-3 h-3 opacity-70" />
+                        )}
+                      </Link>
+
+                      {/* Dropdown Menu */}
+                      {categories.length > 0 && (
+                        <div className="absolute top-[100%] left-1/2 -translate-x-1/2 pt-2 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300">
+                          <div className="bg-background border border-border shadow-lg p-3 min-w-[180px] flex flex-col gap-2 rounded-[2px]">
+                            {categories.map((cat) => (
+                              <Link
+                                key={cat.slug}
+                                href={`/categories/${cat.slug}`}
+                                className="font-sans text-[15px] uppercase tracking-widest text-[#555] hover:text-accent transition-colors px-4 py-2 whitespace-nowrap text-center block"
+                              >
+                                {cat.title}
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  );
+                }
+
+                return (
                   <Link
                     key={link.name}
                     href={link.href}
@@ -133,29 +176,67 @@ export default function Navbar({ categories = [] }: NavbarProps) {
             menuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
           }`}
         >
-          <div className="flex flex-col items-center gap-8">
-            {links.map((link) => (
-              link.name === "Enquiry" ? (
-                <button
-                  key={link.name}
-                  onClick={() => {
-                    setMenuOpen(false);
-                    openModal();
-                  }}
-                  className="font-cormorant text-whiteAlt text-4xl"
-                >
-                  {link.name}
-                </button>
-              ) : (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  onClick={() => setMenuOpen(false)}
-                  className="font-cormorant text-whiteAlt text-4xl"
-                >
-                  {link.name}
-                </Link>
-              )
+          <div className="flex flex-col items-center gap-10 w-full px-6 py-24">
+            {links.map((link, idx) => (
+              <div 
+                key={link.name}
+                className={`transition-all duration-700 ease-out flex flex-col items-center ${menuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+                style={{ transitionDelay: `${menuOpen ? 150 + idx * 75 : 0}ms` }}
+              >
+                {link.name === "Enquiry" ? (
+                  <Link
+                    href="/enquiry"
+                    onClick={() => setMenuOpen(false)}
+                    className="font-cormorant text-foreground text-4xl sm:text-5xl hover:text-accent transition-colors"
+                  >
+                    {link.name}
+                  </Link>
+                ) : link.name === "Categories" ? (
+                  <div className="flex flex-col items-center">
+                    <div className="flex items-center gap-2">
+                      <Link
+                        href={link.href}
+                        onClick={() => setMenuOpen(false)}
+                        className="font-cormorant text-foreground text-4xl sm:text-5xl hover:text-accent transition-colors"
+                      >
+                        {link.name}
+                      </Link>
+                      {categories.length > 0 && (
+                        <button 
+                          onClick={() => setMobileCategoriesOpen(!mobileCategoriesOpen)}
+                          className="p-2 text-foreground/50 hover:text-foreground transition-colors"
+                        >
+                          <ChevronDown className={`w-6 h-6 transition-transform ${mobileCategoriesOpen ? "rotate-180" : ""}`} />
+                        </button>
+                      )}
+                    </div>
+                    
+                    {/* Mobile Submenu */}
+                    {categories.length > 0 && (
+                      <div className={`flex flex-col items-center gap-6 overflow-hidden transition-all duration-300 ${mobileCategoriesOpen ? "max-h-[500px] opacity-100 mt-8" : "max-h-0 opacity-0 mt-0"}`}>
+                        {categories.map((cat) => (
+                          <Link
+                            key={cat.slug}
+                            href={`/categories/${cat.slug}`}
+                            onClick={() => setMenuOpen(false)}
+                            className="font-sans text-[15px] sm:text-[17px] text-[#555] uppercase tracking-widest hover:text-accent transition-colors"
+                          >
+                            {cat.title}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <Link
+                    href={link.href}
+                    onClick={() => setMenuOpen(false)}
+                    className="font-cormorant text-foreground text-4xl sm:text-5xl hover:text-accent transition-colors block"
+                  >
+                    {link.name}
+                  </Link>
+                )}
+              </div>
             ))}
           </div>
         </div>
