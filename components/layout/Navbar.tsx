@@ -56,7 +56,9 @@ export default function Navbar({ categories = [] }: NavbarProps) {
           <span className={`font-baskerville text-[22px] tracking-[0.10em] transition-colors duration-400 ${
             isAdmin ? "text-[#f5f5f5]" : useDarkText ? "text-foreground" : "text-black"
           }`}>
-            ORELLI BOMBAY
+            ORELLI™ </span> <span className={`font-gothic text-[22px] tracking-[0.10em] transition-colors duration-400 ${
+            isAdmin ? "text-[#f5f5f5]" : useDarkText ? "text-foreground" : "text-black"
+          }`}> BOMBAY
           </span>
         </Link>
 
