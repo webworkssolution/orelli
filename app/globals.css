@@ -92,4 +92,19 @@
     font-family: var(--font-cormorant), serif;
     color: var(--color-text);
   }
+
+  /* Typography for CMS (Tiptap) HTML blog content */
+  .blog-html p { @apply font-sans text-[18px] text-[#333] leading-[1.9] mb-6; }
+  .blog-html h1 { @apply font-cormorant text-[36px] text-foreground mt-10 mb-4 leading-[1.2]; }
+  .blog-html h2 { @apply font-cormorant text-[30px] text-foreground mt-10 mb-4 leading-[1.2]; }
+  .blog-html h3 { @apply font-cormorant text-[24px] text-foreground mt-8 mb-3 leading-[1.3]; }
+  .blog-html blockquote { @apply font-cormorant italic text-[22px] text-accent border-l-2 border-accent pl-[20px] my-8; }
+  .blog-html ul { @apply list-disc pl-6 mb-6 space-y-2; }
+  .blog-html ol { @apply list-decimal pl-6 mb-6 space-y-2; }
+  .blog-html li { @apply font-sans text-[18px] text-[#333] leading-[1.8]; }
+  .blog-html li > p { @apply mb-0; }
+  .blog-html a { @apply text-accent underline underline-offset-4 decoration-accent/50 hover:opacity-70 transition-opacity; }
+  .blog-html strong { @apply font-semibold text-foreground; }
+  .blog-html em { @apply italic; }
+  .blog-html img { @apply w-full rounded-[4px] my-8; }
 }

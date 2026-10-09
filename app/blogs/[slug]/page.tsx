@@ -84,12 +84,24 @@ export default async function ArticlePage({
 
           <div className="w-full h-[1px] bg-border my-10" />
 
-          <div className="article-content max-w-3xl mx-auto">
-            <MDXRemote 
-              source={(blog.content || "Content coming soon.").replace(/<(img|br|hr)([^>]*?)(?:\s*\/)?>/g, '<$1$2 />')} 
-              components={components} 
-            />
-          </div>
+          {(() => {
+            const rawContent = blog.content || "Content coming soon.";
+            // CMS (Tiptap) saves HTML; legacy/seeded blogs are Markdown. Render each appropriately.
+            const isHtml = /<(p|h[1-6]|ul|ol|li|blockquote|img|br|div|strong|em|a|figure)\b[^>]*>/i.test(rawContent);
+            return isHtml ? (
+              <div
+                className="article-content blog-html max-w-3xl mx-auto"
+                dangerouslySetInnerHTML={{ __html: rawContent }}
+              />
+            ) : (
+              <div className="article-content max-w-3xl mx-auto">
+                <MDXRemote
+                  source={rawContent.replace(/<(img|br|hr)([^>]*?)(?:\s*\/)?>/g, '<$1$2 />')}
+                  components={components}
+                />
+              </div>
+            );
+          })()}
         </FadeUp>
 
         {relatedBlogs.length > 0 && (
