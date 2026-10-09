@@ -36,7 +36,7 @@ const jost = Jost({
 import { prisma } from "@/lib/prisma";
 
 export const metadata: Metadata = {
-  title: "Orelli Bombay | Premium Luxury Textiles",
+  title: "Orelli Bombay | Bespoke Home Furnishing",
   description: "Crafted for the spaces you live in. Where Indian craft meets contemporary living.",
 };
 
