@@ -16,6 +16,7 @@ export default function TiptapEditor({ content, onChange }: TiptapEditorProps) {
     extensions: [
       StarterKit.configure({
         heading: { levels: [1, 2, 3] },
+        link: false,
       }),
       Link.configure({
         openOnClick: false,
@@ -113,6 +114,22 @@ export default function TiptapEditor({ content, onChange }: TiptapEditorProps) {
           >
             <em>I</em>
           </button>
+          <button
+            type="button"
+            onClick={() => editor.chain().focus().toggleUnderline().run()}
+            className={`tiptap-btn ${editor.isActive('underline') ? 'is-active' : ''}`}
+            title="Underline"
+          >
+            <u>U</u>
+          </button>
+          <button
+            type="button"
+            onClick={() => editor.chain().focus().toggleStrike().run()}
+            className={`tiptap-btn ${editor.isActive('strike') ? 'is-active' : ''}`}
+            title="Strikethrough"
+          >
+            <s>S</s>
+          </button>
         </div>
 
         <span className="tiptap-separator" />
@@ -178,6 +195,32 @@ export default function TiptapEditor({ content, onChange }: TiptapEditorProps) {
         <div className="tiptap-toolbar-group">
           <button
             type="button"
+            onClick={() => editor.chain().focus().toggleBlockquote().run()}
+            className={`tiptap-btn ${editor.isActive('blockquote') ? 'is-active' : ''}`}
+            title="Quote"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z" />
+              <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z" />
+            </svg>
+          </button>
+          <button
+            type="button"
+            onClick={() => editor.chain().focus().setHorizontalRule().run()}
+            className="tiptap-btn"
+            title="Divider"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="3" y1="12" x2="21" y2="12" />
+            </svg>
+          </button>
+        </div>
+
+        <span className="tiptap-separator" />
+
+        <div className="tiptap-toolbar-group">
+          <button
+            type="button"
             onClick={setLink}
             className={`tiptap-btn ${editor.isActive('link') ? 'is-active' : ''}`}
             title="Add Link"
@@ -229,6 +272,35 @@ export default function TiptapEditor({ content, onChange }: TiptapEditorProps) {
             onChange={handleImageUpload}
             className="hidden"
           />
+        </div>
+
+        <span className="tiptap-separator" />
+
+        <div className="tiptap-toolbar-group">
+          <button
+            type="button"
+            onClick={() => editor.chain().focus().undo().run()}
+            disabled={!editor.can().undo()}
+            className="tiptap-btn"
+            title="Undo"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M3 7v6h6" />
+              <path d="M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13" />
+            </svg>
+          </button>
+          <button
+            type="button"
+            onClick={() => editor.chain().focus().redo().run()}
+            disabled={!editor.can().redo()}
+            className="tiptap-btn"
+            title="Redo"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M21 7v6h-6" />
+              <path d="M3 17a9 9 0 0 1 9-9 9 9 0 0 1 6 2.3L21 13" />
+            </svg>
+          </button>
         </div>
       </div>
 

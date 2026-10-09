@@ -210,10 +210,10 @@
   justify-content: center;
   width: 32px;
   height: 32px;
-  border: none;
+  border: 1px solid var(--admin-border);
   border-radius: 4px;
   background: transparent;
-  color: var(--admin-text-secondary);
+  color: var(--admin-text);
   cursor: pointer;
   font-size: 13px;
   font-weight: 600;
@@ -270,6 +270,14 @@
 
 .tiptap-content li {
   margin: 0.25em 0;
+}
+
+.tiptap-content u {
+  text-decoration: underline;
+}
+
+.tiptap-content s {
+  text-decoration: line-through;
 }
 
 .tiptap-content a,
