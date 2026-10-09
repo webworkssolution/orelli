@@ -19,7 +19,8 @@ const config: Config = {
       fontFamily: {
         cormorant: ["Optima", "sans-serif"],
         sans: ["Optima", "sans-serif"],
-        baskerville: ["\"Fry's Baskerville\"", "serif"],
+        baskerville: ["\"Fry's Baskerville\"", "var(--font-baskerville)", "Georgia", "serif"],
+        gothic: ["\"Century Gothic\"", "var(--font-gothic)", "sans-serif"],
         optima: ["Optima", "sans-serif"],
       },
       keyframes: {
