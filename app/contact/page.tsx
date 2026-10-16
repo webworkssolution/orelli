@@ -27,14 +27,16 @@ export default function ContactPage() {
           <div className="w-full md:w-1/2 md:pr-16 order-1">
             <FadeUp delay={0.1} className="h-full">
               <h2 className="font-cormorant text-[28px] text-foreground mb-4">
-                Orelli Bombay
+                ORELLI EXPERIENCE STUDIO
               </h2>
+              <Link href="https://maps.app.goo.gl/kTFVTgYDTyaJy2Up9">
               <div className="font-sans text-[16px] text-[#555] leading-[1.9] mb-6">
                 <p>1st Floor, Rudra Paradise</p>
                 <p>Guru Narayan Rd, Madhuvan Society</p>
                 <p>Sen Nagar, Santacruz East</p>
                 <p>Mumbai, Maharashtra 400055</p>
               </div>
+                </Link>
               
               <a href="mailto:orellibombay@orelli.co.in" className="font-sans text-[16px] text-accent hover:underline decoration-accent/50 underline-offset-4 mb-6 block w-fit">
                 orellibombay@orelli.co.in
