@@ -49,22 +49,10 @@ export default function Navbar({ categories = [] }: NavbarProps) {
       >
         <Link href="/" className="flex items-center gap-3">
           <img
-            src="/orelli-without-bg.png"
+            src="/ORELLI-header-logo.png"
             alt="Orelli Logo"
             className="w-10 h-10 object-contain"
           />
-          <span className="flex items-baseline gap-[0.4em]">
-            <span className={`font-baskerville text-[22px] tracking-[0.12em] transition-colors duration-400 ${
-              isAdmin ? "text-[#f5f5f5]" : useDarkText ? "text-foreground" : "text-black"
-            }`}>
-              ORELLI<sup className="font-gothic text-[0.45em] align-super tracking-normal">™</sup>
-            </span>
-            <span className={`font-gothic text-[15px] tracking-[0.2em] transition-colors duration-400 ${
-              isAdmin ? "text-[#f5f5f5]" : useDarkText ? "text-foreground" : "text-black"
-            }`}>
-              BOMBAY
-            </span>
-          </span>
         </Link>
 
         {isAdmin ? (
