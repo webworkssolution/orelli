@@ -51,7 +51,7 @@ export default function Navbar({ categories = [] }: NavbarProps) {
           <img
             src="/ORELLI-header-logo.png"
             alt="Orelli Logo"
-            className="w-10 h-10 object-contain"
+            className="h-10 sm:h-11 md:h-12 lg:h-[48px] w-auto object-contain transition-all duration-300"
           />
         </Link>
 

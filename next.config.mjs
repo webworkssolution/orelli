@@ -5,6 +5,15 @@ const nextConfig = {
       bodySizeLimit: "50mb",
     },
   },
+  async redirects() {
+    return [
+      {
+        source: '/rate/:sku',
+        destination: 'https://pricelist.orelli.co.in/rates/:sku',
+        permanent: false,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

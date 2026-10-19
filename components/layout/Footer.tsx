@@ -10,7 +10,7 @@ export default function Footer() {
         {/* Top section */}
         <div className="flex flex-col items-center mb-8">
           {/* Mandala logo mark */}
-          <div className="w-[200px] h-[200px] mb-2 flex items-center justify-center">
+          <div className="w-[180px] h-[180px] mb-2 flex items-center justify-center">
             <img 
               src="/logo.png" 
               alt="Orelli Bombay Logo" 
