@@ -25,17 +25,21 @@ export default function AdminLoginPage() {
     setError('');
     setLoading(true);
 
+    const trimmedEmail = email.trim().toLowerCase();
+
     try {
       const res = await signIn('credentials', {
         redirect: false,
-        email,
+        email: trimmedEmail,
         password,
       });
 
       if (res?.error) {
         setError('Invalid email or password');
       } else {
-        router.push('/admin');
+        const searchParams = new URLSearchParams(window.location.search);
+        const callbackUrl = searchParams.get('callbackUrl') || '/admin';
+        window.location.href = callbackUrl;
       }
     } catch {
       setError('Something went wrong. Please try again.');
@@ -102,9 +106,12 @@ export default function AdminLoginPage() {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="admin@orelli.com"
+                placeholder="admin@orelli.co.in"
                 className="admin-input"
                 autoComplete="email"
+                autoCapitalize="none"
+                autoCorrect="off"
+                spellCheck={false}
               />
             </div>
 
